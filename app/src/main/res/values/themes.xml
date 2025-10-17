@@ -1,9 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="Theme.GroupTwo" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
-        <item name="colorPrimary">#00BFFF</item>  <!-- Turquesa -->
-        <item name="colorPrimaryDark">#008080</item>
-        <item name="colorAccent">#FFD700</item>
-        <!-- Agrega más si es necesario -->
-    </style>
+    <style name="Theme.GroupTwo" parent="Theme.Material3.Dark.NoActionBar" />
 </resources>

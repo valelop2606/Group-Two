@@ -6,11 +6,11 @@
     android:background="#1C2526">
 
     <!-- Contenido scrollable -->
+
     <ScrollView
         android:id="@+id/scrollContent"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@id/bottomNav">
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -19,75 +19,96 @@
             android:padding="12dp">
 
             <!-- Header -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Mixify"
-                android:textSize="20sp"
-                android:textColor="#FFFFFF"
-                android:textStyle="bold"
-                android:paddingBottom="4dp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:paddingBottom="4dp"
+                android:text="Mixify"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingBottom="8dp"
                 android:text="Tu bar personal"
-                android:textSize="14sp"
                 android:textColor="#FF69B4"
-                android:paddingBottom="8dp" />
+                android:textSize="14sp" />
 
             <!-- Search -->
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:hint="Buscar por nombre, tipo o ingrediente"
-                android:hintTextColor="#B0B0B0"
-                android:textColor="#FFFFFF"
-                android:padding="8dp"
-                android:layout_marginBottom="8dp" />
 
             <!-- Filter Button -->
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginBottom="8dp"
+                android:hint="Buscar por nombre, tipo o ingrediente"
+                android:padding="8dp"
+                android:textColor="#FAFFFEFE" />
+
             <Button
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:text="Lo que tengo en casa"
+                android:layout_height="50dp"
+                android:layout_marginBottom="12dp"
                 android:background="#00CED1"
-                android:textColor="#FFFFFF"
-                android:layout_marginBottom="12dp" />
+                android:text="Lo que tengo en casa"
+                android:textColor="#000000" />
 
             <!-- Tabs -->
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
+                android:layout_marginBottom="12dp"
                 android:gravity="center"
-                android:layout_marginBottom="12dp">
+                android:orientation="horizontal">
 
                 <Button
                     android:layout_width="0dp"
-                    android:layout_height="40dp"
+                    android:layout_height="60dp"
                     android:layout_weight="1"
+                    android:background="@android:color/darker_gray"
                     android:text="Clásicos"
-                    android:background="@android:color/darker_gray"
-                    android:textColor="#FFFFFF" />
+                    android:textColor="#000000" />
 
                 <Button
                     android:layout_width="0dp"
-                    android:layout_height="40dp"
+                    android:layout_height="60dp"
                     android:layout_weight="1"
-                    android:text="Creativos"
                     android:background="@android:color/darker_gray"
-                    android:textColor="#FFFFFF" />
+                    android:text="Creativos"
+                    android:textColor="#000000" />
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="60dp"
+                    android:layout_weight="1"
+                    android:background="@android:color/darker_gray"
+                    android:text="Sin Alcohol"
+                    android:textColor="#000000" />
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="60dp"
+                    android:layout_weight="1"
+                    android:background="@android:color/darker_gray"
+                    android:text="Tematicos"
+                    android:textColor="#000000" />
+
             </LinearLayout>
 
             <!-- Sección: Para ti -->
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:paddingBottom="8dp"
                 android:text="Para ti"
-                android:textSize="16sp"
                 android:textColor="#FF69B4"
-                android:paddingBottom="8dp" />
+                android:textSize="16sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -99,23 +120,23 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:orientation="vertical"
                     android:gravity="center"
+                    android:orientation="vertical"
                     android:padding="4dp">
 
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="80dp"
-                        app:srcCompat="@drawable/mojito"
-                        android:contentDescription="Imagen de Mojito" />
+                        android:contentDescription="Imagen de Mojito"
+                        app:srcCompat="@drawable/mojito" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Mojito"
                         android:textColor="#FFFFFF"
-                        android:textStyle="bold"
-                        android:textSize="14sp" />
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -123,29 +144,30 @@
                         android:text="Fácil"
                         android:textColor="#B0B0B0"
                         android:textSize="12sp" />
+
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:orientation="vertical"
                     android:gravity="center"
+                    android:orientation="vertical"
                     android:padding="4dp">
 
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="80dp"
-                        app:srcCompat="@drawable/cosmopolitan"
-                        android:contentDescription="Imagen de Cosmopolitan" />
+                        android:contentDescription="Imagen de Cosmopolitan"
+                        app:srcCompat="@drawable/cosmopolitan" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Cosmopolitan"
                         android:textColor="#FFFFFF"
-                        android:textStyle="bold"
-                        android:textSize="14sp" />
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -154,16 +176,16 @@
                         android:textColor="#B0B0B0"
                         android:textSize="12sp" />
                 </LinearLayout>
-            </LinearLayout>
 
+            </LinearLayout>
             <!-- Sección: Tendencias -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:paddingBottom="8dp"
                 android:text="Tendencias"
-                android:textSize="16sp"
                 android:textColor="#FF69B4"
-                android:paddingBottom="8dp" />
+                android:textSize="16sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -175,23 +197,23 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:orientation="vertical"
                     android:gravity="center"
+                    android:orientation="vertical"
                     android:padding="4dp">
 
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="80dp"
-                        app:srcCompat="@drawable/margarita"
-                        android:contentDescription="Imagen de Margarita" />
+                        android:contentDescription="Imagen de Margarita"
+                        app:srcCompat="@drawable/margarita" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Margarita"
                         android:textColor="#FFFFFF"
-                        android:textStyle="bold"
-                        android:textSize="14sp" />
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -205,23 +227,23 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:orientation="vertical"
                     android:gravity="center"
+                    android:orientation="vertical"
                     android:padding="4dp">
 
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="80dp"
-                        app:srcCompat="@drawable/negroni"
-                        android:contentDescription="Imagen de Negroni" />
+                        android:contentDescription="Imagen de Negroni"
+                        app:srcCompat="@drawable/negroni" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Negroni"
                         android:textColor="#FFFFFF"
-                        android:textStyle="bold"
-                        android:textSize="14sp" />
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -240,24 +262,24 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_alignParentBottom="true"
-        android:orientation="horizontal"
         android:background="#2F2F2F"
+        android:elevation="4dp"
         android:gravity="center"
-        android:elevation="4dp">
+        android:orientation="horizontal">
 
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:orientation="vertical"
-            android:gravity="center">
+            android:gravity="center"
+            android:orientation="vertical">
 
             <ImageView
                 android:layout_width="24dp"
                 android:layout_height="24dp"
+                android:contentDescription="Inicio"
                 app:srcCompat="@drawable/ic_home"
-                app:tint="#FF69B4"
-                android:contentDescription="Inicio" />
+                app:tint="#FF69B4" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -271,15 +293,15 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:orientation="vertical"
-            android:gravity="center">
+            android:gravity="center"
+            android:orientation="vertical">
 
             <ImageView
                 android:layout_width="24dp"
                 android:layout_height="24dp"
+                android:contentDescription="Buscar"
                 app:srcCompat="@drawable/ic_search"
-                app:tint="#FFFFFF"
-                android:contentDescription="Buscar" />
+                app:tint="#FFFFFF" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -293,15 +315,15 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:orientation="vertical"
-            android:gravity="center">
+            android:gravity="center"
+            android:orientation="vertical">
 
             <ImageView
                 android:layout_width="24dp"
                 android:layout_height="24dp"
+                android:contentDescription="Calculadora"
                 app:srcCompat="@drawable/ic_calculator"
-                app:tint="#FFFFFF"
-                android:contentDescription="Calculadora" />
+                app:tint="#FFFFFF" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -315,15 +337,15 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:orientation="vertical"
-            android:gravity="center">
+            android:gravity="center"
+            android:orientation="vertical">
 
             <ImageView
                 android:layout_width="24dp"
                 android:layout_height="24dp"
+                android:contentDescription="Perfil"
                 app:srcCompat="@drawable/ic_profile"
-                app:tint="#FFFFFF"
-                android:contentDescription="Perfil" />
+                app:tint="#FFFFFF" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -333,5 +355,4 @@
                 android:textSize="12sp" />
         </LinearLayout>
     </LinearLayout>
-
 </RelativeLayout>
