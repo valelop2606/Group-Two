@@ -1,7 +1,23 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Base.Theme.GroupTwo" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your dark theme here. -->
-        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+    <!-- Tema para modo nocturno (dark mode) -->
+    <style name="Theme.GroupTwo" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Colores personalizados para modo oscuro -->
+        <item name="colorPrimary">@color/colorPrimary</item>  <!-- Turquesa (de colors.xml) -->
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>  <!-- Verde oscuro -->
+        <item name="colorAccent">@color/colorAccent</item>  <!-- Dorado -->
+        <item name="colorSecondary">@color/colorSecondary</item>  <!-- Vino -->
+
+        <!-- Fondo y superficies oscuras -->
+        <item name="android:colorBackground">@color/background_dark</item>  <!-- Fondo negro -->
+        <item name="colorSurface">@color/chip_unselected</item>  <!-- Superficies grises oscuras -->
+
+        <!-- Textos -->
+        <item name="colorOnPrimary">@color/textColor</item>  <!-- Texto blanco en elementos primarios -->
+        <item name="colorOnBackground">@color/textColor</item>  <!-- Texto blanco en fondo -->
+        <item name="colorOnSurface">@color/textColor</item>  <!-- Texto blanco en superficies -->
+
+        <!-- Específicos para Chips (para que funcionen bien en oscuro) -->
+        <item name="chipBackgroundColor">@color/chip_selected_color</item>  <!-- Fondo de Chips -->
+        <item name="chipStrokeColor">@color/hint_color</item>  <!-- Borde de Chips si es necesario -->
     </style>
 </resources>
