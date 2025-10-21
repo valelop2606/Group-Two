@@ -1,4 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+
     <!-- Tema para modo nocturno (dark mode) -->
     <style name="Theme.GroupTwo" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Colores personalizados para modo oscuro -->
