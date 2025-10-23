@@ -1,4 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="Theme.GroupTwo" parent="Theme.Material3.Dark.NoActionBar" />
+    <!-- Tema base de la app (Material 3, sin ActionBar para usar Toolbar) -->
+    <style name="GroupTwo1" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Si NO usarás Dynamic Color, define tus colores (luego en colors.xml) -->
+        <!-- <item name="colorPrimary">@color/md_theme_primary</item> -->
+        <!-- <item name="colorSecondary">@color/md_theme_secondary</item> -->
+        <!-- Barra de estado y navegación alineadas al color de superficie -->
+        <item name="android:statusBarColor">?attr/colorSurface</item>
+        <item name="android:navigationBarColor">?attr/colorSurface</item>
+        <!-- Activa iconos vectoriales en versiones viejas -->
+        <item name="android:forceDarkAllowed">true</item>
+    </style>
 </resources>
