@@ -1,16 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#1C2526">
+    android:background="@color/black">
 
-    <!-- Contenido scrollable -->
-
+    <!-- Scrollable content -->
     <ScrollView
         android:id="@+id/scrollContent"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/bottomNav"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -19,96 +25,82 @@
             android:padding="12dp">
 
             <!-- Header -->
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingBottom="4dp"
                 android:text="Mixify"
-                android:textColor="#FFFFFF"
                 android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textColor="#FFFFFF"
+                android:textStyle="bold"
+                android:paddingBottom="4dp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingBottom="8dp"
                 android:text="Tu bar personal"
+                android:textSize="14sp"
                 android:textColor="#FF69B4"
-                android:textSize="14sp" />
+                android:paddingBottom="8dp" />
 
             <!-- Search -->
-
-            <!-- Filter Button -->
-
             <EditText
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginBottom="8dp"
+                android:layout_height="40dp"
                 android:hint="Buscar por nombre, tipo o ingrediente"
+                android:textColorHint="#B0B0B0"
+                android:textColor="#FFFFFF"
                 android:padding="8dp"
-                android:textColor="#FAFFFEFE" />
+                android:layout_marginBottom="8dp" />
 
+            <!-- Filter Button -->
             <Button
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginBottom="12dp"
-                android:background="#00CED1"
+                android:layout_height="40dp"
                 android:text="Lo que tengo en casa"
-                android:textColor="#000000" />
+                android:background="#00CED1"
+                android:textColor="#FFFFFF"
+                android:layout_marginBottom="12dp" />
 
             <!-- Tabs -->
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="12dp"
+                android:orientation="horizontal"
                 android:gravity="center"
-                android:orientation="horizontal">
+                android:layout_marginBottom="12dp">
 
                 <Button
                     android:layout_width="0dp"
-                    android:layout_height="60dp"
+                    android:layout_height="40dp"
                     android:layout_weight="1"
-                    android:background="@android:color/darker_gray"
                     android:text="Clásicos"
-                    android:textColor="#000000" />
+                    android:background="@android:color/darker_gray"
+                    android:textColor="#FFFFFF" />
 
                 <Button
                     android:layout_width="0dp"
-                    android:layout_height="60dp"
+                    android:layout_height="40dp"
                     android:layout_weight="1"
-                    android:background="@android:color/darker_gray"
                     android:text="Creativos"
-                    android:textColor="#000000" />
-
-                <Button
-                    android:layout_width="0dp"
-                    android:layout_height="60dp"
-                    android:layout_weight="1"
                     android:background="@android:color/darker_gray"
-                    android:text="Sin Alcohol"
-                    android:textColor="#000000" />
-
-                <Button
-                    android:layout_width="0dp"
-                    android:layout_height="60dp"
-                    android:layout_weight="1"
-                    android:background="@android:color/darker_gray"
-                    android:text="Tematicos"
-                    android:textColor="#000000" />
-
+                    android:textColor="#FFFFFF" />
             </LinearLayout>
 
-            <!-- Sección: Para ti -->
+            <Button
+                android:id="@+id/boton_categorias"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Categorias"
+                android:textColor="@color/blanco"/>
 
+            <!-- Sección: Para ti -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingBottom="8dp"
                 android:text="Para ti"
+                android:textSize="16sp"
                 android:textColor="#FF69B4"
-                android:textSize="16sp" />
+                android:paddingBottom="8dp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -120,24 +112,30 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:gravity="center"
                     android:orientation="vertical"
+                    android:gravity="center"
                     android:padding="4dp">
-
-                    <ImageView
-                        android:id="@+id/imgMojito"
-                        android:layout_width="match_parent"
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="80dp"
                         android:layout_height="80dp"
-                        android:contentDescription="Imagen de Mojito"
-                        app:srcCompat="@drawable/mojito" />
+                        app:cardCornerRadius="10dp">
+                        <ImageButton
+                            android:id="@+id/btnMojito"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@color/black"
+                            android:scaleType="centerCrop"
+                            app:srcCompat="@drawable/mojito"
+                            android:contentDescription="Imagen de Mojito" />
+                    </androidx.cardview.widget.CardView>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Mojito"
                         android:textColor="#FFFFFF"
-                        android:textSize="14sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:textSize="14sp" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -145,30 +143,38 @@
                         android:text="Fácil"
                         android:textColor="#B0B0B0"
                         android:textSize="12sp" />
-
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:gravity="center"
                     android:orientation="vertical"
+                    android:gravity="center"
                     android:padding="4dp">
-
-                    <ImageView
-                        android:layout_width="match_parent"
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="80dp"
                         android:layout_height="80dp"
-                        android:contentDescription="Imagen de Cosmopolitan"
-                        app:srcCompat="@drawable/cosmopolitan" />
+                        app:cardCornerRadius="10dp">
+                        <ImageButton
+                            android:id="@+id/imagen_cosmopolitan"
+                            android:layout_width="match_parent"
+                            android:layout_height="80dp"
+                            android:background="@color/black"
+                            android:scaleType="centerCrop"
+                            app:srcCompat="@drawable/cosmopolitan"
+                            android:contentDescription="Imagen de Cosmopolitan" />
+
+                    </androidx.cardview.widget.CardView>
 
                     <TextView
+                        android:id="@+id/textView_cosmopolitan"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Cosmopolitan"
                         android:textColor="#FFFFFF"
-                        android:textSize="14sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:textSize="14sp" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -177,16 +183,16 @@
                         android:textColor="#B0B0B0"
                         android:textSize="12sp" />
                 </LinearLayout>
-
             </LinearLayout>
+
             <!-- Sección: Tendencias -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingBottom="8dp"
                 android:text="Tendencias"
+                android:textSize="16sp"
                 android:textColor="#FF69B4"
-                android:textSize="16sp" />
+                android:paddingBottom="8dp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -198,23 +204,28 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:gravity="center"
                     android:orientation="vertical"
+                    android:gravity="center"
                     android:padding="4dp">
-
-                    <ImageView
-                        android:layout_width="match_parent"
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="80dp"
                         android:layout_height="80dp"
-                        android:contentDescription="Imagen de Margarita"
-                        app:srcCompat="@drawable/margarita" />
-
+                        app:cardCornerRadius="10dp">
+                        <ImageButton
+                            android:layout_width="match_parent"
+                            android:layout_height="80dp"
+                            android:scaleType="centerCrop"
+                            android:background="@color/black"
+                            app:srcCompat="@drawable/margarita"
+                            android:contentDescription="Imagen de Margarita" />
+                    </androidx.cardview.widget.CardView>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Margarita"
                         android:textColor="#FFFFFF"
-                        android:textSize="14sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:textSize="14sp" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -228,23 +239,30 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:gravity="center"
                     android:orientation="vertical"
+                    android:gravity="center"
                     android:padding="4dp">
 
-                    <ImageView
-                        android:layout_width="match_parent"
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="80dp"
                         android:layout_height="80dp"
-                        android:contentDescription="Imagen de Negroni"
-                        app:srcCompat="@drawable/negroni" />
+                        app:cardCornerRadius="10dp">
+                        <ImageButton
+                            android:layout_width="match_parent"
+                            android:layout_height="80dp"
+                            android:scaleType="centerCrop"
+                            android:background="@color/black"
+                            app:srcCompat="@drawable/negroni"
+                            android:contentDescription="Imagen de Negroni" />
+                    </androidx.cardview.widget.CardView>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Negroni"
                         android:textColor="#FFFFFF"
-                        android:textSize="14sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:textSize="14sp" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -257,30 +275,33 @@
         </LinearLayout>
     </ScrollView>
 
-    <!-- Bottom Navigation (único id) -->
+    <!-- Bottom Navigation -->
     <LinearLayout
         android:id="@+id/bottomNav"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="60dp"
-        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
         android:background="#2F2F2F"
-        android:elevation="4dp"
         android:gravity="center"
-        android:orientation="horizontal">
+        android:elevation="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:gravity="center">
 
-            <ImageView
+            <ImageButton
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:contentDescription="Inicio"
-                app:srcCompat="@drawable/ic_home"
-                app:tint="#FF69B4" />
+                app:srcCompat="@drawable/home_icon_silhouette_svgrepo_com"
+                android:background="@null"
+                app:tint="#FF69B4"
+                android:contentDescription="Inicio" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -294,21 +315,23 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:gravity="center">
 
-            <ImageView
+            <ImageButton
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:contentDescription="Buscar"
-                app:srcCompat="@drawable/ic_search"
-                app:tint="#FFFFFF" />
+                app:srcCompat="@drawable/buscar"
+                android:scaleType="fitCenter"
+                android:background="@null"
+                app:tint="@color/rosa"
+                android:contentDescription="Buscar" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Buscar"
-                android:textColor="#FFFFFF"
+                android:textColor="@color/rosa"
                 android:textSize="12sp" />
         </LinearLayout>
 
@@ -316,21 +339,23 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:gravity="center">
 
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:contentDescription="Calculadora"
-                app:srcCompat="@drawable/ic_calculator"
-                app:tint="#FFFFFF" />
+            <ImageButton
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                app:srcCompat="@drawable/calculadora"
+                android:scaleType="fitCenter"
+                android:background="@null"
+                app:tint="@color/rosa"
+                android:contentDescription="Calculadora" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Calculadora"
-                android:textColor="#FFFFFF"
+                android:textColor="@color/rosa"
                 android:textSize="12sp" />
         </LinearLayout>
 
@@ -338,22 +363,30 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:gravity="center">
 
-            <ImageView
+            <ImageButton
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:contentDescription="Perfil"
-                app:srcCompat="@drawable/ic_profile"
-                app:tint="#FFFFFF" />
+                app:srcCompat="@drawable/perfil"
+                android:scaleType="fitCenter"
+                android:background="@null"
+                app:tint="@color/rosa"
+                android:contentDescription="Perfil" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Perfil"
-                android:textColor="#FFFFFF"
+                android:textColor="@color/rosa"
                 android:textSize="12sp" />
         </LinearLayout>
+
+
+
+
     </LinearLayout>
-</RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+

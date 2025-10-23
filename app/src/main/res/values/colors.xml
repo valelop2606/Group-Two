@@ -1,16 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="black">#000000</color>  <!-- Turquesa -->
+    <!-- Colores principales (como sugeriste) -->
     <color name="colorPrimary">#00BFFF</color>  <!-- Turquesa -->
     <color name="colorPrimaryDark">#008080</color>
     <color name="colorAccent">#FFD700</color>  <!-- Dorado -->
     <color name="colorSecondary">#8B0000</color>  <!-- Vino -->
-    <color name="textColor">#FFFFFF</color>  <!-- Blanco para modo oscuro -->
-    <color name="fondoNegro">#101014</color>
-    <color name="tarjetaOscura">#1A1C22</color>
-    <color name="tarjetaMasOscura">#20232B</color>
-    <color name="textoPrincipal">#FFFFFF</color>
-    <color name="textoSecundario">#B9BDC8</color>
-    <color name="navItem">#FFFFFFFF</color>
-    <color name="verVideo">#C98283</color>
+    <color name="rosa">#FF69B4</color>  <!-- Blanco para modo oscuro -->
+    <color name="blanco">#FFFFFF</color>  <!-- Blanco para modo oscuro -->
+    <color name="gris">#181717</color>  <!-- Blanco para modo oscuro -->
+    <color name="gris_claro">#262525</color>  <!-- Blanco para modo oscuro -->
 
+    <!-- Colores para el layout -->
+    <color name="background_dark">#121212</color>  <!-- Fondo oscuro -->
+    <color name="textColor">#FFFFFF</color>  <!-- Texto blanco -->
+    <color name="text_secondary">#AAAAAA</color>  <!-- Texto gris claro -->
+    <color name="hint_color">#777777</color>  <!-- Color de hint -->
+
+    <!-- Color fijo para chips (simplificado, sin selector) -->
+    <color name="chip_selected_color">#67BFAF</color>  <!-- Verde azulado fijo para chips -->
+    <color name="chip_unselected">#333333</color>  <!-- Gris oscuro para chips no seleccionados (opcional, si quieres variar) -->
 </resources>
