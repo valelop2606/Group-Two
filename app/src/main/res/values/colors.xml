@@ -5,4 +5,12 @@
     <color name="colorAccent">#FFD700</color>  <!-- Dorado -->
     <color name="colorSecondary">#8B0000</color>  <!-- Vino -->
     <color name="textColor">#FFFFFF</color>  <!-- Blanco para modo oscuro -->
+    <color name="fondoNegro">#101014</color>
+    <color name="tarjetaOscura">#1A1C22</color>
+    <color name="tarjetaMasOscura">#20232B</color>
+    <color name="textoPrincipal">#FFFFFF</color>
+    <color name="textoSecundario">#B9BDC8</color>
+    <color name="navItem">#FFFFFFFF</color>
+    <color name="verVideo">#C98283</color>
+
 </resources>
