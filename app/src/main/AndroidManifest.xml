@@ -12,19 +12,32 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GroupTwo">
 
-    <activity
-            android:name=".MainActivity"
-            android:exported="true">
-        </activity>
+        <!-- Launcher: pantalla de Inicio de Sesión -->
         <activity
-            android:name=".PantallaDeInicio"
+            android:name=".InicioSesionActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
-                <uses-permission android:name="android.permission.INTERNET"/>
             </intent-filter>
         </activity>
-    </application>
 
+        <!-- Otras pantallas de la app (no son launcher) -->
+        <activity
+            android:name=".CategoriasActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="false" />
+
+<!--        <activity-->
+<!--            android:name=".PantallaInicialActivity"-->
+<!--            android:exported="false" />-->
+
+        <activity
+            android:name=".PantallaInicialActivity"
+            android:exported="false" />
+
+    </application>
 </manifest>

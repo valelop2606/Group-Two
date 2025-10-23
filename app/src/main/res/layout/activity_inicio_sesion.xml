@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    tools:context=".InicioSesionActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:background="@color/gris">
+
+        <TextView
+            android:id="@+id/texto_inicio_sesion"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:text="Inicio de Sesion"
+            android:textColor="@color/rosa"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginTop="15dp"
+            android:layout_marginStart="15dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <EditText
+            android:id="@+id/Texto_username"
+            android:layout_width="200dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginBottom="80dp"
+            android:background="@color/gris_claro"
+            android:hint="Username"
+            android:textColorHint="@color/blanco"
+            android:textColor="@color/blanco"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <EditText
+            android:id="@+id/Texto_password"
+            android:layout_width="200dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="20dp"
+            android:background="@color/gris_claro"
+            android:hint="Password"
+            android:textColorHint="@color/blanco"
+            android:textColor="@color/blanco"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <TextView
+            android:id="@+id/Texto_Bienvenido"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:gravity="center"
+            android:text="BIENVENIDO!!"
+            android:textColor="@color/rosa"
+            android:textStyle="bold"/>
+
+        <Button
+            android:id="@+id/boton_inicio_sesion"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:backgroundTint="@color/rosa"
+            android:text="Acceder"
+            app:layout_constraintBottom_toTopOf="@id/Texto_Bienvenido"
+            app:layout_constraintStart_toStartOf="@id/Texto_password"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

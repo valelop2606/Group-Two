@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="black">#000000</color>  <!-- Turquesa -->
     <!-- Colores principales (como sugeriste) -->
     <color name="colorPrimary">#00BFFF</color>  <!-- Turquesa -->
-    <color name="colorPrimaryDark">#008080</color>  <!-- Verde oscuro -->
+    <color name="colorPrimaryDark">#008080</color>
     <color name="colorAccent">#FFD700</color>  <!-- Dorado -->
     <color name="colorSecondary">#8B0000</color>  <!-- Vino -->
+    <color name="rosa">#FF69B4</color>  <!-- Blanco para modo oscuro -->
+    <color name="blanco">#FFFFFF</color>  <!-- Blanco para modo oscuro -->
+    <color name="gris">#181717</color>  <!-- Blanco para modo oscuro -->
+    <color name="gris_claro">#262525</color>  <!-- Blanco para modo oscuro -->
 
     <!-- Colores para el layout -->
     <color name="background_dark">#121212</color>  <!-- Fondo oscuro -->
