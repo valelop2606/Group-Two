@@ -12,5 +12,8 @@ class VerRecetaDetalladaActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityVerRecetaDetalladaBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        binding.categoriasFlechaAtras.setOnClickListener {
+            finish()
+        }
     }
 }
