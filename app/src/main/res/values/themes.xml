@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <style name="Theme.GroupTwo" parent="Theme.Material3.DayNight">
+    <style name="Theme.GroupTwo" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Colores personalizados -->
         <item name="colorPrimary">#00BFFF</item>
         <item name="colorPrimaryDark">#008080</item>

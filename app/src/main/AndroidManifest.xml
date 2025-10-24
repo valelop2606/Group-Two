@@ -38,6 +38,9 @@
         <activity
             android:name=".PantallaInicialActivity"
             android:exported="false" />
+        <activity
+            android:name=".VerRecetaDetalladaActivity"
+            android:exported="false"/>
 
     </application>
 </manifest>

@@ -35,6 +35,10 @@ class PantallaInicialActivity : AppCompatActivity() {
             val intent = Intent(this, CategoriasActivity::class.java)
             startActivity(intent)
         }
+        binding.btnMojito.setOnClickListener {
+            val intent = Intent(this, VerRecetaDetalladaActivity::class.java)
+            startActivity(intent)
+        }
 
 
     }
