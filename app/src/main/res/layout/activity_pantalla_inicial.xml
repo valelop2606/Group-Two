@@ -46,6 +46,7 @@
 
             <!-- Search -->
             <EditText
+                android:id="@+id/etBuscarIngrediente"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:hint="Buscar por nombre, tipo o ingrediente"
@@ -56,6 +57,7 @@
 
             <!-- Filter Button -->
             <Button
+                android:id="@+id/btnTengoEnCasa"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:text="Lo que tengo en casa"
@@ -322,6 +324,7 @@
             android:gravity="center">
 
             <ImageButton
+                android:id="@+id/btnBuscarIcon"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 app:srcCompat="@drawable/buscar"
