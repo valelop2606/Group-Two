@@ -8,47 +8,45 @@
     android:background="@color/background_dark"
     tools:context=".VerRecetaDetalladaActivity">
 
-
-    <!-- Scroll principal -->
     <ScrollView
         android:id="@+id/scrollContent"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:fillViewport="true"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@id/bottomNav"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintEnd_toEndOf="parent">
 
-
+        <!-- ÚNICO hijo del ScrollView -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="20dp">
-            <!--Flecha-->
+
+            <!-- Flecha -->
             <ImageButton
                 android:id="@+id/categorias_flecha_atras"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:background="@android:color/transparent"
+                android:contentDescription="Volver"
                 app:srcCompat="@drawable/flecha_atras"
-                app:tint="@color/rosa"
-                android:contentDescription="Volver" />
+                app:tint="@color/rosa" />
 
             <!-- Título -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:gravity="center_horizontal"
                 android:paddingBottom="16dp"
                 android:text="Mojito clásico"
                 android:textColor="@color/blanco"
                 android:textSize="22sp"
                 android:textStyle="bold" />
 
-            <!-- Tarjetas de info -->
+            <!-- Tarjetas info -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -61,14 +59,12 @@
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
+                    android:layout_weight="1"
                     android:layout_marginStart="6dp"
                     android:layout_marginTop="4dp"
                     android:layout_marginEnd="6dp"
                     android:layout_marginBottom="4dp"
-                    android:layout_weight="1"
                     android:background="@color/gris_claro"
-                    android:backgroundTint="@color/gris_claro"
                     android:gravity="center"
                     android:orientation="vertical"
                     android:padding="12dp">
@@ -76,8 +72,7 @@
                     <ImageView
                         android:layout_width="24dp"
                         android:layout_height="24dp"
-                        android:src="@drawable/reloj"
-                        app:tint="@color/rosa" />
+                        android:src="@drawable/reloj" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -98,11 +93,11 @@
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:layout_marginStart="6dp"
                     android:layout_marginTop="4dp"
                     android:layout_marginEnd="6dp"
                     android:layout_marginBottom="4dp"
-                    android:layout_weight="1"
                     android:background="@color/gris_claro"
                     android:gravity="center"
                     android:orientation="vertical"
@@ -111,8 +106,7 @@
                     <ImageView
                         android:layout_width="24dp"
                         android:layout_height="24dp"
-                        android:src="@drawable/sabor_citrico"
-                        app:tint="@color/rosa" />
+                        android:src="@drawable/sabor_citrico" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -133,11 +127,11 @@
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:layout_marginStart="6dp"
                     android:layout_marginTop="4dp"
                     android:layout_marginEnd="6dp"
                     android:layout_marginBottom="4dp"
-                    android:layout_weight="1"
                     android:background="@color/gris_claro"
                     android:gravity="center"
                     android:orientation="vertical"
@@ -146,8 +140,7 @@
                     <ImageView
                         android:layout_width="24dp"
                         android:layout_height="24dp"
-                        android:src="@drawable/dificultad_media"
-                        app:tint="@color/rosa" />
+                        android:src="@drawable/dificultad_media" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -185,34 +178,11 @@
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
-            <!-- Lista de ingredientes -->
-            <LinearLayout
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvIngredientes"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
-                    android:background="@color/gris_claro"
-                    android:orientation="horizontal"
-                    android:padding="10dp">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Ron blanco"
-                        android:textColor="@color/blanco" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="60 ml"
-                        android:textColor="@color/text_secondary" />
-                </LinearLayout>
-            </LinearLayout>
+                android:nestedScrollingEnabled="false" />
 
             <!-- Preparación -->
             <TextView
@@ -225,31 +195,16 @@
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
-            <LinearLayout
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvPasos"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingVertical="4dp">
+                android:nestedScrollingEnabled="false" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginEnd="8dp"
-                    android:background="@color/gris_claro"
-                    android:gravity="center"
-                    android:padding="6dp"
-                    android:text="1"
-                    android:textColor="@color/rosa"
-                    android:textStyle="bold" />
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="24dp" />
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Coloca las hojas de menta y el azúcar en el vaso. Machaca suavemente."
-                    android:textColor="@color/text_secondary" />
-            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 
@@ -354,6 +309,4 @@
                 android:textSize="12sp" />
         </LinearLayout>
     </LinearLayout>
-
 </androidx.constraintlayout.widget.ConstraintLayout>
-
