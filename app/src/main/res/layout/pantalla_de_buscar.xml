@@ -11,17 +11,31 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <!-- Botón de regreso -->
+        <ImageButton
+            android:id="@+id/btnBack"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Regresar"
+            android:padding="12dp"
+            android:src="@drawable/flecha_atras"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <!-- Título principal -->
         <TextView
             android:id="@+id/tvTitulo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
             android:text="Lo que tengo en casa"
             android:textColor="@color/textColor"
             android:textSize="22sp"
             android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintBottom_toBottomOf="@id/btnBack"
+            app:layout_constraintStart_toEndOf="@id/btnBack"
+            app:layout_constraintTop_toTopOf="@id/btnBack" />
 
         <!-- Subtítulo -->
         <TextView
@@ -74,37 +88,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvSeleccionados"
             app:singleLine="false">
-
-            <!-- Ejemplo inicial (pueden eliminarse desde el activity) -->
-            <com.google.android.material.chip.Chip
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Ron"
-                android:textColor="@color/textColor"
-                app:chipBackgroundColor="@color/chip_selected_color"
-                app:closeIconEnabled="true"
-                app:closeIconVisible="true" />
-
-            <com.google.android.material.chip.Chip
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Lima"
-                android:textColor="@color/textColor"
-                app:chipBackgroundColor="@color/chip_selected_color"
-                app:closeIconEnabled="true"
-                app:closeIconVisible="true" />
-
-            <com.google.android.material.chip.Chip
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Menta"
-                android:textColor="@color/textColor"
-                app:chipBackgroundColor="@color/chip_selected_color"
-                app:closeIconEnabled="true"
-                app:closeIconVisible="true" />
         </com.google.android.material.chip.ChipGroup>
 
         <!-- Botón principal -->
@@ -419,5 +402,6 @@
                     app:chipBackgroundColor="@color/chip_selected_color" />
             </com.google.android.material.chip.ChipGroup>
         </LinearLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
