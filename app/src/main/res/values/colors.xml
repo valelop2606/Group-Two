@@ -1,18 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="black">#000000</color>
-    <color name="colorPrimary">#00BFFF</color> <!-- Turquesa -->
+    <color name="colorPrimary">#00BFFF</color>
     <color name="colorPrimaryDark">#008080</color>
-    <color name="colorAccent">#FFD700</color> <!-- Dorado -->
-    <color name="colorSecondary">#8B0000</color> <!-- Vino -->
+    <color name="colorAccent">#FFD700</color>
+    <color name="colorSecondary">#8B0000</color>
     <color name="rosa">#FF69B4</color>
     <color name="blanco">#FFFFFF</color>
     <color name="gris">#181717</color>
     <color name="gris_claro">#262525</color>
-    <color name="background_dark">#121212</color> <!-- Fondo oscuro -->
-    <color name="textColor">#FFFFFF</color> <!-- Texto blanco -->
-    <color name="text_secondary">#AAAAAA</color> <!-- Texto gris claro -->
-    <color name="hint_color">#777777</color> <!-- Color de hint -->
-    <color name="chip_selected_color">#67BFAF</color> <!-- Verde azulado para chips seleccionados -->
-    <color name="chip_unselected">#333333</color> <!-- Gris oscuro para chips no seleccionados -->
+    <color name="background_dark">#121212</color>
+    <color name="textColor">#FFFFFF</color>
+    <color name="text_secondary">#AAAAAA</color>
+    <color name="hint_color">#777777</color>
+    <color name="chip_selected_color">#67BFAF</color>
+    <color name="chip_unselected">#333333</color>
+    <color name="card_background">#1E1E1E</color>
+    <color name="button_secondary">#2E2E2E</color>
+    <color name="input_background">#2A2A2A</color>
+    <color name="badge_background">#3A3A3A</color>
 </resources>
