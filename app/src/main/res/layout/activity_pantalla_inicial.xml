@@ -15,8 +15,6 @@
         android:fillViewport="true"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@id/bottomNav"
-
-
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
@@ -65,217 +63,244 @@
                 android:textColor="#FFFFFF"
                 android:layout_marginBottom="12dp" />
 
-            <!-- Tabs -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center"
-                android:layout_marginBottom="12dp">
-
-                <Button
-                    android:layout_width="0dp"
-                    android:layout_height="40dp"
-                    android:layout_weight="1"
-                    android:text="Clásicos"
-                    android:background="@android:color/darker_gray"
-                    android:textColor="#FFFFFF" />
-
-                <Button
-                    android:layout_width="0dp"
-                    android:layout_height="40dp"
-                    android:layout_weight="1"
-                    android:text="Creativos"
-                    android:background="@android:color/darker_gray"
-                    android:textColor="#FFFFFF" />
-            </LinearLayout>
-
-            <Button
-                android:id="@+id/boton_categorias"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Categorias"
-                android:textColor="@color/blanco"/>
-
-            <!-- Sección: Para ti -->
+            <!-- RESULTADOS DE BÚSQUEDA -->
             <TextView
+                android:id="@+id/tvResultadosTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Para ti"
+                android:text="Resultados de búsqueda"
                 android:textSize="16sp"
                 android:textColor="#FF69B4"
-                android:paddingBottom="8dp" />
+                android:paddingBottom="8dp"
+                android:visibility="gone" />
 
             <LinearLayout
+                android:id="@+id/containerResultados"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingBottom="12dp">
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical"
-                    android:gravity="center"
-                    android:padding="4dp">
-                    <androidx.cardview.widget.CardView
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
-                        app:cardCornerRadius="10dp">
-
-                        <ImageButton
-                            android:id="@+id/btnMojito"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:background="@color/black"
-                            android:contentDescription="Imagen de Mojito"
-                            android:scaleType="centerCrop"
-                            app:srcCompat="@drawable/mojito" />
-                    </androidx.cardview.widget.CardView>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Mojito"
-                        android:textColor="#FFFFFF"
-                        android:textStyle="bold"
-                        android:textSize="14sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Fácil"
-                        android:textColor="#B0B0B0"
-                        android:textSize="12sp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical"
-                    android:gravity="center"
-                    android:padding="4dp">
-                    <androidx.cardview.widget.CardView
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
-                        app:cardCornerRadius="10dp">
-                        <ImageButton
-                            android:id="@+id/imagen_cosmopolitan"
-                            android:layout_width="match_parent"
-                            android:layout_height="80dp"
-                            android:background="@color/black"
-                            android:scaleType="centerCrop"
-                            app:srcCompat="@drawable/cosmopolitan"
-                            android:contentDescription="Imagen de Cosmopolitan" />
-
-                    </androidx.cardview.widget.CardView>
-
-                    <TextView
-                        android:id="@+id/textView_cosmopolitan"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Cosmopolitan"
-                        android:textColor="#FFFFFF"
-                        android:textStyle="bold"
-                        android:textSize="14sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Media"
-                        android:textColor="#B0B0B0"
-                        android:textSize="12sp" />
-                </LinearLayout>
+                android:orientation="vertical"
+                android:visibility="gone">
             </LinearLayout>
 
-            <!-- Sección: Tendencias -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Tendencias"
-                android:textSize="16sp"
-                android:textColor="#FF69B4"
-                android:paddingBottom="8dp" />
-
+            <!-- CONTENIDO ESTÁTICO (se oculta cuando hay resultados) -->
             <LinearLayout
+                android:id="@+id/contenidoEstatico"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingBottom="12dp">
+                android:orientation="vertical">
 
+                <!-- Tabs -->
                 <LinearLayout
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical"
+                    android:orientation="horizontal"
                     android:gravity="center"
-                    android:padding="4dp">
-                    <androidx.cardview.widget.CardView
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
-                        app:cardCornerRadius="10dp">
-                        <ImageButton
-                            android:layout_width="match_parent"
-                            android:layout_height="80dp"
-                            android:scaleType="centerCrop"
-                            android:background="@color/black"
-                            app:srcCompat="@drawable/margarita"
-                            android:contentDescription="Imagen de Margarita" />
-                    </androidx.cardview.widget.CardView>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Margarita"
-                        android:textColor="#FFFFFF"
-                        android:textStyle="bold"
-                        android:textSize="14sp" />
+                    android:layout_marginBottom="12dp">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Clásico - Fácil"
-                        android:textColor="#B0B0B0"
-                        android:textSize="12sp" />
+                    <Button
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:text="Clásicos"
+                        android:background="@android:color/darker_gray"
+                        android:textColor="#FFFFFF" />
+
+                    <Button
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:text="Creativos"
+                        android:background="@android:color/darker_gray"
+                        android:textColor="#FFFFFF" />
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="0dp"
+                <Button
+                    android:id="@+id/boton_categorias"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical"
-                    android:gravity="center"
-                    android:padding="4dp">
+                    android:text="Categorias"
+                    android:textColor="@color/blanco"/>
 
-                    <androidx.cardview.widget.CardView
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
-                        app:cardCornerRadius="10dp">
-                        <ImageButton
-                            android:layout_width="match_parent"
+                <!-- Sección: Para ti -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Para ti"
+                    android:textSize="16sp"
+                    android:textColor="#FF69B4"
+                    android:paddingBottom="8dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingBottom="12dp">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:padding="4dp">
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="80dp"
                             android:layout_height="80dp"
-                            android:scaleType="centerCrop"
-                            android:background="@color/black"
-                            app:srcCompat="@drawable/negroni"
-                            android:contentDescription="Imagen de Negroni" />
-                    </androidx.cardview.widget.CardView>
+                            app:cardCornerRadius="10dp">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Negroni"
-                        android:textColor="#FFFFFF"
-                        android:textStyle="bold"
-                        android:textSize="14sp" />
+                            <ImageButton
+                                android:id="@+id/btnMojito"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@color/black"
+                                android:contentDescription="Imagen de Mojito"
+                                android:scaleType="centerCrop"
+                                app:srcCompat="@drawable/mojito" />
+                        </androidx.cardview.widget.CardView>
 
-                    <TextView
-                        android:layout_width="wrap_content"
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Mojito"
+                            android:textColor="#FFFFFF"
+                            android:textStyle="bold"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Fácil"
+                            android:textColor="#B0B0B0"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="Amargo - Media"
-                        android:textColor="#B0B0B0"
-                        android:textSize="12sp" />
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:padding="4dp">
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            app:cardCornerRadius="10dp">
+                            <ImageButton
+                                android:id="@+id/imagen_cosmopolitan"
+                                android:layout_width="match_parent"
+                                android:layout_height="80dp"
+                                android:background="@color/black"
+                                android:scaleType="centerCrop"
+                                app:srcCompat="@drawable/cosmopolitan"
+                                android:contentDescription="Imagen de Cosmopolitan" />
+                        </androidx.cardview.widget.CardView>
+
+                        <TextView
+                            android:id="@+id/textView_cosmopolitan"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Cosmopolitan"
+                            android:textColor="#FFFFFF"
+                            android:textStyle="bold"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Media"
+                            android:textColor="#B0B0B0"
+                            android:textSize="12sp" />
+                    </LinearLayout>
                 </LinearLayout>
+
+                <!-- Sección: Tendencias -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tendencias"
+                    android:textSize="16sp"
+                    android:textColor="#FF69B4"
+                    android:paddingBottom="8dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingBottom="12dp">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:padding="4dp">
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            app:cardCornerRadius="10dp">
+                            <ImageButton
+                                android:layout_width="match_parent"
+                                android:layout_height="80dp"
+                                android:scaleType="centerCrop"
+                                android:background="@color/black"
+                                app:srcCompat="@drawable/margarita"
+                                android:contentDescription="Imagen de Margarita" />
+                        </androidx.cardview.widget.CardView>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Margarita"
+                            android:textColor="#FFFFFF"
+                            android:textStyle="bold"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Clásico - Fácil"
+                            android:textColor="#B0B0B0"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:padding="4dp">
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            app:cardCornerRadius="10dp">
+                            <ImageButton
+                                android:layout_width="match_parent"
+                                android:layout_height="80dp"
+                                android:scaleType="centerCrop"
+                                android:background="@color/black"
+                                app:srcCompat="@drawable/negroni"
+                                android:contentDescription="Imagen de Negroni" />
+                        </androidx.cardview.widget.CardView>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Negroni"
+                            android:textColor="#FFFFFF"
+                            android:textStyle="bold"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Amargo - Media"
+                            android:textColor="#B0B0B0"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
@@ -389,11 +414,6 @@
                 android:textColor="@color/rosa"
                 android:textSize="12sp" />
         </LinearLayout>
-
-
-
-
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-
