@@ -98,12 +98,39 @@
             android:layout_marginTop="20dp"
             android:backgroundTint="@color/colorPrimary"
             android:fontFamily="sans-serif-medium"
-            android:text="Ver qué puedo preparar (3)"
+            android:text="Ver qué puedo preparar (0)"
             android:textColor="@color/textColor"
             app:cornerRadius="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/chipGroupSeleccionados" />
+
+        <!-- RESULTADOS DE BÚSQUEDA -->
+        <TextView
+            android:id="@+id/tvResultadosTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="Resultados"
+            android:textColor="@color/textColor"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btnVerPreparar" />
+
+        <!-- Contenedor de resultados -->
+        <LinearLayout
+            android:id="@+id/containerResultados"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:orientation="vertical"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvResultadosTitle">
+        </LinearLayout>
 
         <!-- Título ingredientes comunes -->
         <TextView
@@ -116,7 +143,7 @@
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/btnVerPreparar" />
+            app:layout_constraintTop_toBottomOf="@id/containerResultados" />
 
         <!-- Chips de ingredientes comunes -->
         <LinearLayout

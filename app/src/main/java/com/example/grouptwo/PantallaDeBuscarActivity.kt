@@ -1,41 +1,112 @@
 package com.example.grouptwo
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
+import android.util.Log
+import android.view.View
+import android.widget.Button
+import android.widget.EditText
 import android.widget.ImageButton
+import android.widget.LinearLayout
+import android.widget.TextView
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.cardview.widget.CardView
+import androidx.lifecycle.lifecycleScope
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
-import androidx.appcompat.app.AppCompatActivity
+import com.example.grouptwo.repository.CoctelRepository
+import com.example.grouptwo.models.Coctel
+import kotlinx.coroutines.launch
 
 class PantallaDeBuscarActivity : AppCompatActivity() {
 
     private lateinit var btnBack: ImageButton
+    private lateinit var etBuscarIngrediente: EditText
     private lateinit var chipGroupAlcoholes: ChipGroup
     private lateinit var chipGroupFrutas: ChipGroup
     private lateinit var chipGroupOtros: ChipGroup
     private lateinit var chipGroupSeleccionados: ChipGroup
+    private lateinit var btnVerPreparar: Button
+    private lateinit var containerResultados: LinearLayout
+    private lateinit var tvResultadosTitle: TextView
+
     private val seleccionados = mutableSetOf<String>()
+    private val repository = CoctelRepository()
+    private var todosLosCocteles = listOf<Coctel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.pantalla_de_buscar)
 
+        inicializarVistas()
+        cargarCoctelesDesdeAPI()
+        configurarListeners()
+    }
+
+    private fun inicializarVistas() {
         btnBack = findViewById(R.id.btnBack)
+        etBuscarIngrediente = findViewById(R.id.etBuscarIngrediente)
         chipGroupAlcoholes = findViewById(R.id.chipGroupAlcoholes)
         chipGroupFrutas = findViewById(R.id.chipGroupFrutas)
         chipGroupOtros = findViewById(R.id.chipGroupOtros)
         chipGroupSeleccionados = findViewById(R.id.chipGroupSeleccionados)
+        btnVerPreparar = findViewById(R.id.btnVerPreparar)
+        containerResultados = findViewById(R.id.containerResultados)
+        tvResultadosTitle = findViewById(R.id.tvResultadosTitle)
+    }
 
-        // Configurar botón de regreso
+    private fun cargarCoctelesDesdeAPI() {
+        lifecycleScope.launch {
+            repository.obtenerTodosCocteles()
+                .onSuccess { cocteles ->
+                    todosLosCocteles = cocteles
+                    Log.d("PantallaBuscar", "✅ Cargados ${cocteles.size} cócteles")
+                }
+                .onFailure { error ->
+                    Log.e("PantallaBuscar", "❌ Error: ${error.message}")
+                    Toast.makeText(
+                        this@PantallaDeBuscarActivity,
+                        "Error al cargar cócteles",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+        }
+    }
+
+    private fun configurarListeners() {
         btnBack.setOnClickListener {
-            finish() // Cierra esta actividad y regresa a la anterior
+            finish()
         }
 
-        // Configurar listeners para todos los chips de alcoholes
+        // Configurar chips de ingredientes
         configurarChipsGrupo(chipGroupAlcoholes)
-        // Configurar listeners para todos los chips de frutas
         configurarChipsGrupo(chipGroupFrutas)
-        // Configurar listeners para todos los chips de otros
         configurarChipsGrupo(chipGroupOtros)
+
+        // Búsqueda en tiempo real
+        etBuscarIngrediente.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                val query = s.toString().trim()
+                if (query.length >= 2) {
+                    buscarCoctelesPorNombre(query)
+                } else {
+                    ocultarResultados()
+                }
+            }
+            override fun afterTextChanged(s: Editable?) {}
+        })
+
+        // Botón ver qué puedo preparar
+        btnVerPreparar.setOnClickListener {
+            if (seleccionados.isEmpty()) {
+                Toast.makeText(this, "Selecciona al menos un ingrediente", Toast.LENGTH_SHORT).show()
+            } else {
+                buscarCoctelesPorIngredientes()
+            }
+        }
     }
 
     private fun configurarChipsGrupo(chipGroup: ChipGroup) {
@@ -56,6 +127,7 @@ class PantallaDeBuscarActivity : AppCompatActivity() {
             chip.isChecked = true
         }
         actualizarChipsSeleccionados()
+        actualizarBotonPreparar()
     }
 
     private fun actualizarChipsSeleccionados() {
@@ -72,6 +144,7 @@ class PantallaDeBuscarActivity : AppCompatActivity() {
                     actualizarChipEnGrupo(nombre, false, chipGroupAlcoholes)
                     actualizarChipEnGrupo(nombre, false, chipGroupFrutas)
                     actualizarChipEnGrupo(nombre, false, chipGroupOtros)
+                    actualizarBotonPreparar()
                 }
             }
             chipGroupSeleccionados.addView(chip)
@@ -86,5 +159,180 @@ class PantallaDeBuscarActivity : AppCompatActivity() {
                 break
             }
         }
+    }
+
+    private fun actualizarBotonPreparar() {
+        val cantidad = seleccionados.size
+        btnVerPreparar.text = "Ver qué puedo preparar ($cantidad)"
+        btnVerPreparar.isEnabled = cantidad > 0
+    }
+
+    private fun buscarCoctelesPorNombre(query: String) {
+        lifecycleScope.launch {
+            repository.buscarCocteles(query)
+                .onSuccess { resultados ->
+                    if (resultados.isNotEmpty()) {
+                        mostrarResultados(resultados, "Resultados: \"$query\"")
+                    } else {
+                        ocultarResultados()
+                        Toast.makeText(
+                            this@PantallaDeBuscarActivity,
+                            "No se encontraron resultados",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                }
+                .onFailure { error ->
+                    Log.e("PantallaBuscar", "Error en búsqueda: ${error.message}")
+                    ocultarResultados()
+                }
+        }
+    }
+
+    private fun buscarCoctelesPorIngredientes() {
+        if (todosLosCocteles.isEmpty()) {
+            Toast.makeText(this, "Cargando cócteles...", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        // Filtrar cócteles que contengan alguno de los ingredientes seleccionados
+        val resultados = todosLosCocteles.filter { coctel ->
+            val nombreLower = coctel.nombre.lowercase()
+            val descripcionLower = coctel.descripcion?.lowercase() ?: ""
+
+            seleccionados.any { ingrediente ->
+                nombreLower.contains(ingrediente.lowercase()) ||
+                        descripcionLower.contains(ingrediente.lowercase())
+            }
+        }
+
+        if (resultados.isEmpty()) {
+            Toast.makeText(
+                this,
+                "No se encontraron cócteles con esos ingredientes",
+                Toast.LENGTH_LONG
+            ).show()
+            ocultarResultados()
+        } else {
+            val ingredientesTexto = seleccionados.joinToString(", ")
+            mostrarResultados(resultados, "Cócteles con: $ingredientesTexto")
+            Toast.makeText(
+                this,
+                "✅ Se encontraron ${resultados.size} cócteles",
+                Toast.LENGTH_SHORT
+            ).show()
+        }
+    }
+
+    private fun mostrarResultados(cocteles: List<Coctel>, titulo: String) {
+        tvResultadosTitle.text = titulo
+        tvResultadosTitle.visibility = View.VISIBLE
+        containerResultados.visibility = View.VISIBLE
+        containerResultados.removeAllViews()
+
+        for (coctel in cocteles) {
+            agregarCoctelCard(coctel)
+        }
+    }
+
+    private fun ocultarResultados() {
+        tvResultadosTitle.visibility = View.GONE
+        containerResultados.visibility = View.GONE
+        containerResultados.removeAllViews()
+    }
+
+    private fun agregarCoctelCard(coctel: Coctel) {
+        val cardView = CardView(this).apply {
+            layoutParams = LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+            ).apply {
+                setMargins(0, 0, 0, 24)
+            }
+            radius = 32f
+            cardElevation = 0f
+            setCardBackgroundColor(resources.getColor(R.color.card_background, null))
+        }
+
+        val linearLayout = LinearLayout(this).apply {
+            orientation = LinearLayout.VERTICAL
+            setPadding(32, 32, 32, 32)
+        }
+
+        // Nombre del cóctel
+        val tvNombre = TextView(this).apply {
+            text = coctel.nombre
+            textSize = 18f
+            setTextColor(resources.getColor(android.R.color.white, null))
+            typeface = android.graphics.Typeface.DEFAULT_BOLD
+        }
+        linearLayout.addView(tvNombre)
+
+        // Descripción
+        if (!coctel.descripcion.isNullOrEmpty()) {
+            val tvDescripcion = TextView(this).apply {
+                text = coctel.descripcion
+                textSize = 14f
+                setTextColor(resources.getColor(R.color.text_secondary, null))
+                setPadding(0, 8, 0, 0)
+            }
+            linearLayout.addView(tvDescripcion)
+        }
+
+        // Info adicional
+        val infoLayout = LinearLayout(this).apply {
+            orientation = LinearLayout.HORIZONTAL
+            setPadding(0, 16, 0, 0)
+        }
+
+        // Nivel de dificultad
+        coctel.nivelDificultad?.let {
+            val tvDificultad = TextView(this).apply {
+                text = "📊 $it"
+                textSize = 12f
+                setTextColor(resources.getColor(android.R.color.white, null))
+                setPadding(0, 0, 24, 0)
+            }
+            infoLayout.addView(tvDificultad)
+        }
+
+        // Nivel de alcohol
+        coctel.nivelAlcohol?.let {
+            val tvAlcohol = TextView(this).apply {
+                text = "🍸 $it"
+                textSize = 12f
+                setTextColor(resources.getColor(android.R.color.white, null))
+                setPadding(0, 0, 24, 0)
+            }
+            infoLayout.addView(tvAlcohol)
+        }
+
+        // Sabor
+        coctel.saborPredominante?.let {
+            val tvSabor = TextView(this).apply {
+                text = "😋 $it"
+                textSize = 12f
+                setTextColor(resources.getColor(android.R.color.white, null))
+            }
+            infoLayout.addView(tvSabor)
+        }
+
+        linearLayout.addView(infoLayout)
+        cardView.addView(linearLayout)
+
+        // Click para ver detalles
+        cardView.setOnClickListener {
+            Toast.makeText(
+                this,
+                "Ver detalles de ${coctel.nombre}",
+                Toast.LENGTH_SHORT
+            ).show()
+            // Aquí puedes navegar a la pantalla de detalles
+            // val intent = Intent(this, DetallesCoctelActivity::class.java)
+            // intent.putExtra("coctel_id", coctel.id)
+            // startActivity(intent)
+        }
+
+        containerResultados.addView(cardView)
     }
 }
