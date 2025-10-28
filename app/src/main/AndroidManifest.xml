@@ -50,5 +50,7 @@
         <activity
             android:name=".CalculadoraActivity"
             android:exported="false" />
+        <activity android:name=".ListaDeCompras"
+            android:exported="false"/>
     </application>
 </manifest>
