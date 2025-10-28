@@ -103,7 +103,9 @@ class InicioSesionActivity : AppCompatActivity() {
     ) {
         auth.signInWithEmailAndPassword(correo, pass).addOnCompleteListener { task ->
             if (task.isSuccessful){
-                // El usuario se logueó correctamente
+                val intent = Intent(this, PantallaInicialActivity::class.java).apply {
+                }
+                startActivity(intent)
             } else {
                 Toast.makeText(
                     baseContext,

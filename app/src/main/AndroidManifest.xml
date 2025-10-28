@@ -17,13 +17,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.GroupTwo">
-
-        <!-- Launcher: pantalla de Inicio de Sesión -->
+        <activity
+            android:name=".BuscadorActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PerfilActivity"
+            android:exported="false" /> <!-- Launcher: pantalla de Inicio de Sesión -->
         <activity
             android:name=".InicioSesionActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -35,6 +40,9 @@
 
         <activity
             android:name=".MainActivity"
+            android:exported="false" /> <!-- <activity -->
+        <!-- android:name=".PantallaInicialActivity" -->
+        <!-- android:exported="false" /> -->
             android:exported="false" />
 
         <activity
@@ -53,4 +61,5 @@
         <activity android:name=".ListaDeCompras"
             android:exported="false"/>
     </application>
+
 </manifest>

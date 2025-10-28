@@ -326,6 +326,7 @@
             android:gravity="center">
 
             <ImageButton
+                android:id="@+id/buscador"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 app:srcCompat="@drawable/home_icon_silhouette_svgrepo_com"
@@ -399,6 +400,7 @@
             android:gravity="center">
 
             <ImageButton
+                android:id="@+id/perfil"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 app:srcCompat="@drawable/perfil"

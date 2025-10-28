@@ -18,11 +18,15 @@ import androidx.cardview.widget.CardView
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
+import com.example.grouptwo.databinding.ActivityPantallaInicialBinding
+import com.example.grouptwo.databinding.ActivityPerfilBinding
 import com.example.grouptwo.repository.CoctelRepository
 import com.example.grouptwo.models.Coctel
 import kotlinx.coroutines.launch
 
 class PantallaInicialActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityPantallaInicialBinding
 
     private val repository = CoctelRepository()
     private var todosLosCocteles = listOf<Coctel>()
@@ -35,7 +39,8 @@ class PantallaInicialActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_pantalla_inicial)
+        binding = ActivityPantallaInicialBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val bars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -87,6 +92,12 @@ class PantallaInicialActivity : AppCompatActivity() {
 
         btnCalculadora?.setOnClickListener {
             startActivity(Intent(this, CalculadoraActivity::class.java))
+        }
+
+        binding.perfil.setOnClickListener {
+            val intent = Intent(this, PerfilActivity::class.java)
+            startActivity(intent)
+
         }
 
         // Búsqueda en tiempo real
@@ -180,6 +191,17 @@ class PantallaInicialActivity : AppCompatActivity() {
         tvResultadosTitle.visibility = View.GONE
         containerResultados.visibility = View.GONE
         containerResultados.removeAllViews()
+        binding.perfil.setOnClickListener {
+            val intent = Intent(this, PerfilActivity::class.java)
+            startActivity(intent)
+
+        }
+
+        binding.buscador.setOnClickListener {
+            val intent = Intent(this, BuscadorActivity::class.java)
+            startActivity(intent)
+        }
+
 
         // Mostrar contenido estático
         contenidoEstatico.visibility = View.VISIBLE
@@ -278,5 +300,10 @@ class PantallaInicialActivity : AppCompatActivity() {
         }
 
         containerResultados.addView(cardView)
+
+
+
     }
+
+
 }
