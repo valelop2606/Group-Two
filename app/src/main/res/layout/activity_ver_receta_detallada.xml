@@ -18,14 +18,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
-        <!-- ÚNICO hijo del ScrollView -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="20dp">
 
-            <!-- Flecha -->
             <ImageButton
                 android:id="@+id/categorias_flecha_atras"
                 android:layout_width="48dp"
@@ -35,7 +33,6 @@
                 app:srcCompat="@drawable/flecha_atras"
                 app:tint="@color/rosa" />
 
-            <!-- Título -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -46,7 +43,6 @@
                 android:textSize="22sp"
                 android:textStyle="bold" />
 
-            <!-- Tarjetas info -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -55,7 +51,6 @@
                 android:orientation="horizontal"
                 android:weightSum="3">
 
-                <!-- Tiempo -->
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -85,11 +80,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="5 min"
-                        android:textColor="@color/text_secondary"
+                        android:textColor="@color/blanco"
                         android:textSize="13sp" />
                 </LinearLayout>
 
-                <!-- Sabor -->
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -119,11 +113,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Cítrico"
-                        android:textColor="@color/text_secondary"
+                        android:textColor="@color/blanco"
                         android:textSize="13sp" />
                 </LinearLayout>
 
-                <!-- Nivel -->
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -153,12 +146,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Media"
-                        android:textColor="@color/text_secondary"
+                        android:textColor="@color/blanco"
                         android:textSize="13sp" />
                 </LinearLayout>
             </LinearLayout>
 
-            <!-- Botón video -->
             <Button
                 android:id="@+id/btnVideo"
                 android:layout_width="match_parent"
@@ -168,7 +160,6 @@
                 android:text="▶ Ver video corto"
                 android:textColor="@color/blanco" />
 
-            <!-- Ingredientes -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -184,7 +175,6 @@
                 android:layout_height="wrap_content"
                 android:nestedScrollingEnabled="false" />
 
-            <!-- Preparación -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

@@ -1,6 +1,7 @@
 package com.example.grouptwo
 
 import android.app.AlertDialog
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -110,12 +111,10 @@ class CalculadoraActivity : AppCompatActivity() {
         }
 
         btnVerListaCompras.setOnClickListener {
-            Toast.makeText(
-                this,
-                "Funcionalidad de lista de compras próximamente",
-                Toast.LENGTH_SHORT
-            ).show()
+            val intent = Intent(this, ListaDeCompras::class.java)
+            startActivity(intent)
         }
+
     }
 
     private fun mostrarDialogoSeleccionCoctel() {
