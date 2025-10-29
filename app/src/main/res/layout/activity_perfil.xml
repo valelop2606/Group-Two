@@ -5,150 +5,126 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black"
-    tools:context=".PerfilActivity">
+    android:background="#000000">
 
-
-
+    <!-- Botón Atrás -->
     <ImageButton
-        android:id="@+id/perfil_flecha_atras"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:id="@+id/perfilFlechaAtras"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_margin="16dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="Volver"
         android:src="@drawable/flecha_atras"
-        android:background="@color/black"
         app:tint="@color/rosa"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
-    <androidx.core.widget.NestedScrollView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/perfil_flecha_atras">
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="16dp"
-            >
+    <!-- Imagen de Perfil -->
+    <ImageView
+        android:id="@+id/imgPerfil"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="80dp"
+        android:src="@android:drawable/ic_menu_myplaces"
+        android:contentDescription="Foto de perfil"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/card_perfil"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                app:cardCornerRadius="100dp"
-                app:cardUseCompatPadding="true"
-                app:cardPreventCornerOverlap="true"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+    <!-- Nombre de Usuario -->
+    <TextView
+        android:id="@+id/tvNombreUsuario"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Group two"
+        android:textColor="#F9FBFB"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imgPerfil" />
 
-                <ImageButton
-                    android:id="@+id/imagen_perfil1"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:src="@drawable/perfil"
-                    android:background="@color/gris"
-                    app:tint="@color/blanco"
-                    android:scaleType="centerCrop" />
-            </androidx.cardview.widget.CardView>
+    <!-- Descripción -->
+    <TextView
+        android:id="@+id/tvDescripcion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Amante de los cócteles 🍹"
+        android:textColor="#CCCCCC"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvNombreUsuario" />
 
-            <EditText
-                android:id="@+id/Edit_text_nombre"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="MATIAS SALINAS"
-                android:textSize="25sp"
-                android:textColor="@color/rosa"
-                android:layout_marginStart="12dp"
-                android:layout_marginTop="30dp"
-                app:layout_constraintStart_toEndOf="@id/card_perfil"
-                app:layout_constraintTop_toTopOf="@id/card_perfil"
-                app:layout_constraintEnd_toEndOf="parent" />
+    <!-- Botones Horizontales -->
+    <LinearLayout
+        android:id="@+id/layoutBotones"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="24dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvDescripcion">
 
-            <TextView
-                android:id="@+id/Edit_text_descripcion_perfil"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="coctelero"
-                android:textSize="20sp"
-                android:textColor="@color/rosa"
-                app:layout_constraintTop_toBottomOf="@id/Edit_text_nombre"
-                app:layout_constraintStart_toStartOf="@id/Edit_text_nombre"
-                app:layout_constraintEnd_toEndOf="parent" />
+        <Button
+            android:id="@+id/btnPreparados"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginEnd="8dp"
+            android:layout_weight="1"
+            android:backgroundTint="@android:color/transparent"
+            android:text="Preparados"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:textSize="13sp"
+            style="?attr/borderlessButtonStyle" />
 
-            <Button
-                android:id="@+id/logout"
-                android:layout_width="150dp"
-                android:layout_height="35dp"
-                android:text="cerrar sesion"
-                android:textColor="@color/celeste"
-                android:backgroundTint="@color/black"
-                app:layout_constraintBottom_toBottomOf="@id/card_perfil"
-                app:layout_constraintStart_toStartOf="@id/card_perfil"/>
+        <Button
+            android:id="@+id/btnFavoritos"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginEnd="8dp"
+            android:layout_weight="1"
+            android:backgroundTint="@android:color/transparent"
+            android:text="Favoritos"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:textSize="13sp"
+            style="?attr/borderlessButtonStyle" />
 
+        <Button
+            android:id="@+id/btnMisRecetas"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:backgroundTint="@android:color/transparent"
+            android:text="Mis Recetas"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:textSize="13sp"
+            style="?attr/borderlessButtonStyle" />
+    </LinearLayout>
 
-
-
-
-
-            <LinearLayout
-                android:id="@+id/linearLayuout_botones"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:background="@color/black"
-                android:weightSum="3"
-                app:layout_constraintTop_toBottomOf="@id/card_perfil"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-
-                android:layout_marginTop="16dp">
-
-                <Button
-                    android:id="@+id/btn_preparados"
-                    android:layout_width="0dp"
-                    android:layout_height="48dp"
-                    android:layout_weight="1"
-                    android:text="Preparados"
-                    android:textColor="@color/blanco"
-                    android:backgroundTint="@color/rosa"
-                    android:textSize="10sp"/>
-
-
-                <Button
-                    android:id="@+id/btn_favoritos"
-                    android:layout_width="0dp"
-                    android:layout_height="48dp"
-                    android:layout_marginStart="5dp"
-                    android:layout_weight="1"
-                    android:backgroundTint="@color/rosa"
-                    android:text="Favoritos"
-                    android:textSize="10sp"/>
-
-                <Button
-                    android:id="@+id/btn_mis_recetas"
-                    android:layout_width="0dp"
-                    android:layout_height="48dp"
-                    android:layout_weight="1"
-                    android:layout_marginStart="5dp"
-                    android:backgroundTint="@color/rosa"
-                    android:text="Historial"
-                    android:textSize="10sp"/>
-
-            </LinearLayout>
-
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                app:layout_constraintTop_toBottomOf="@id/linearLayuout_botones"
-                app:layout_constraintStart_toStartOf="parent"
-                android:text="Mis Recetas"
-                android:backgroundTint="@color/rosa"/>
-
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.core.widget.NestedScrollView>
-
-
-
+    <!-- Cerrar Sesión -->
+    <TextView
+        android:id="@+id/logout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:padding="12dp"
+        android:text="Cerrar sesión"
+        android:textColor="#FF4081"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

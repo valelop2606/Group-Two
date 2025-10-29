@@ -15,7 +15,6 @@ class PerfilActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityPerfilBinding
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -27,15 +26,22 @@ class PerfilActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
         binding.logout.setOnClickListener {
             logout()
         }
+
         binding.perfilFlechaAtras.setOnClickListener {
             finish()
         }
 
-
+        // 👇 AGREGA ESTA CONEXIÓN
+        binding.btnMisRecetas.setOnClickListener {
+            val intent = Intent(this, PantallaDeCrearReceta::class.java)
+            startActivity(intent)
+        }
     }
+
     fun logout() {
         FirebaseAuth.getInstance().signOut()
         val intent = Intent(this, InicioSesionActivity::class.java)
