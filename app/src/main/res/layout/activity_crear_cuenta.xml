@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/black"
-    tools:context=".InicioSesionActivity">
+    tools:context=".CrearCuentaActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="300dp"
@@ -21,7 +21,7 @@
             android:id="@+id/texto_inicio_sesion"
             android:layout_width="150dp"
             android:layout_height="50dp"
-            android:text="Inicio de Sesion"
+            android:text="Crea tu Cuenta"
             android:textColor="@color/rosa"
             android:textSize="20sp"
             android:textStyle="bold"
@@ -63,7 +63,7 @@
 
         <TextView
             android:id="@+id/Texto_Bienvenido"
-            android:layout_width="250dp"
+            android:layout_width="150dp"
             android:layout_height="50dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -74,16 +74,6 @@
             android:textStyle="bold"/>
 
         <Button
-            android:id="@+id/boton_inicio_sesion"
-            android:layout_width="120dp"
-            android:layout_height="50dp"
-            android:backgroundTint="@color/rosa"
-            android:text="Acceder"
-            android:textSize="10sp"
-            app:layout_constraintBottom_toTopOf="@id/Texto_Bienvenido"
-            app:layout_constraintStart_toStartOf="@id/Texto_password"/>
-
-        <Button
             android:id="@+id/boton_crearCuenta"
             android:layout_width="120dp"
             android:layout_height="50dp"
@@ -92,7 +82,7 @@
             android:textSize="10sp"
             android:layout_marginLeft="15dp"
             app:layout_constraintBottom_toTopOf="@id/Texto_Bienvenido"
-            app:layout_constraintStart_toEndOf="@id/boton_inicio_sesion"/>
+            app:layout_constraintStart_toStartOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

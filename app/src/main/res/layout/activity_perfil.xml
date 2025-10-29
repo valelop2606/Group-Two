@@ -5,20 +5,11 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#000000">
+    android:background="@color/black"
+    tools:context=".PerfilActivity">
 
-    <!-- Botón Atrás -->
-    <ImageButton
-        android:id="@+id/perfilFlechaAtras"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_margin="16dp"
-        android:background="?attr/selectableItemBackgroundBorderless"
-        android:contentDescription="Volver"
-        android:src="@drawable/flecha_atras"
-        app:tint="@color/rosa"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+
+
 
     <!-- Imagen de Perfil -->
     <ImageView
@@ -29,6 +20,35 @@
         android:src="@android:drawable/ic_menu_myplaces"
         android:contentDescription="Foto de perfil"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+
+    <ImageButton
+        android:id="@+id/perfil_configuracion"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginTop="15dp"
+        android:src="@drawable/configuracion"
+        android:background="@color/black"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:tint="@color/rosa" />
+    <ImageButton
+    android:id="@+id/perfil_flecha_atras"
+    android:layout_width="30dp"
+    android:layout_height="20dp"
+    android:layout_marginStart="15dp"
+    android:layout_marginTop="15dp"
+    android:src="@drawable/flecha_atras"
+    android:background="@color/black"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:tint="@color/rosa" />
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -71,6 +91,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvDescripcion">
+
+
+
+
 
         <Button
             android:id="@+id/btnPreparados"

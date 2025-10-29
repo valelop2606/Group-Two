@@ -52,17 +52,9 @@ class InicioSesionActivity : AppCompatActivity() {
         }
 
         binding.botonCrearCuenta.setOnClickListener {
-            val correo = binding.TextoUsername.text.toString()
-            val pass = binding.TextoPassword.text.toString()
-            if(pass.length < 8 && correo.isNotEmpty()){
-                Toast.makeText(
-                    baseContext,
-                    "Debe ingresar una contraseña de 8 o más dígitos.",
-                    Toast.LENGTH_SHORT,
-                ).show()
-            } else {
-                crearUsuario(correo, pass)
-            }
+            val intent = Intent(this, CrearCuentaActivity::class.java)
+            finish()
+            startActivity(intent)
 
         }
 
@@ -76,26 +68,7 @@ class InicioSesionActivity : AppCompatActivity() {
         }
     }
 
-    fun crearUsuario(
-        correo: String,
-        pass:String
-    ){
-        auth.createUserWithEmailAndPassword(correo, pass)
-            .addOnCompleteListener(this) { task ->
-                if (task.isSuccessful) {
-                    val intentLogin =
-                        Intent(context, InicioSesionActivity::class.java)
-                    startActivity(intentLogin)
 
-                } else {
-                    Toast.makeText(
-                        baseContext,
-                        "Authentication failed.",
-                        Toast.LENGTH_SHORT,
-                    ).show()
-                }
-            }
-    }
 
     fun loginValidation(
         correo: String,

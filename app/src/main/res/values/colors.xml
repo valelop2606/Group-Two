@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="black">#000000</color>
+    <color name="rojo">#FA1000</color>
     <color name="colorPrimary">#00BFFF</color>
     <color name="colorPrimaryDark">#008080</color>
 
@@ -16,6 +17,7 @@
     <color name="blanco">#FFFFFF</color>
     <color name="gris">#181717</color>
     <color name="gris_claro">#262525</color>
+    <color name="gris_mas_claro">#AAAAAA</color>
     <color name="background_dark">#121212</color>
     <color name="textColor">#FFFFFF</color>
     <color name="text_secondary">#AAAAAA</color>

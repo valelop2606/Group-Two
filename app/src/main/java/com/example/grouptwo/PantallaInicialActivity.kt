@@ -115,7 +115,6 @@ class PantallaInicialActivity : AppCompatActivity() {
         binding.perfil.setOnClickListener {
             val intent = Intent(this, PerfilActivity::class.java)
             startActivity(intent)
-
         }
 
         // Asumiendo que 'binding.buscador' es el ícono de la barra inferior
