@@ -25,11 +25,11 @@
             android:padding="20dp">
 
             <ImageButton
-                android:id="@+id/categorias_flecha_atras"
+                android:id="@+id/btn_back"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:background="@android:color/transparent"
-                android:contentDescription="Volver"
+                android:contentDescription="volver"
                 app:srcCompat="@drawable/flecha_atras"
                 app:tint="@color/rosa" />
 
@@ -40,9 +40,9 @@
                 android:layout_gravity="center_horizontal"
                 android:paddingBottom="16dp"
                 android:textColor="@color/blanco"
-                android:textSize="22sp"
+                android:textSize="28sp"
                 android:textStyle="bold"
-                tools:text="Nombre del cóctel" />
+                tools:text="Nombre del Cóctel" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -53,13 +53,12 @@
                 android:weightSum="3">
 
                 <LinearLayout
+                    android:id="@+id/badge_tiempo"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:layout_marginStart="6dp"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginEnd="6dp"
-                    android:layout_marginBottom="4dp"
+                    android:layout_marginHorizontal="6dp"
+                    android:layout_marginVertical="4dp"
                     android:background="@color/gris_claro"
                     android:gravity="center"
                     android:orientation="vertical"
@@ -68,7 +67,9 @@
                     <ImageView
                         android:layout_width="24dp"
                         android:layout_height="24dp"
-                        android:src="@drawable/reloj" />
+                        android:contentDescription="@null"
+                        app:srcCompat="@drawable/reloj"
+                        app:tint="@color/blanco" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -78,21 +79,21 @@
                         android:textSize="12sp" />
 
                     <TextView
+                        android:id="@+id/tvTiempo"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="5 min"
                         android:textColor="@color/blanco"
-                        android:textSize="13sp" />
+                        android:textSize="13sp"
+                        tools:text="5 min" />
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/badge_sabor"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:layout_marginStart="6dp"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginEnd="6dp"
-                    android:layout_marginBottom="4dp"
+                    android:layout_marginHorizontal="6dp"
+                    android:layout_marginVertical="4dp"
                     android:background="@color/gris_claro"
                     android:gravity="center"
                     android:orientation="vertical"
@@ -101,7 +102,9 @@
                     <ImageView
                         android:layout_width="24dp"
                         android:layout_height="24dp"
-                        android:src="@drawable/sabor_citrico" />
+                        android:contentDescription="@null"
+                        app:srcCompat="@drawable/sabor_citrico"
+                        app:tint="@color/blanco" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -111,21 +114,21 @@
                         android:textSize="12sp" />
 
                     <TextView
+                        android:id="@+id/tvSabor"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Cítrico"
                         android:textColor="@color/blanco"
-                        android:textSize="13sp" />
+                        android:textSize="13sp"
+                        tools:text="Cítrico" />
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/badge_nivel"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:layout_marginStart="6dp"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginEnd="6dp"
-                    android:layout_marginBottom="4dp"
+                    android:layout_marginHorizontal="6dp"
+                    android:layout_marginVertical="4dp"
                     android:background="@color/gris_claro"
                     android:gravity="center"
                     android:orientation="vertical"
@@ -134,7 +137,9 @@
                     <ImageView
                         android:layout_width="24dp"
                         android:layout_height="24dp"
-                        android:src="@drawable/dificultad_media" />
+                        android:contentDescription="@null"
+                        app:srcCompat="@drawable/dificultad_media"
+                        app:tint="@color/blanco" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -144,11 +149,12 @@
                         android:textSize="12sp" />
 
                     <TextView
+                        android:id="@+id/tvNivel"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Media"
                         android:textColor="@color/blanco"
-                        android:textSize="13sp" />
+                        android:textSize="13sp"
+                        tools:text="Media" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -158,8 +164,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
                 android:backgroundTint="@color/rosa"
-                android:text="▶ Ver video corto"
-                android:textColor="@color/blanco" />
+                android:text="▶ Ver Video Corto"
+                android:textColor="@color/blanco"
+                app:cornerRadius="8dp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -174,7 +181,8 @@
                 android:id="@+id/rvIngredientes"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:nestedScrollingEnabled="false" />
+                android:nestedScrollingEnabled="false"
+                tools:layout_height="200dp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -190,7 +198,8 @@
                 android:id="@+id/rvPasos"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:nestedScrollingEnabled="false" />
+                android:nestedScrollingEnabled="false"
+                tools:layout_height="300dp" />
 
             <Space
                 android:layout_width="match_parent"
@@ -199,13 +208,12 @@
         </LinearLayout>
     </ScrollView>
 
-    <!-- Bottom Navigation igual que pantalla principal -->
     <LinearLayout
         android:id="@+id/bottomNav"
         android:layout_width="0dp"
         android:layout_height="60dp"
         android:background="@color/gris_claro"
-        android:elevation="4dp"
+        android:elevation="8dp"
         android:gravity="center"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -213,16 +221,22 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <LinearLayout
+            android:id="@+id/nav_inicio"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?attr/selectableItemBackground">
 
             <ImageButton
+                android:id="@+id/btn_nav_inicio"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:background="@null"
+                android:contentDescription="inicio"
                 app:srcCompat="@drawable/home_icon_silhouette_svgrepo_com"
                 app:tint="@color/rosa" />
 
@@ -235,16 +249,22 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/nav_buscar"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?attr/selectableItemBackground">
 
             <ImageButton
+                android:id="@+id/btn_nav_buscar"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:background="@null"
+                android:contentDescription="buscar"
                 app:srcCompat="@drawable/buscar"
                 app:tint="@color/rosa" />
 
@@ -257,16 +277,22 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/nav_calculadora"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?attr/selectableItemBackground">
 
             <ImageButton
+                android:id="@+id/btn_nav_calculadora"
                 android:layout_width="22dp"
                 android:layout_height="22dp"
                 android:background="@null"
+                android:contentDescription="calculadora"
                 app:srcCompat="@drawable/calculadora"
                 app:tint="@color/rosa" />
 
@@ -279,16 +305,22 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/nav_perfil"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?attr/selectableItemBackground">
 
             <ImageButton
+                android:id="@+id/btn_nav_perfil"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:background="@null"
+                android:contentDescription="perfil"
                 app:srcCompat="@drawable/perfil"
                 app:tint="@color/rosa" />
 

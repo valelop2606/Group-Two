@@ -97,12 +97,16 @@ class PantallaDeCrearReceta : AppCompatActivity() {
 
     private fun actualizarListaIngredientes() {
         containerIngredientes.removeAllViews()
-        ingredientes.forEachIndexed { index, (ing, cant) ->
-            val itemView = LayoutInflater.from(this).inflate(R.layout.item_ingrediente, containerIngredientes, false)
+
+        ingredientes.forEachIndexed { index, ingrediente ->
+            val (ing, cant) = ingrediente
+
+            val itemView = LayoutInflater.from(this).inflate(R.layout.item_ingrediente_nuevo, containerIngredientes, false)
             itemView.findViewById<TextView>(R.id.txtNombre).text = ing
             itemView.findViewById<TextView>(R.id.txtCantidad).text = cant
+
             itemView.findViewById<ImageButton>(R.id.btnEliminar).setOnClickListener {
-                ingredientes.removeAt(index)
+                ingredientes.remove(ingrediente)
                 actualizarListaIngredientes()
             }
             containerIngredientes.addView(itemView)
@@ -112,14 +116,19 @@ class PantallaDeCrearReceta : AppCompatActivity() {
     private fun actualizarListaPasos() {
         containerPasos.removeAllViews()
         pasos.forEachIndexed { index, paso ->
-            val itemView = LayoutInflater.from(this).inflate(R.layout.item_paso, containerPasos, false)
+            val itemView = LayoutInflater.from(this).inflate(R.layout.item_paso_nuevo, containerPasos, false)
             itemView.findViewById<TextView>(R.id.txtIndice).text = "${index + 1}."
             itemView.findViewById<TextView>(R.id.txtDescripcion).text = paso
+
             itemView.findViewById<ImageButton>(R.id.btnEliminarPaso).setOnClickListener {
-                pasos.removeAt(index)
-                actualizarListaPasos()
+                val indexAEliminar = pasos.indexOf(paso)
+
+                if (indexAEliminar != -1) {
+                    pasos.removeAt(indexAEliminar)
+                    actualizarListaPasos()
+                }
             }
-            containerIngredientes.addView(itemView)
+            containerPasos.addView(itemView)
         }
     }
 

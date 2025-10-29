@@ -3,12 +3,13 @@ package com.example.grouptwo
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.grouptwo.databinding.ActivityVerRecetaDetalladaBinding
 import com.example.grouptwo.repository.CoctelRepositori
-import com.example.grouptwo.Coctel
 
 class VerRecetaDetalladaActivity : AppCompatActivity() {
 
@@ -27,14 +28,17 @@ class VerRecetaDetalladaActivity : AppCompatActivity() {
         }
     }
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
-
         super.onCreate(savedInstanceState)
-
         binding = ActivityVerRecetaDetalladaBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        setupRecyclerViews()
+        loadCocktailData()
+        setupListeners()
+    }
+
+    private fun setupRecyclerViews() {
         binding.rvIngredientes.apply {
             layoutManager = LinearLayoutManager(this@VerRecetaDetalladaActivity)
             adapter = ingredientesAdapter
@@ -46,24 +50,91 @@ class VerRecetaDetalladaActivity : AppCompatActivity() {
             adapter = pasosAdapter
             isNestedScrollingEnabled = false
         }
+    }
+
+    private fun loadCocktailData() {
         val coctelId = intent.getStringExtra(EXTRA_ID)
-        val coctel: Coctel? = coctelId?.let { CoctelRepositori.getById(this, it) }
-            ?: CoctelRepositori.getAll(this).firstOrNull()
+        // Nota: Asumiendo que CoctelDetalle es la clase correcta en tu paquete.
+        val coctel = coctelId?.let {
+            CoctelRepositori.getById(this, it)
+        } ?: CoctelRepositori.getAll(this).firstOrNull()
 
         if (coctel == null) {
+            Toast.makeText(this, "Cóctel no encontrado", Toast.LENGTH_SHORT).show()
             finish()
             return
         }
 
         setupUI(coctel)
-
-        binding.categoriasFlechaAtras.setOnClickListener { finish() }
     }
 
-    private fun setupUI(c: Coctel) {
-        binding.tvTitulo.text = c.nombre
-        ingredientesAdapter.submitList(c.ingredientes)
-        pasosAdapter.submitList(c.pasos.sortedBy { it.n })
+    private fun setupUI(coctel: com.example.grouptwo.models.CoctelDetalle) {
+        binding.tvTitulo.text = coctel.nombre
+
+        // Mostrar ingredientes (si existen)
+        coctel.ingredientes?.let { ingredientes ->
+            ingredientesAdapter.submitList(ingredientes)
+        } ?: run {
+            ingredientesAdapter.submitList(emptyList())
+        }
+
+        // Mostrar pasos ordenados (si existen)
+        coctel.pasos?.let { pasos ->
+            pasosAdapter.submitList(pasos.sortedBy { it.n })
+        } ?: run {
+            pasosAdapter.submitList(emptyList())
+        }
+
+        // TODO: Actualizar los badges (tiempo, sabor, nivel) con los datos de 'coctel'
     }
 
+    private fun setupListeners() {
+        // CORREGIDO: Usando el ID correcto 'btnBack'
+        binding.btnBack.setOnClickListener {
+            finish()
+        }
+
+        // Lógica de la barra de navegación inferior
+        binding.navInicio.setOnClickListener {
+            Toast.makeText(this, "Navegando a Inicio", Toast.LENGTH_SHORT).show()
+            // Aquí iría el Intent a la Activity de Inicio
+        }
+        binding.navBuscar.setOnClickListener {
+            Toast.makeText(this, "Navegando a Buscar", Toast.LENGTH_SHORT).show()
+            // Aquí iría el Intent a la Activity de Búsqueda
+        }
+        binding.navCalculadora.setOnClickListener {
+            Toast.makeText(this, "Navegando a Calculadora", Toast.LENGTH_SHORT).show()
+            // Aquí iría el Intent a la Activity de Calculadora
+        }
+        binding.navPerfil.setOnClickListener {
+            Toast.makeText(this, "Navegando a Perfil", Toast.LENGTH_SHORT).show()
+            // Aquí iría el Intent a la Activity de Perfil
+        }
+
+        // Botón ver video
+        binding.btnVideo.setOnClickListener {
+            val coctelId = intent.getStringExtra(EXTRA_ID)
+            val coctel = coctelId?.let { CoctelRepositori.getById(this, it) }
+
+            coctel?.urlVideo?.let { url ->
+                try {
+                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+                    startActivity(intent)
+                } catch (e: Exception) {
+                    Toast.makeText(
+                        this,
+                        "No se pudo abrir el video",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            } ?: run {
+                Toast.makeText(
+                    this,
+                    "Video no disponible",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        }
+    }
 }

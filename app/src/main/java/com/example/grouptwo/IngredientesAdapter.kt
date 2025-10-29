@@ -3,54 +3,66 @@ package com.example.grouptwo
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.grouptwo.Ingrediente
-import kotlin.math.abs
+import com.example.grouptwo.models.Ingrediente
 
-class IngredientesAdapter :
-    ListAdapter<Ingrediente, IngredientesAdapter.VH>(Diff()) {
+class IngredientesAdapter : ListAdapter<Ingrediente, IngredientesAdapter.IngredienteViewHolder>(
+    IngredienteDiffCallback()
+) {
 
-    class VH(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val img: ImageView = itemView.findViewById(R.id.imgIcono)
-        val nombre: TextView = itemView.findViewById(R.id.txtNombre)
-        val cantidad: TextView = itemView.findViewById(R.id.txtCantidad)
-    }
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
-        val v = LayoutInflater.from(parent.context)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): IngredienteViewHolder {
+        val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.item_ingrediente, parent, false)
-        return VH(v)
+        return IngredienteViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: VH, position: Int) {
-        val item = getItem(position)
+    override fun onBindViewHolder(holder: IngredienteViewHolder, position: Int) {
+        holder.bind(getItem(position))
+    }
 
-        holder.nombre.text = buildString {
-            append(item.nombre)
-            if (!item.nota.isNullOrBlank()) append(" (${item.nota})")
-        }
+    class IngredienteViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        private val imgIcono: ImageView = itemView.findViewById(R.id.imgIcono)
+        private val txtNombre: TextView = itemView.findViewById(R.id.txtNombre)
+        private val txtCantidad: TextView = itemView.findViewById(R.id.txtCantidad)
+        private val btnEliminar: ImageButton = itemView.findViewById(R.id.btnEliminar)
 
-        // Formateo robusto: soporta null (ej. "a gusto"), enteros sin .0 y decimales
-        val cantidadUi = when (val c = item.cantidad) {
-            null -> item.unidad // "a gusto" u otro texto en unidad
-            else -> {
-                val isInt = abs(c - c.toInt()) < 1e-9
-                if (isInt) "${c.toInt()} ${item.unidad}" else "$c ${item.unidad}"
+        fun bind(ingrediente: Ingrediente) {
+            txtNombre.text = ingrediente.nombre
+
+            // Formatear cantidad
+            val cantidadTexto = if (ingrediente.cantidad != null) {
+                "${ingrediente.cantidad} ${ingrediente.unidad}"
+            } else {
+                ingrediente.unidad
             }
-        }
-        holder.cantidad.text = cantidadUi
+            txtCantidad.text = cantidadTexto
 
-        // (Opcional) setea un ícono según el nombre/unidad si quieres
-        // holder.img.setImageResource(...)
+            // Si hay nota, agregarla
+            if (!ingrediente.nota.isNullOrBlank()) {
+                txtCantidad.text = "$cantidadTexto\n${ingrediente.nota}"
+            }
+
+            // Por ahora ocultamos el botón eliminar en la vista de receta
+            // Solo lo mostraríamos en una pantalla de edición
+            btnEliminar.visibility = View.GONE
+
+            // Opcional: Podrías agregar iconos diferentes según el ingrediente
+            // Por ahora usamos el icono por defecto
+        }
     }
 
-    private class Diff : DiffUtil.ItemCallback<Ingrediente>() {
-        override fun areItemsTheSame(a: Ingrediente, b: Ingrediente) =
-            a.nombre == b.nombre && a.nota == b.nota  // nombre(+nota) como key estable
-        override fun areContentsTheSame(a: Ingrediente, b: Ingrediente) = a == b
+    class IngredienteDiffCallback : DiffUtil.ItemCallback<Ingrediente>() {
+        override fun areItemsTheSame(oldItem: Ingrediente, newItem: Ingrediente): Boolean {
+            return oldItem.nombre == newItem.nombre
+        }
+
+        override fun areContentsTheSame(oldItem: Ingrediente, newItem: Ingrediente): Boolean {
+            return oldItem == newItem
+        }
     }
 }

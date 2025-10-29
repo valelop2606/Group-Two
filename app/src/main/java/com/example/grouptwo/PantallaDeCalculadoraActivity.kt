@@ -14,7 +14,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import androidx.lifecycle.lifecycleScope
 import com.example.grouptwo.repository.CoctelRepository
-import com.example.grouptwo.models.Coctel
+// ✅ Usar CoctelDetalle, ya que el repositorio lo devuelve
+import com.example.grouptwo.models.CoctelDetalle
+// Eliminamos la importación de Coctel si ya no se usa, o la mantenemos si la necesitas
+// import com.example.grouptwo.models.Coctel
 import kotlinx.coroutines.launch
 
 data class CoctelCalculadora(
@@ -38,10 +41,12 @@ class CalculadoraActivity : AppCompatActivity() {
     private lateinit var btnAgregarCoctel: Button
     private lateinit var tvNoCocteles: TextView
 
-    private val repository = CoctelRepository()
+    // ✅ CORRECCIÓN 1: Inicialización con Context usando by lazy
+    private val repository by lazy { CoctelRepository(this) }
     private var numeroInvitados = 10
     private val coctelesSeleccionados = mutableListOf<CoctelCalculadora>()
-    private var todosLosCocteles = listOf<Coctel>()
+    // ✅ CORRECCIÓN 2: El tipo debe ser List<CoctelDetalle>
+    private var todosLosCocteles = listOf<CoctelDetalle>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -72,6 +77,7 @@ class CalculadoraActivity : AppCompatActivity() {
         lifecycleScope.launch {
             repository.obtenerTodosCocteles()
                 .onSuccess { cocteles ->
+                    // ✅ Asignación correcta
                     todosLosCocteles = cocteles
                     Toast.makeText(
                         this@CalculadoraActivity,
@@ -111,7 +117,9 @@ class CalculadoraActivity : AppCompatActivity() {
         }
 
         btnVerListaCompras.setOnClickListener {
+            // Nota: Debes pasar los datos necesarios a ListaDeCompras
             val intent = Intent(this, ListaDeCompras::class.java)
+            // Aquí deberías pasar 'numeroInvitados' y 'coctelesSeleccionados'
             startActivity(intent)
         }
 
@@ -135,7 +143,8 @@ class CalculadoraActivity : AppCompatActivity() {
             .show()
     }
 
-    private fun agregarCoctel(coctel: Coctel) {
+    // ✅ La función debe aceptar CoctelDetalle
+    private fun agregarCoctel(coctel: CoctelDetalle) {
         // Verificar si ya está agregado
         val yaExiste = coctelesSeleccionados.any { it.id == coctel.id }
         if (yaExiste) {
@@ -200,12 +209,14 @@ class CalculadoraActivity : AppCompatActivity() {
         )
 
         val cardCoctel = coctelView.findViewById<CardView>(R.id.cardCoctel)
-        val ivCoctel = coctelView.findViewById<android.widget.ImageView>(R.id.ivCoctel)
         val tvNombreCoctel = coctelView.findViewById<TextView>(R.id.tvNombreCoctel)
         val tvBebidasCoctel = coctelView.findViewById<TextView>(R.id.tvBebidasCoctel)
         val btnMenos = coctelView.findViewById<Button>(R.id.btnMenosCoctel)
         val tvCantidad = coctelView.findViewById<TextView>(R.id.tvCantidadCoctel)
         val btnMas = coctelView.findViewById<Button>(R.id.btnMasCoctel)
+
+        // El ImageView no es necesario para la lógica de la calculadora, lo mantengo comentado
+        // val ivCoctel = coctelView.findViewById<android.widget.ImageView>(R.id.ivCoctel)
 
         // Configurar datos
         tvNombreCoctel.text = coctel.nombre
@@ -218,7 +229,7 @@ class CalculadoraActivity : AppCompatActivity() {
                 coctel.cantidad--
                 actualizarUI()
             } else {
-                // Si llega a 0, preguntar si quiere eliminar
+                // Si llega a 1 y se presiona menos, preguntar si quiere eliminar
                 AlertDialog.Builder(this)
                     .setTitle("Eliminar cóctel")
                     .setMessage("¿Quieres eliminar ${coctel.nombre} de la lista?")

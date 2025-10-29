@@ -20,7 +20,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Cantidad (ej: 50 ml, 1 oz)"
-        android:textColor="@color/textColor"
+        android:textColor="@color/background_dark"
         android:textColorHint="@color/hint_color"
         android:inputType="text" />
 </LinearLayout>
