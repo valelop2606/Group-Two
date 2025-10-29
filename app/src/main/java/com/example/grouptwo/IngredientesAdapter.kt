@@ -54,3 +54,8 @@ class IngredientesAdapter :
         override fun areContentsTheSame(a: Ingrediente, b: Ingrediente) = a == b
     }
 }
+
+
+
+
+

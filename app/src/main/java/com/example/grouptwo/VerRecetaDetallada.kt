@@ -72,3 +72,4 @@ class VerRecetaDetalladaActivity : AppCompatActivity() {
     }
 
 }
+

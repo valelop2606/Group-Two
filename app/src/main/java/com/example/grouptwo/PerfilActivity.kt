@@ -36,10 +36,10 @@ class PerfilActivity : AppCompatActivity() {
         }
 
         // 👇 AGREGA ESTA CONEXIÓN
-        binding.btnMisRecetas.setOnClickListener {
-            val intent = Intent(this, PantallaDeCrearReceta::class.java)
-            startActivity(intent)
-        }
+//        binding.btnMisRecetas.setOnClickListener {
+//            val intent = Intent(this, PantallaDeCrearReceta::class.java)
+//            startActivity(intent)
+//        }
     }
 
     fun logout() {

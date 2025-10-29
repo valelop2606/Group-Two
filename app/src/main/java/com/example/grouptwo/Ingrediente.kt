@@ -8,3 +8,4 @@ data class Ingrediente(
     val unidad: String,
     val nota: String? = null
 )
+

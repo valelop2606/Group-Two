@@ -1,38 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:padding="12dp"
-    android:background="?attr/selectableItemBackground"
-    android:gravity="top">
+    android:layout_margin="12dp"
+    app:cardElevation="2dp"
+    app:shapeAppearanceSmallComponent="@style/ShapeAppearance.Material3.Corner.Medium">
 
-    <TextView
-        android:id="@+id/txtIndice"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="1."
-        android:textSize="16sp"
-        android:textStyle="bold"
-        android:textColor="@android:color/black"
-        android:layout_marginEnd="8dp"
-        android:minWidth="30dp" />
+        android:orientation="horizontal"
+        android:padding="12dp">
 
-    <TextView
-        android:id="@+id/txtDescripcion"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="Mezclar ingredientes"
-        android:textSize="14sp"
-        android:textColor="@android:color/black" />
+        <TextView
+            android:id="@+id/txtIndice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"/>
 
-    <ImageButton
-        android:id="@+id/btnEliminarPaso"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:src="@android:drawable/ic_menu_delete"
-        android:background="?attr/selectableItemBackgroundBorderless"
-        android:contentDescription="Eliminar paso" />
+        <TextView
+            android:id="@+id/txtDescripcion"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingStart="12dp"/>
+    </LinearLayout>
 
-</LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>
