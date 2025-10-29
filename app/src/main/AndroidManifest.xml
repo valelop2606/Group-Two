@@ -22,7 +22,7 @@
             android:exported="false" />
         <activity
             android:name=".PerfilActivity"
-            android:exported="false" /> <!-- Launcher: pantalla de Inicio de Sesión -->
+            android:exported="false" />
         <activity
             android:name=".InicioSesionActivity"
             android:exported="true">
@@ -33,17 +33,14 @@
             </intent-filter>
         </activity>
 
-        <!-- Otras pantallas de la app (no son launcher) -->
         <activity
             android:name=".CategoriasActivity"
             android:exported="false" />
 
         <activity
             android:name=".MainActivity"
-            android:exported="false" /> <!-- <activity -->
-        <!-- android:name=".PantallaInicialActivity" -->
-        <!-- android:exported="false" /> -->
             android:exported="false" />
+
 
         <activity
             android:name=".PantallaInicialActivity"
@@ -60,6 +57,9 @@
             android:exported="false" />
         <activity android:name=".ListaDeCompras"
             android:exported="false"/>
+        <activity
+            android:name=".PantallaDeCrearReceta"
+            android:exported="false" />
     </application>
 
 </manifest>
