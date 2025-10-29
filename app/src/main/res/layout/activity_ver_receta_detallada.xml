@@ -34,14 +34,15 @@
                 app:tint="@color/rosa" />
 
             <TextView
+                android:id="@+id/tvTitulo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:paddingBottom="16dp"
-                android:text="Mojito clásico"
                 android:textColor="@color/blanco"
                 android:textSize="22sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                tools:text="Nombre del cóctel" />
 
             <LinearLayout
                 android:layout_width="match_parent"

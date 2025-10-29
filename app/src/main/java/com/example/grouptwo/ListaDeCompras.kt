@@ -22,18 +22,7 @@ class ListaDeCompras : AppCompatActivity() {
         binding.rvIngredientes.setHasFixedSize(true)
         binding.rvIngredientes.adapter = ingredientesAdapter
 
-        // Datos
-        ingredientesAdapter.submitList(
-            listOf(
-                Ingrediente("Limón", "2 u"),
-                Ingrediente("Azúcar", "30 g"),
-                Ingrediente("Hielo", "a gusto"),
-                Ingrediente("Ron", "2 onzas"),
-                Ingrediente("Four", "3 latas"),
-                Ingrediente("cuba libre", "3 litros"),
-                Ingrediente("Azucar", "a gusto")
-            )
-        )
+
 
         binding.categoriasFlechaAtras.setOnClickListener { finish() }
     }

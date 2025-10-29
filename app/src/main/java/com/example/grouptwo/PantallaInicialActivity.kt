@@ -30,7 +30,6 @@ class PantallaInicialActivity : AppCompatActivity() {
 
     private val repository = CoctelRepository()
     private var todosLosCocteles = listOf<Coctel>()
-
     private lateinit var etBuscar: EditText
     private lateinit var tvResultadosTitle: TextView
     private lateinit var containerResultados: LinearLayout
@@ -62,22 +61,34 @@ class PantallaInicialActivity : AppCompatActivity() {
 
     private fun configurarListeners() {
         val tvCosmo = findViewById<TextView?>(R.id.textView_cosmopolitan)
-        val imgCosmo = findViewById<ImageButton?>(R.id.imagen_cosmopolitan)
+        val btnCosmopolitan = findViewById<ImageButton?>(R.id.btnCosmopolitan)
         val btnCategorias = findViewById<Button?>(R.id.boton_categorias)
         val btnMojito = findViewById<ImageButton?>(R.id.btnMojito)
+        val btnMargarita = findViewById<ImageButton>(R.id.btnMargarita)
+        val btnNegroni = findViewById<ImageButton>(R.id.btnNegroni)
         val btnBuscarIcon = findViewById<ImageButton?>(R.id.btnBuscarIcon)
         val btnTengoEnCasa = findViewById<Button?>(R.id.btnTengoEnCasa)
         val btnCalculadora = findViewById<ImageButton?>(R.id.btnCalculadora)
 
-        imgCosmo?.setOnClickListener { tvCosmo?.text = "Hola" }
+        btnCosmopolitan?.setOnClickListener {
+            VerRecetaDetalladaActivity.launch(this, "ckt_cosmopolitan")
+        }
+
+        btnNegroni?.setOnClickListener {
+            VerRecetaDetalladaActivity.launch(this,"ckt_negroni")
+        }
 
         btnCategorias?.setOnClickListener {
             startActivity(Intent(this, CategoriasActivity::class.java))
         }
 
         btnMojito?.setOnClickListener {
-            startActivity(Intent(this, VerRecetaDetalladaActivity::class.java))
+            VerRecetaDetalladaActivity.launch(this, "ckt_mojito")
         }
+        btnMargarita?.setOnClickListener {
+            VerRecetaDetalladaActivity.launch(this, "ckt_margarita")
+        }
+
 
         btnBuscarIcon?.setOnClickListener {
             val intent = Intent(this, PantallaDeBuscarActivity::class.java)

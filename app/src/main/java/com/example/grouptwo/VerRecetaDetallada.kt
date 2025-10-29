@@ -1,56 +1,69 @@
 package com.example.grouptwo
 
+import android.app.Activity
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.grouptwo.databinding.ActivityVerRecetaDetalladaBinding
+import com.example.grouptwo.repository.CoctelRepositori
+import com.example.grouptwo.Coctel
 
 class VerRecetaDetalladaActivity : AppCompatActivity() {
 
-    private lateinit var rvIngredientes: RecyclerView
-    private lateinit var rvPasos: RecyclerView
+    private lateinit var binding: ActivityVerRecetaDetalladaBinding
     private val ingredientesAdapter = IngredientesAdapter()
     private val pasosAdapter = PasosAdapter()
-    private lateinit var binding: ActivityVerRecetaDetalladaBinding
+
+    companion object {
+        private const val EXTRA_ID = "cocktail_id"
+
+        fun launch(context: Context, cocktailId: String) {
+            val i = Intent(context, VerRecetaDetalladaActivity::class.java)
+                .putExtra(EXTRA_ID, cocktailId)
+            if (context !is Activity) i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            context.startActivity(i)
+        }
+    }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_ver_receta_detallada)
 
         binding = ActivityVerRecetaDetalladaBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        rvIngredientes = findViewById(R.id.rvIngredientes)
-        rvPasos = findViewById(R.id.rvPasos)
-
-        rvIngredientes.layoutManager = LinearLayoutManager(this)
-        rvPasos.layoutManager = LinearLayoutManager(this)
-
-        rvIngredientes.adapter = ingredientesAdapter
-        rvPasos.adapter = pasosAdapter
-
-        // 3) Datos de prueba
-        ingredientesAdapter.submitList(
-            listOf(
-                Ingrediente("Limón", "2 u"),
-                Ingrediente("Azúcar", "30 g"),
-                Ingrediente("Hielo", "a gusto"),
-                Ingrediente("Ron","2 onzas"),
-                Ingrediente("Four","3 latas"),
-                Ingrediente("cuba libre","3 litros"),
-                Ingrediente("Azucar","a gusto")
-            )
-        )
-        pasosAdapter.submitList(
-            listOf(
-                Paso(1, "Majar la menta con el azúcar."),
-                Paso(2, "Agregar jugo de limón."),
-                Paso(3, "Añadir hielo y completar con soda.")
-            )
-        )
-        binding.categoriasFlechaAtras.setOnClickListener {
-            finish()
+        binding.rvIngredientes.apply {
+            layoutManager = LinearLayoutManager(this@VerRecetaDetalladaActivity)
+            adapter = ingredientesAdapter
+            isNestedScrollingEnabled = false
         }
+
+        binding.rvPasos.apply {
+            layoutManager = LinearLayoutManager(this@VerRecetaDetalladaActivity)
+            adapter = pasosAdapter
+            isNestedScrollingEnabled = false
+        }
+        val coctelId = intent.getStringExtra(EXTRA_ID)
+        val coctel: Coctel? = coctelId?.let { CoctelRepositori.getById(this, it) }
+            ?: CoctelRepositori.getAll(this).firstOrNull()
+
+        if (coctel == null) {
+            finish()
+            return
+        }
+
+        setupUI(coctel)
+
+        binding.categoriasFlechaAtras.setOnClickListener { finish() }
     }
+
+    private fun setupUI(c: Coctel) {
+        binding.tvTitulo.text = c.nombre
+        ingredientesAdapter.submitList(c.ingredientes)
+        pasosAdapter.submitList(c.pasos.sortedBy { it.n })
+    }
+
 }

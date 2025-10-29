@@ -7,14 +7,14 @@ import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-
+import com.example.grouptwo.Paso
 
 class PasosAdapter :
     ListAdapter<Paso, PasosAdapter.VH>(Diff()) {
 
     class VH(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val indice = itemView.findViewById<TextView>(R.id.txtIndice)
-        val descripcion = itemView.findViewById<TextView>(R.id.txtDescripcion)
+        val indice: TextView = itemView.findViewById(R.id.txtIndice)
+        val descripcion: TextView = itemView.findViewById(R.id.txtDescripcion)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
@@ -25,12 +25,12 @@ class PasosAdapter :
 
     override fun onBindViewHolder(holder: VH, position: Int) {
         val item = getItem(position)
-        holder.indice.text = "${item.indice}."
-        holder.descripcion.text = item.descripcion
+        holder.indice.text = "${item.n}."
+        holder.descripcion.text = item.texto
     }
 
     private class Diff : DiffUtil.ItemCallback<Paso>() {
-        override fun areItemsTheSame(a: Paso, b: Paso) = a.indice == b.indice
+        override fun areItemsTheSame(a: Paso, b: Paso) = a.n == b.n
         override fun areContentsTheSame(a: Paso, b: Paso) = a == b
     }
 }

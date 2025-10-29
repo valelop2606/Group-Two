@@ -1,6 +1,8 @@
 package com.example.grouptwo
+import kotlinx.serialization.Serializable
 
+@Serializable
 data class Paso(
-    val indice: Int,
-    val descripcion: String
+    val n: Int,
+    val texto: String
 )

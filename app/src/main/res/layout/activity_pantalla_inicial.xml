@@ -186,7 +186,7 @@
                             android:layout_height="80dp"
                             app:cardCornerRadius="10dp">
                             <ImageButton
-                                android:id="@+id/imagen_cosmopolitan"
+                                android:id="@+id/btnCosmopolitan"
                                 android:layout_width="match_parent"
                                 android:layout_height="80dp"
                                 android:background="@color/black"
@@ -240,6 +240,7 @@
                             android:layout_height="80dp"
                             app:cardCornerRadius="10dp">
                             <ImageButton
+                                android:id="@+id/btnMargarita"
                                 android:layout_width="match_parent"
                                 android:layout_height="80dp"
                                 android:scaleType="centerCrop"
@@ -276,6 +277,7 @@
                             android:layout_height="80dp"
                             app:cardCornerRadius="10dp">
                             <ImageButton
+                                android:id="@+id/btnNegroni"
                                 android:layout_width="match_parent"
                                 android:layout_height="80dp"
                                 android:scaleType="centerCrop"
