@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_dark"
+    android:fillViewport="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <!-- Header con botón atrás y guardar -->
+        <ImageButton
+            android:id="@+id/btnBack"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Regresar"
+            android:padding="12dp"
+            android:src="@drawable/flecha_atras"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/rosa"
+            />
+
+        <!-- Título -->
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="Crear Cóctel"
+            android:textColor="@color/textColor"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/btnBack"
+            app:layout_constraintStart_toEndOf="@id/btnBack"
+            app:layout_constraintTop_toTopOf="@id/btnBack" />
+
+        <!-- Botón Guardar -->
+        <Button
+            android:id="@+id/btnGuardar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/colorPrimary"
+            android:text="Guardar"
+            android:textColor="@android:color/black"
+            app:cornerRadius="12dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- Nombre del cóctel -->
+        <TextView
+            android:id="@+id/tvNombreLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="Nombre del cóctel *"
+            android:textColor="@color/textColor"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btnBack" />
+
+        <EditText
+            android:id="@+id/etNombre"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/bg_buscar"
+            android:hint="Ej: Sunset Paradise"
+            android:padding="12dp"
+            android:textColor="@color/textColor"
+            android:textColorHint="@color/hint_color"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvNombreLabel" />
+
+        <!-- Descripción -->
+        <TextView
+            android:id="@+id/tvDescripcionLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Descripción"
+            android:textColor="@color/textColor"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/etNombre" />
+
+        <EditText
+            android:id="@+id/etDescripcion"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/bg_buscar"
+            android:hint="Ej: Refrescante, Sofisticado, Tropical..."
+            android:padding="12dp"
+            android:textColor="@color/textColor"
+            android:textColorHint="@color/hint_color"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvDescripcionLabel" />
+
+        <!-- Categoría -->
+        <TextView
+            android:id="@+id/tvCategoriaLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Categoría *"
+            android:textColor="@color/textColor"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/etDescripcion" />
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chipGroupCategoria"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:chipSpacing="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvCategoriaLabel"
+            app:singleSelection="true">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipClasicos"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Clásicos"
+                android:textColor="@color/textColor"
+                app:chipBackgroundColor="@color/chip_selected_color" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipCreativos"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Creativos"
+                android:textColor="@color/textColor"
+                app:chipBackgroundColor="@color/chip_selected_color" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipSinAlcohol"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sin Alcohol"
+                android:textColor="@color/textColor"
+                app:chipBackgroundColor="@color/chip_selected_color" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipTematicos"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Temáticos"
+                android:textColor="@color/textColor"
+                app:chipBackgroundColor="@color/chip_selected_color" />
+        </com.google.android.material.chip.ChipGroup>
+
+        <!-- Perfil de sabor -->
+        <TextView
+            android:id="@+id/tvPerfilSaborLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Perfil de sabor"
+            android:textColor="@color/textColor"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/chipGroupCategoria" />
+
+        <EditText
+            android:id="@+id/etPerfilSabor"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/bg_buscar"
+            android:hint="Ej: Cítrico &amp; Dulce, Amargo &amp; Herbáceo..."
+            android:padding="12dp"
+            android:textColor="@color/textColor"
+            android:textColorHint="@color/hint_color"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvPerfilSaborLabel" />
+
+        <!-- Tiempo de preparación -->
+        <TextView
+            android:id="@+id/tvTiempoLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Tiempo de preparación"
+            android:textColor="@color/textColor"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/etPerfilSabor" />
+
+        <EditText
+            android:id="@+id/etTiempo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/bg_buscar"
+            android:hint="Ej: 5 min, 10 min..."
+            android:padding="12dp"
+            android:textColor="@color/textColor"
+            android:textColorHint="@color/hint_color"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvTiempoLabel" />
+
+        <!-- Ingredientes -->
+        <LinearLayout
+            android:id="@+id/layoutIngredientesHeader"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/etTiempo">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Ingredientes *"
+                android:textColor="@color/textColor"
+                android:textSize="14sp" />
+
+            <Button
+                android:id="@+id/btnAgregarIngrediente"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:backgroundTint="@color/colorPrimary"
+                android:text="+ Agregar"
+                android:textColor="@android:color/black"
+                android:textSize="12sp"
+                app:cornerRadius="8dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/containerIngredientes"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layoutIngredientesHeader">
+        </LinearLayout>
+
+        <!-- Pasos de preparación -->
+        <LinearLayout
+            android:id="@+id/layoutPasosHeader"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/containerIngredientes">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Pasos de preparación *"
+                android:textColor="@color/textColor"
+                android:textSize="14sp" />
+
+            <Button
+                android:id="@+id/btnAgregarPaso"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:backgroundTint="@color/colorPrimary"
+                android:text="+ Agregar"
+                android:textColor="@android:color/black"
+                android:textSize="12sp"
+                app:cornerRadius="8dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/containerPasos"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="24dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layoutPasosHeader">
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
