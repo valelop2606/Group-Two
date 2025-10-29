@@ -3,6 +3,7 @@ package com.example.grouptwo
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -22,7 +23,6 @@ class VerRecetaDetalladaActivity : AppCompatActivity() {
         fun launch(context: Context, cocktailId: String) {
             val i = Intent(context, VerRecetaDetalladaActivity::class.java)
                 .putExtra(EXTRA_ID, cocktailId)
-            if (context !is Activity) i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             context.startActivity(i)
         }
     }
@@ -58,6 +58,11 @@ class VerRecetaDetalladaActivity : AppCompatActivity() {
         setupUI(coctel)
 
         binding.categoriasFlechaAtras.setOnClickListener { finish() }
+        binding.btnVideo.setOnClickListener {
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(coctel.url_video_tutorial))
+            startActivity(intent)
+        }
+
     }
 
     private fun setupUI(c: Coctel) {

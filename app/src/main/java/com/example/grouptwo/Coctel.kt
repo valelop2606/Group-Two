@@ -13,5 +13,6 @@ data class Coctel(
     val ingredientes: List<Ingrediente>,
     val pasos: List<Paso>,
     val imagenes: List<String> = emptyList(),
-    val ultima_actualizacion: String
+    val ultima_actualizacion: String,
+    val url_video_tutorial : String
 )

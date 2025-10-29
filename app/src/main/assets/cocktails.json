@@ -21,7 +21,8 @@
         { "n": 2, "texto": "Añadir ron, hielo y completar con soda. Mezclar suavemente." }
       ],
       "imagenes": [],
-      "ultima_actualizacion": "2025-10-28"
+      "ultima_actualizacion": "2025-10-28",
+      "url_video_tutorial": "https://www.youtube.com/watch?v=NANdz-YKMUw"
     },
     {
       "id": "ckt_margarita",
@@ -42,7 +43,8 @@
         { "n": 2, "texto": "Agitar tequila, triple sec y lima con hielo y colar en la copa." }
       ],
       "imagenes": [],
-      "ultima_actualizacion": "2025-10-28"
+      "ultima_actualizacion": "2025-10-28",
+      "url_video_tutorial": "https://www.youtube.com/watch?v=NANdz-YKMUw"
     },
     {
       "id": "ckt_pina_colada",
@@ -62,7 +64,8 @@
         { "n": 2, "texto": "Servir en vaso alto y decorar con piña." }
       ],
       "imagenes": [],
-      "ultima_actualizacion": "2025-10-28"
+      "ultima_actualizacion": "2025-10-28",
+      "url_video_tutorial": "https://www.youtube.com/watch?v=NANdz-YKMUw"
     },
     {
       "id": "ckt_negroni",
@@ -83,7 +86,8 @@
         { "n": 2, "texto": "Remover y aromatizar con piel de naranja." }
       ],
       "imagenes": [],
-      "ultima_actualizacion": "2025-10-28"
+      "ultima_actualizacion": "2025-10-28",
+      "url_video_tutorial": "https://www.youtube.com/watch?v=NANdz-YKMUw"
     },
     {
       "id": "ckt_old_fashioned",
@@ -105,7 +109,8 @@
         { "n": 2, "texto": "Añadir whisky y hielo grande. Remover." }
       ],
       "imagenes": [],
-      "ultima_actualizacion": "2025-10-28"
+      "ultima_actualizacion": "2025-10-28",
+      "url_video_tutorial": "https://www.youtube.com/watch?v=NANdz-YKMUw"
     },
     {
       "id": "ckt_daiquiri",
@@ -125,7 +130,8 @@
         { "n": 2, "texto": "Colar en copa fría." }
       ],
       "imagenes": [],
-      "ultima_actualizacion": "2025-10-28"
+      "ultima_actualizacion": "2025-10-28",
+      "url_video_tutorial": "https://www.youtube.com/watch?v=NANdz-YKMUw"
     },
     {
       "id": "ckt_moscow_mule",
@@ -146,7 +152,8 @@
         { "n": 2, "texto": "Completar con ginger beer y mezclar suavemente." }
       ],
       "imagenes": [],
-      "ultima_actualizacion": "2025-10-28"
+      "ultima_actualizacion": "2025-10-28",
+      "url_video_tutorial": "https://www.youtube.com/watch?v=NANdz-YKMUw"
     },
     {
       "id": "ckt_espresso_martini",
@@ -167,7 +174,8 @@
         { "n": 2, "texto": "Colar en copa de cóctel y decorar con granos de café." }
       ],
       "imagenes": [],
-      "ultima_actualizacion": "2025-10-28"
+      "ultima_actualizacion": "2025-10-28",
+      "url_video_tutorial": "https://www.youtube.com/watch?v=NANdz-YKMUw"
     },
     {
       "id": "ckt_caipirinha",
@@ -187,7 +195,8 @@
         { "n": 2, "texto": "Agregar cachaça y mucho hielo. Mezclar." }
       ],
       "imagenes": [],
-      "ultima_actualizacion": "2025-10-28"
+      "ultima_actualizacion": "2025-10-28",
+      "url_video_tutorial": "https://www.youtube.com/watch?v=NANdz-YKMUw"
     },
     {
       "id": "ckt_aperol_spritz",
@@ -208,7 +217,8 @@
         { "n": 2, "texto": "Mezclar suavemente y decorar con naranja." }
       ],
       "imagenes": [],
-      "ultima_actualizacion": "2025-10-28"
+      "ultima_actualizacion": "2025-10-28",
+      "url_video_tutorial": "https://www.youtube.com/watch?v=NANdz-YKMUw"
     },
     {
       "id": "ckt_cosmopolitan",
@@ -233,7 +243,8 @@
         { "n": 5, "texto": "Decora con cáscara de naranja." }
       ],
       "imagenes": [],
-      "ultima_actualizacion": "2025-10-28"
+      "ultima_actualizacion": "2025-10-28",
+      "url_video_tutorial": "https://www.youtube.com/watch?v=NANdz-YKMUw"
     },
     {
       "id": "ckt_tequila_sunrise",
@@ -255,7 +266,8 @@
         { "n": 3, "texto": "Decorar con rodaja de naranja." }
       ],
       "imagenes": [],
-      "ultima_actualizacion": "2025-10-28"
+      "ultima_actualizacion": "2025-10-28",
+      "url_video_tutorial": "https://www.youtube.com/watch?v=NANdz-YKMUw"
     },
     {
       "id": "ckt_whiskey_sour",
@@ -276,7 +288,8 @@
         { "n": 3, "texto": "Colar en vaso bajo y decorar con una rodaja de limón." }
       ],
       "imagenes": [],
-      "ultima_actualizacion": "2025-10-28"
+      "ultima_actualizacion": "2025-10-28",
+      "url_video_tutorial": "https://www.youtube.com/watch?v=NANdz-YKMUw"
     },
     {
       "id": "ckt_bloody_mary",
@@ -299,7 +312,8 @@
         { "n": 3, "texto": "Decorar con tallo de apio o rodaja de limón." }
       ],
       "imagenes": [],
-      "ultima_actualizacion": "2025-10-28"
+      "ultima_actualizacion": "2025-10-28",
+      "url_video_tutorial": "https://www.youtube.com/watch?v=NANdz-YKMUw"
     },
     {
       "id": "ckt_tom_collins",
@@ -321,7 +335,8 @@
         { "n": 3, "texto": "Decorar con rodaja de limón." }
       ],
       "imagenes": [],
-      "ultima_actualizacion": "2025-10-28"
+      "ultima_actualizacion": "2025-10-28",
+      "url_video_tutorial": "https://www.youtube.com/watch?v=NANdz-YKMUw"
     },
     {
       "id": "ckt_blue_lagoon",
@@ -342,7 +357,8 @@
         { "n": 2, "texto": "Remover suavemente y servir." }
       ],
       "imagenes": [],
-      "ultima_actualizacion": "2025-10-28"
+      "ultima_actualizacion": "2025-10-28",
+      "url_video_tutorial": "https://www.youtube.com/watch?v=NANdz-YKMUw"
     },
     {
       "id": "ckt_black_russian",
@@ -361,7 +377,8 @@
         { "n": 2, "texto": "Verter vodka y licor de café y remover." }
       ],
       "imagenes": [],
-      "ultima_actualizacion": "2025-10-28"
+      "ultima_actualizacion": "2025-10-28",
+      "url_video_tutorial": "https://www.youtube.com/watch?v=NANdz-YKMUw"
     },
     {
       "id": "ckt_bellini",
@@ -379,7 +396,8 @@
         { "n": 2, "texto": "Rellenar lentamente con prosecco y mezclar suavemente." }
       ],
       "imagenes": [],
-      "ultima_actualizacion": "2025-10-28"
+      "ultima_actualizacion": "2025-10-28",
+      "url_video_tutorial": "https://www.youtube.com/watch?v=NANdz-YKMUw"
     },
     {
       "id": "ckt_singapore_sling",
@@ -401,7 +419,8 @@
         { "n": 2, "texto": "Colar en vaso alto y decorar con cereza." }
       ],
       "imagenes": [],
-      "ultima_actualizacion": "2025-10-28"
+      "ultima_actualizacion": "2025-10-28",
+      "url_video_tutorial": "https://www.youtube.com/watch?v=NANdz-YKMUw"
     },
     {
       "id": "ckt_mint_julep",
@@ -423,7 +442,8 @@
         { "n": 3, "texto": "Remover y decorar con menta." }
       ],
       "imagenes": [],
-      "ultima_actualizacion": "2025-10-28"
+      "ultima_actualizacion": "2025-10-28",
+      "url_video_tutorial": "https://www.youtube.com/watch?v=NANdz-YKMUw"
     },
     {
       "id": "ckt_french_75",
@@ -443,7 +463,8 @@
         { "n": 2, "texto": "Colar en copa de flauta y completar con champaña." }
       ],
       "imagenes": [],
-      "ultima_actualizacion": "2025-10-28"
+      "ultima_actualizacion": "2025-10-28",
+      "url_video_tutorial": "https://www.youtube.com/watch?v=NANdz-YKMUw"
     }
   ]
 }
