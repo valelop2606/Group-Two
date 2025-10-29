@@ -1,5 +1,6 @@
 package com.example.grouptwo
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -17,7 +18,8 @@ import androidx.lifecycle.lifecycleScope
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 import com.example.grouptwo.repository.CoctelRepository
-import com.example.grouptwo.models.Coctel
+import com.example.grouptwo.models.CoctelDetalle // ✅ IMPORTAR CoctelDetalle
+import com.example.grouptwo.R // ✅ Asegurar que R esté importado
 import kotlinx.coroutines.launch
 
 class PantallaDeBuscarActivity : AppCompatActivity() {
@@ -33,8 +35,10 @@ class PantallaDeBuscarActivity : AppCompatActivity() {
     private lateinit var tvResultadosTitle: TextView
 
     private val seleccionados = mutableSetOf<String>()
-    private val repository = CoctelRepository()
-    private var todosLosCocteles = listOf<Coctel>()
+    // ✅ CORRECCIÓN 1: Inicialización con Context usando by lazy
+    private val repository by lazy { CoctelRepository(this) }
+    // ✅ CORRECCIÓN 2: Tipo debe ser CoctelDetalle
+    private var todosLosCocteles = listOf<CoctelDetalle>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -61,6 +65,7 @@ class PantallaDeBuscarActivity : AppCompatActivity() {
         lifecycleScope.launch {
             repository.obtenerTodosCocteles()
                 .onSuccess { cocteles ->
+                    // ✅ Acepta List<CoctelDetalle>
                     todosLosCocteles = cocteles
                     Log.d("PantallaBuscar", "✅ Cargados ${cocteles.size} cócteles")
                 }
@@ -136,7 +141,7 @@ class PantallaDeBuscarActivity : AppCompatActivity() {
             val chip = Chip(this).apply {
                 text = nombre
                 isCloseIconVisible = true
-                setTextColor(resources.getColor(android.R.color.white))
+                setTextColor(resources.getColor(android.R.color.white, null))
                 setChipBackgroundColorResource(com.google.android.material.R.color.material_dynamic_primary80)
                 setOnCloseIconClickListener {
                     seleccionados.remove(nombre)
@@ -169,6 +174,7 @@ class PantallaDeBuscarActivity : AppCompatActivity() {
 
     private fun buscarCoctelesPorNombre(query: String) {
         lifecycleScope.launch {
+            // El repositorio retorna CoctelDetalle, que es lo que queremos
             repository.buscarCocteles(query)
                 .onSuccess { resultados ->
                     if (resultados.isNotEmpty()) {
@@ -195,7 +201,18 @@ class PantallaDeBuscarActivity : AppCompatActivity() {
             return
         }
 
-        // Filtrar cócteles que contengan alguno de los ingredientes seleccionados
+        // ✅ MEJORA: Filtrar cócteles que contengan AL MENOS UNO de los ingredientes seleccionados
+        val resultados = todosLosCocteles.filter { coctel ->
+            coctel.ingredientes?.any { ingredienteCoctel ->
+                // Verificar si el nombre del ingrediente seleccionado está contenido
+                seleccionados.any { ingredienteSeleccionado ->
+                    ingredienteCoctel.nombre.contains(ingredienteSeleccionado, ignoreCase = true)
+                }
+            } ?: false
+        }
+
+        // Lógica de filtrado original (para fallback, por si los nombres de chip no son exactos)
+        /*
         val resultados = todosLosCocteles.filter { coctel ->
             val nombreLower = coctel.nombre.lowercase()
             val descripcionLower = coctel.descripcion?.lowercase() ?: ""
@@ -205,6 +222,7 @@ class PantallaDeBuscarActivity : AppCompatActivity() {
                         descripcionLower.contains(ingrediente.lowercase())
             }
         }
+        */
 
         if (resultados.isEmpty()) {
             Toast.makeText(
@@ -224,7 +242,8 @@ class PantallaDeBuscarActivity : AppCompatActivity() {
         }
     }
 
-    private fun mostrarResultados(cocteles: List<Coctel>, titulo: String) {
+    // ✅ CORRECCIÓN 3: Tipo debe ser CoctelDetalle
+    private fun mostrarResultados(cocteles: List<CoctelDetalle>, titulo: String) {
         tvResultadosTitle.text = titulo
         tvResultadosTitle.visibility = View.VISIBLE
         containerResultados.visibility = View.VISIBLE
@@ -241,7 +260,8 @@ class PantallaDeBuscarActivity : AppCompatActivity() {
         containerResultados.removeAllViews()
     }
 
-    private fun agregarCoctelCard(coctel: Coctel) {
+    // ✅ CORRECCIÓN 3: Tipo debe ser CoctelDetalle
+    private fun agregarCoctelCard(coctel: CoctelDetalle) {
         val cardView = CardView(this).apply {
             layoutParams = LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
@@ -310,7 +330,7 @@ class PantallaDeBuscarActivity : AppCompatActivity() {
         // Sabor
         coctel.saborPredominante?.let {
             val tvSabor = TextView(this).apply {
-                text = "😋 $it"
+                text = "$it"
                 textSize = 12f
                 setTextColor(resources.getColor(android.R.color.white, null))
             }
@@ -324,13 +344,11 @@ class PantallaDeBuscarActivity : AppCompatActivity() {
         cardView.setOnClickListener {
             Toast.makeText(
                 this,
-                "Ver detalles de ${coctel.nombre}",
+                "Ver detalles de ${coctel.nombre} (ID: ${coctel.id})",
                 Toast.LENGTH_SHORT
             ).show()
-            // Aquí puedes navegar a la pantalla de detalles
-            // val intent = Intent(this, DetallesCoctelActivity::class.java)
-            // intent.putExtra("coctel_id", coctel.id)
-            // startActivity(intent)
+            // ✅ NAVEGACIÓN COMPLETA A LA PANTALLA DE DETALLE
+            VerRecetaDetalladaActivity.launch(this, coctel.id.toString())
         }
 
         containerResultados.addView(cardView)

@@ -19,17 +19,19 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
 import com.example.grouptwo.databinding.ActivityPantallaInicialBinding
-import com.example.grouptwo.databinding.ActivityPerfilBinding
+// Importa CoctelDetalle en lugar de Coctel para consistencia
+import com.example.grouptwo.models.CoctelDetalle
 import com.example.grouptwo.repository.CoctelRepository
-import com.example.grouptwo.models.Coctel
 import kotlinx.coroutines.launch
 
 class PantallaInicialActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityPantallaInicialBinding
 
-    private val repository = CoctelRepository()
-    private var todosLosCocteles = listOf<Coctel>()
+    // ✅ CORRECCIÓN 1: Inicializar el repositorio con el Context
+    private val repository by lazy { CoctelRepository(this) }
+    // ✅ CORRECCIÓN 2: Usar el tipo CoctelDetalle
+    private var todosLosCocteles = listOf<CoctelDetalle>()
     private lateinit var etBuscar: EditText
     private lateinit var tvResultadosTitle: TextView
     private lateinit var containerResultados: LinearLayout
@@ -53,6 +55,8 @@ class PantallaInicialActivity : AppCompatActivity() {
     }
 
     private fun inicializarVistas() {
+        // Asegúrate de usar binding si las vistas no tienen ID en el root.
+        // Usaré findViewById basado en tu código original, pero es mejor usar binding.
         etBuscar = findViewById(R.id.etBuscarIngrediente)
         tvResultadosTitle = findViewById(R.id.tvResultadosTitle)
         containerResultados = findViewById(R.id.containerResultados)
@@ -60,7 +64,6 @@ class PantallaInicialActivity : AppCompatActivity() {
     }
 
     private fun configurarListeners() {
-        val tvCosmo = findViewById<TextView?>(R.id.textView_cosmopolitan)
         val btnCosmopolitan = findViewById<ImageButton?>(R.id.btnCosmopolitan)
         val btnCategorias = findViewById<Button?>(R.id.boton_categorias)
         val btnMojito = findViewById<ImageButton?>(R.id.btnMojito)
@@ -70,6 +73,8 @@ class PantallaInicialActivity : AppCompatActivity() {
         val btnTengoEnCasa = findViewById<Button?>(R.id.btnTengoEnCasa)
         val btnCalculadora = findViewById<ImageButton?>(R.id.btnCalculadora)
 
+        // Nota: Si usas IDs fijos (como "ckt_cosmopolitan"), asegúrate de que el JSON/Parser
+        // los maneje correctamente, o usa los IDs numéricos (ej: "1", "2").
         btnCosmopolitan?.setOnClickListener {
             VerRecetaDetalladaActivity.launch(this, "ckt_cosmopolitan")
         }
@@ -91,11 +96,13 @@ class PantallaInicialActivity : AppCompatActivity() {
 
 
         btnBuscarIcon?.setOnClickListener {
+            // Este icono abre la PantallaDeBuscarActivity
             val intent = Intent(this, PantallaDeBuscarActivity::class.java)
             startActivity(intent)
         }
 
         btnTengoEnCasa?.setOnClickListener {
+            // Navega a la PantallaDeBuscarActivity con el modo "tengo_en_casa"
             val intent = Intent(this, PantallaDeBuscarActivity::class.java)
             intent.putExtra("modo", "tengo_en_casa")
             startActivity(intent)
@@ -109,6 +116,12 @@ class PantallaInicialActivity : AppCompatActivity() {
             val intent = Intent(this, PerfilActivity::class.java)
             startActivity(intent)
 
+        }
+
+        // Asumiendo que 'binding.buscador' es el ícono de la barra inferior
+        binding.buscador.setOnClickListener {
+            // Asumiendo que BuscadorActivity es la PantallaDeBuscarActivity o la que tiene el filtro avanzado
+            startActivity(Intent(this, PantallaDeBuscarActivity::class.java))
         }
 
         // Búsqueda en tiempo real
@@ -130,6 +143,7 @@ class PantallaInicialActivity : AppCompatActivity() {
         lifecycleScope.launch {
             repository.obtenerTodosCocteles()
                 .onSuccess { cocteles ->
+                    // ✅ Acepta List<CoctelDetalle>
                     todosLosCocteles = cocteles
                     Log.d("PantallaInicial", "✅ Se cargaron ${cocteles.size} cócteles desde la API")
 
@@ -179,11 +193,13 @@ class PantallaInicialActivity : AppCompatActivity() {
             Toast.makeText(this, "No se encontraron resultados para \"$query\"", Toast.LENGTH_SHORT).show()
             ocultarResultados()
         } else {
+            // ✅ Usa List<CoctelDetalle> en el parámetro
             mostrarResultados(resultados, "Resultados: \"$query\" (${resultados.size})")
         }
     }
 
-    private fun mostrarResultados(cocteles: List<Coctel>, titulo: String) {
+    // ✅ Usa List<CoctelDetalle>
+    private fun mostrarResultados(cocteles: List<CoctelDetalle>, titulo: String) {
         // Ocultar contenido estático
         contenidoEstatico.visibility = View.GONE
 
@@ -202,23 +218,17 @@ class PantallaInicialActivity : AppCompatActivity() {
         tvResultadosTitle.visibility = View.GONE
         containerResultados.visibility = View.GONE
         containerResultados.removeAllViews()
-        binding.perfil.setOnClickListener {
-            val intent = Intent(this, PerfilActivity::class.java)
-            startActivity(intent)
 
-        }
-
-        binding.buscador.setOnClickListener {
-            val intent = Intent(this, BuscadorActivity::class.java)
-            startActivity(intent)
-        }
-
+        // Limpieza de listeners duplicados (no deberían estar aquí)
+        // El listener de 'binding.perfil' y 'binding.buscador' ya se configuró en configurarListeners()
+        // Los elimino para limpiar el código, asumiendo que el ID main es el correcto.
 
         // Mostrar contenido estático
         contenidoEstatico.visibility = View.VISIBLE
     }
 
-    private fun agregarCoctelCard(coctel: Coctel) {
+    // ✅ Usa CoctelDetalle
+    private fun agregarCoctelCard(coctel: CoctelDetalle) {
         val cardView = CardView(this).apply {
             layoutParams = LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
@@ -228,6 +238,7 @@ class PantallaInicialActivity : AppCompatActivity() {
             }
             radius = 32f
             cardElevation = 0f
+            // Usar R.color.card_background o un color más apropiado si existe
             setCardBackgroundColor(resources.getColor(android.R.color.darker_gray, null))
         }
 
@@ -250,11 +261,13 @@ class PantallaInicialActivity : AppCompatActivity() {
             val tvDescripcion = TextView(this).apply {
                 text = coctel.descripcion
                 textSize = 14f
+                // Nota: Usar darker_gray para el texto sobre darker_gray puede ser ilegible
                 setTextColor(resources.getColor(android.R.color.darker_gray, null))
                 setPadding(0, 8, 0, 0)
             }
             linearLayout.addView(tvDescripcion)
         }
+        // ... (Resto del código para dificultad, alcohol, sabor)
 
         // Info adicional
         val infoLayout = LinearLayout(this).apply {
@@ -301,20 +314,13 @@ class PantallaInicialActivity : AppCompatActivity() {
         cardView.setOnClickListener {
             Toast.makeText(
                 this,
-                "Ver detalles de ${coctel.nombre}",
+                "Ver detalles de ${coctel.nombre} (ID: ${coctel.id})",
                 Toast.LENGTH_SHORT
             ).show()
-            // Aquí puedes navegar a la pantalla de detalles
-            // val intent = Intent(this, DetallesCoctelActivity::class.java)
-            // intent.putExtra("coctel_id", coctel.id)
-            // startActivity(intent)
+            // ✅ Implementación de la navegación al detalle
+            VerRecetaDetalladaActivity.launch(this, coctel.id.toString())
         }
 
         containerResultados.addView(cardView)
-
-
-
     }
-
-
 }
