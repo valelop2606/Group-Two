@@ -98,15 +98,14 @@
                     android:gravity="center"
                     android:orientation="horizontal">
 
-                    <Button
+                    <ImageButton
                         android:id="@+id/btnMenosInvitados"
                         android:layout_width="48dp"
                         android:layout_height="48dp"
-                        android:backgroundTint="#2E2E2E"
-                        android:text="-"
-                        android:textColor="@color/textColor"
-                        android:textSize="24sp"
-                        app:cornerRadius="24dp" />
+                        android:backgroundTint="@color/gris_claro"
+                        android:src="@drawable/menos"
+                        app:cornerRadius="24dp"
+                        app:tint="@color/blanco" />
 
                     <TextView
                         android:id="@+id/tvNumeroInvitados"
@@ -121,15 +120,14 @@
                         android:textSize="32sp"
                         android:textStyle="bold" />
 
-                    <Button
+                    <ImageButton
                         android:id="@+id/btnMasInvitados"
                         android:layout_width="48dp"
                         android:layout_height="48dp"
-                        android:backgroundTint="#2E2E2E"
-                        android:text="+"
-                        android:textColor="@color/textColor"
-                        android:textSize="24sp"
-                        app:cornerRadius="24dp" />
+                        android:backgroundTint="@color/gris_claro"
+                        android:src="@drawable/mas"
+                        app:cornerRadius="24dp"
+                        app:tint="@color/blanco" />
                 </LinearLayout>
             </LinearLayout>
         </androidx.cardview.widget.CardView>

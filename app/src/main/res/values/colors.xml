@@ -7,10 +7,8 @@
 
     <color name="celeste">#00BCD4</color>  <!-- Blanco para modo oscuro -->
 
-    <!-- Colores para el layout -->
 
 
-    <!-- Color fijo para chips (simplificado, sin selector) -->
     <color name="colorAccent">#FFD700</color>
     <color name="colorSecondary">#8B0000</color>
     <color name="rosa">#FF69B4</color>

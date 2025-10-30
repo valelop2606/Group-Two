@@ -29,8 +29,8 @@ data class CoctelCalculadora(
 class CalculadoraActivity : AppCompatActivity() {
 
     private lateinit var btnBack: ImageButton
-    private lateinit var btnMenosInvitados: Button
-    private lateinit var btnMasInvitados: Button
+    private lateinit var btnMenosInvitados: ImageButton
+    private lateinit var btnMasInvitados: ImageButton
     private lateinit var tvNumeroInvitados: TextView
     private lateinit var tvTotalBebidas: TextView
     private lateinit var containerCocteles: LinearLayout

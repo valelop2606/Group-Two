@@ -38,7 +38,14 @@ class PerfilActivity : AppCompatActivity() {
             finish()
         }
 
-    }
+        binding.perfilCerrarSesion.setOnClickListener {
+            logout()
+
+
+        }
+
+
+
 
 
         // 👇 AGREGA ESTA CONEXIÓN
@@ -46,6 +53,16 @@ class PerfilActivity : AppCompatActivity() {
 //            val intent = Intent(this, PantallaDeCrearReceta::class.java)
 //            startActivity(intent)
 //        }
+
+
+    }
+    fun logout() {
+        FirebaseAuth.getInstance().signOut()
+        val intent = Intent(this, InicioSesionActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        startActivity(intent)
+        finish()
+    }
 }
 
 

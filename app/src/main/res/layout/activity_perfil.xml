@@ -136,19 +136,39 @@
     </LinearLayout>
 
     <!-- Cerrar Sesión -->
-    <TextView
-        android:id="@+id/logout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
-        android:clickable="true"
-        android:focusable="true"
-        android:padding="12dp"
-        android:text="Cerrar sesión"
-        android:textColor="#FF4081"
-        android:textSize="14sp"
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/perfil_cerrar_sesion"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginBottom="10dp"
+        app:cardCornerRadius="12dp"
+        android:backgroundTint="@color/black"
+        app:strokeColor="@color/gris_claro"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:strokeWidth="1dp"
+        android:clickable="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:padding="16dp"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/cerrarsesion"
+                app:tint="@color/rojo" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:text="Cerrar Sesión"
+                android:textColor="@color/rojo"
+                android:textSize="16sp" />
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
