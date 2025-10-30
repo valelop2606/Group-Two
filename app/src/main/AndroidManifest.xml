@@ -21,15 +21,13 @@
         <activity
             android:name=".ConfiguracionActivity"
             android:exported="false" />
-        <activity
-            android:name=".repository.ConfiguracionActivity"
-            android:exported="false" />
+
         <activity
             android:name=".BuscadorActivity"
             android:exported="false" />
         <activity
             android:name=".PerfilActivity"
-            android:exported="false" /> <!-- Launcher: pantalla de Inicio de Sesión -->
+            android:exported="false" />
         <activity
             android:name=".InicioSesionActivity"
             android:exported="true">
@@ -65,9 +63,7 @@
         <activity
             android:name=".PantallaDeCrearReceta"
             android:exported="false" />
-        <activity
-            android:name=".ListaDeCompras"
-            android:exported="false" />
+
 
     </application>
 

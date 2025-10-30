@@ -12,13 +12,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
-import androidx.lifecycle.lifecycleScope
-import com.example.grouptwo.repository.CoctelRepository
-// ✅ Usar CoctelDetalle, ya que el repositorio lo devuelve
-import com.example.grouptwo.models.CoctelDetalle
-// Eliminamos la importación de Coctel si ya no se usa, o la mantenemos si la necesitas
-// import com.example.grouptwo.models.Coctel
-import kotlinx.coroutines.launch
+
 
 data class CoctelCalculadora(
     val id: Int,
@@ -42,18 +36,15 @@ class CalculadoraActivity : AppCompatActivity() {
     private lateinit var tvNoCocteles: TextView
 
     // ✅ CORRECCIÓN 1: Inicialización con Context usando by lazy
-    private val repository by lazy { CoctelRepository(this) }
     private var numeroInvitados = 10
     private val coctelesSeleccionados = mutableListOf<CoctelCalculadora>()
     // ✅ CORRECCIÓN 2: El tipo debe ser List<CoctelDetalle>
-    private var todosLosCocteles = listOf<CoctelDetalle>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.pantalla_de_calculadora)
 
         inicializarVistas()
-        cargarCoctelesDesdeAPI()
         configurarListeners()
         actualizarUI()
     }
@@ -73,27 +64,7 @@ class CalculadoraActivity : AppCompatActivity() {
         tvNoCocteles = findViewById(R.id.tvNoCocteles)
     }
 
-    private fun cargarCoctelesDesdeAPI() {
-        lifecycleScope.launch {
-            repository.obtenerTodosCocteles()
-                .onSuccess { cocteles ->
-                    // ✅ Asignación correcta
-                    todosLosCocteles = cocteles
-                    Toast.makeText(
-                        this@CalculadoraActivity,
-                        "Cargados ${cocteles.size} cócteles disponibles",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
-                .onFailure { error ->
-                    Toast.makeText(
-                        this@CalculadoraActivity,
-                        "Error al cargar cócteles: ${error.message}",
-                        Toast.LENGTH_LONG
-                    ).show()
-                }
-        }
-    }
+
 
     private fun configurarListeners() {
         btnBack.setOnClickListener {
@@ -112,9 +83,7 @@ class CalculadoraActivity : AppCompatActivity() {
             actualizarUI()
         }
 
-        btnAgregarCoctel.setOnClickListener {
-            mostrarDialogoSeleccionCoctel()
-        }
+
 
         btnVerListaCompras.setOnClickListener {
             // Nota: Debes pasar los datos necesarios a ListaDeCompras
@@ -125,51 +94,6 @@ class CalculadoraActivity : AppCompatActivity() {
 
     }
 
-    private fun mostrarDialogoSeleccionCoctel() {
-        if (todosLosCocteles.isEmpty()) {
-            Toast.makeText(this, "Cargando cócteles...", Toast.LENGTH_SHORT).show()
-            return
-        }
-
-        val nombres = todosLosCocteles.map { it.nombre }.toTypedArray()
-
-        AlertDialog.Builder(this)
-            .setTitle("Selecciona un cóctel")
-            .setItems(nombres) { dialog, which ->
-                val coctelSeleccionado = todosLosCocteles[which]
-                agregarCoctel(coctelSeleccionado)
-            }
-            .setNegativeButton("Cancelar", null)
-            .show()
-    }
-
-    // ✅ La función debe aceptar CoctelDetalle
-    private fun agregarCoctel(coctel: CoctelDetalle) {
-        // Verificar si ya está agregado
-        val yaExiste = coctelesSeleccionados.any { it.id == coctel.id }
-        if (yaExiste) {
-            Toast.makeText(this, "${coctel.nombre} ya está en la lista", Toast.LENGTH_SHORT).show()
-            return
-        }
-
-        val coctelCalculadora = CoctelCalculadora(
-            id = coctel.id,
-            nombre = coctel.nombre,
-            cantidad = 5
-        )
-        coctelesSeleccionados.add(coctelCalculadora)
-        actualizarUI()
-
-        Toast.makeText(this, "✅ ${coctel.nombre} agregado", Toast.LENGTH_SHORT).show()
-    }
-
-    private fun quitarCoctel(coctelId: Int) {
-        val coctel = coctelesSeleccionados.find { it.id == coctelId }
-        coctelesSeleccionados.removeAll { it.id == coctelId }
-        actualizarUI()
-
-        Toast.makeText(this, "❌ ${coctel?.nombre} eliminado", Toast.LENGTH_SHORT).show()
-    }
 
     private fun actualizarUI() {
         // Actualizar número de invitados
@@ -234,7 +158,6 @@ class CalculadoraActivity : AppCompatActivity() {
                     .setTitle("Eliminar cóctel")
                     .setMessage("¿Quieres eliminar ${coctel.nombre} de la lista?")
                     .setPositiveButton("Eliminar") { _, _ ->
-                        quitarCoctel(coctel.id)
                     }
                     .setNegativeButton("Cancelar", null)
                     .show()
@@ -253,7 +176,6 @@ class CalculadoraActivity : AppCompatActivity() {
                 .setTitle("Eliminar cóctel")
                 .setMessage("¿Quieres eliminar ${coctel.nombre} de la lista?")
                 .setPositiveButton("Eliminar") { _, _ ->
-                    quitarCoctel(coctel.id)
                 }
                 .setNegativeButton("Cancelar", null)
                 .show()
