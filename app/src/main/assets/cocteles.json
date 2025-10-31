@@ -1,0 +1,554 @@
+{
+  "schemaVersion": 1,
+  "cocteles": [
+    {
+      "id": "ckt_mojito",
+      "nombre": "Mojito clásico",
+      "descripcion": "Menta, lima y ron.",
+      "dificultad": "facil",
+      "nivel_alcohol": "medio",
+      "sabor": "citricos",
+      "ingredientes": [
+        { "nombre": "Ron blanco", "cantidad": 50, "unidad": "ml" },
+        { "nombre": "Azúcar", "cantidad": 2, "unidad": "cda" },
+        { "nombre": "Limón", "cantidad": 1, "unidad": "unidad", "nota": "en gajos" },
+        { "nombre": "Hojas de menta", "cantidad": 8, "unidad": "hojas" },
+        { "nombre": "Soda", "cantidad": 100, "unidad": "ml" },
+        { "nombre": "Hielo", "unidad": "a gusto" }
+      ],
+      "pasos": [
+        { "n": 1, "texto": "Macerar limón, azúcar y menta en el vaso." },
+        { "n": 2, "texto": "Añadir ron, hielo y completar con soda. Mezclar suavemente." }
+      ],
+      "categorias": [
+        { "n": 1, "texto": "clasico" },
+        { "n": 2, "texto": "refrescante" }
+      ],
+      "imagen": "img_mojito_clasico",
+      "ultima_actualizacion": "2025-10-28",
+      "url_video_tutorial": "https://www.youtube.com/watch?v=NANdz-YKMUw"
+    },
+    {
+      "id": "ckt_margarita",
+      "nombre": "Margarita",
+      "descripcion": "Tequila con lima y triple sec.",
+      "dificultad": "facil",
+      "nivel_alcohol": "alto",
+      "sabor": "citricos",
+      "ingredientes": [
+        { "nombre": "Tequila blanco", "cantidad": 50, "unidad": "ml" },
+        { "nombre": "Triple sec", "cantidad": 25, "unidad": "ml" },
+        { "nombre": "Zumo de lima", "cantidad": 25, "unidad": "ml" },
+        { "nombre": "Sal", "unidad": "para el borde" },
+        { "nombre": "Hielo", "unidad": "a gusto" }
+      ],
+      "pasos": [
+        { "n": 1, "texto": "Escarchar el borde de la copa con sal." },
+        { "n": 2, "texto": "Agitar tequila, triple sec y lima con hielo y colar en la copa." }
+      ],
+      "categorias": [
+        { "n": 1, "texto": "clasico" },
+        { "n": 2, "texto": "acido" }
+      ],
+      "imagen": "img_margarita",
+      "ultima_actualizacion": "2025-10-28",
+      "url_video_tutorial": "https://www.youtube.com/watch?v=NANdz-YKMUw"
+    },
+    {
+      "id": "ckt_pina_colada",
+      "nombre": "Piña Colada",
+      "descripcion": "Cremosa y tropical.",
+      "dificultad": "facil",
+      "nivel_alcohol": "medio",
+      "sabor": "dulce",
+      "ingredientes": [
+        { "nombre": "Ron blanco", "cantidad": 45, "unidad": "ml" },
+        { "nombre": "Crema de coco", "cantidad": 45, "unidad": "ml" },
+        { "nombre": "Zumo de piña", "cantidad": 90, "unidad": "ml" },
+        { "nombre": "Hielo", "unidad": "a gusto" }
+      ],
+      "pasos": [
+        { "n": 1, "texto": "Batir todos los ingredientes con hielo." },
+        { "n": 2, "texto": "Servir en vaso alto y decorar con piña." }
+      ],
+      "categorias": [
+        { "n": 1, "texto": "tropical" },
+        { "n": 2, "texto": "cremoso" }
+      ],
+      "imagen": "img_pina_colada",
+      "ultima_actualizacion": "2025-10-28",
+      "url_video_tutorial": "https://www.youtube.com/watch?v=NANdz-YKMUw"
+    },
+    {
+      "id": "ckt_negroni",
+      "nombre": "Negroni",
+      "descripcion": "Amargo y aromático a partes iguales.",
+      "dificultad": "facil",
+      "nivel_alcohol": "alto",
+      "sabor": "amargo",
+      "ingredientes": [
+        { "nombre": "Ginebra", "cantidad": 30, "unidad": "ml" },
+        { "nombre": "Vermut rojo", "cantidad": 30, "unidad": "ml" },
+        { "nombre": "Campari", "cantidad": 30, "unidad": "ml" },
+        { "nombre": "Hielo", "unidad": "a gusto" },
+        { "nombre": "Piel de naranja", "unidad": "para decorar" }
+      ],
+      "pasos": [
+        { "n": 1, "texto": "Verter ingredientes en vaso bajo con hielo." },
+        { "n": 2, "texto": "Remover y aromatizar con piel de naranja." }
+      ],
+      "categorias": [
+        { "n": 1, "texto": "aperitivo" },
+        { "n": 2, "texto": "amargo" }
+      ],
+      "imagen": "img_negroni",
+      "ultima_actualizacion": "2025-10-28",
+      "url_video_tutorial": "https://www.youtube.com/watch?v=NANdz-YKMUw"
+    },
+    {
+      "id": "ckt_old_fashioned",
+      "nombre": "Old Fashioned",
+      "descripcion": "Clásico de whisky, simple y elegante.",
+      "dificultad": "facil",
+      "nivel_alcohol": "alto",
+      "sabor": "amargo",
+      "ingredientes": [
+        { "nombre": "Bourbon o rye", "cantidad": 60, "unidad": "ml" },
+        { "nombre": "Bitter aromático", "cantidad": 2, "unidad": "dash" },
+        { "nombre": "Azúcar", "cantidad": 1, "unidad": "cdita" },
+        { "nombre": "Agua", "cantidad": 5, "unidad": "ml" },
+        { "nombre": "Hielo", "unidad": "a gusto" },
+        { "nombre": "Piel de naranja", "unidad": "para decorar" }
+      ],
+      "pasos": [
+        { "n": 1, "texto": "Disolver azúcar con bitters y un toque de agua en el vaso." },
+        { "n": 2, "texto": "Añadir whisky y hielo grande. Remover." }
+      ],
+      "categorias": [
+        { "n": 1, "texto": "clasico" },
+        { "n": 2, "texto": "whisky" }
+      ],
+      "imagen": "img_old_fashioned",
+      "ultima_actualizacion": "2025-10-28",
+      "url_video_tutorial": "https://www.youtube.com/watch?v=NANdz-YKMUw"
+    },
+    {
+      "id": "ckt_daiquiri",
+      "nombre": "Daiquiri",
+      "descripcion": "Ron, lima y azúcar, directo al punto.",
+      "dificultad": "facil",
+      "nivel_alcohol": "medio",
+      "sabor": "citricos",
+      "ingredientes": [
+        { "nombre": "Ron blanco", "cantidad": 60, "unidad": "ml" },
+        { "nombre": "Zumo de lima", "cantidad": 25, "unidad": "ml" },
+        { "nombre": "Almíbar simple", "cantidad": 15, "unidad": "ml" },
+        { "nombre": "Hielo", "unidad": "a gusto" }
+      ],
+      "pasos": [
+        { "n": 1, "texto": "Agitar todos los ingredientes con hielo." },
+        { "n": 2, "texto": "Colar en copa fría." }
+      ],
+      "categorias": [
+        { "n": 1, "texto": "clasico" },
+        { "n": 2, "texto": "acido" }
+      ],
+      "imagen": "img_daiquiri",
+      "ultima_actualizacion": "2025-10-28",
+      "url_video_tutorial": "https://www.youtube.com/watch?v=NANdz-YKMUw"
+    },
+    {
+      "id": "ckt_moscow_mule",
+      "nombre": "Moscow Mule",
+      "descripcion": "Refrescante con jengibre.",
+      "dificultad": "facil",
+      "nivel_alcohol": "medio",
+      "sabor": "picante",
+      "ingredientes": [
+        { "nombre": "Vodka", "cantidad": 50, "unidad": "ml" },
+        { "nombre": "Zumo de lima", "cantidad": 15, "unidad": "ml" },
+        { "nombre": "Ginger beer", "cantidad": 120, "unidad": "ml" },
+        { "nombre": "Hielo", "unidad": "a gusto" },
+        { "nombre": "Rodaja de lima", "unidad": "para decorar" }
+      ],
+      "pasos": [
+        { "n": 1, "texto": "Servir vodka y lima en jarra o vaso alto con hielo." },
+        { "n": 2, "texto": "Completar con ginger beer y mezclar suavemente." }
+      ],
+      "categorias": [
+        { "n": 1, "texto": "refrescante" },
+        { "n": 2, "texto": "jengibre" }
+      ],
+      "imagen": "img_moscow_mule",
+      "ultima_actualizacion": "2025-10-28",
+      "url_video_tutorial": "https://www.youtube.com/watch?v=NANdz-YKMUw"
+    },
+    {
+      "id": "ckt_espresso_martini",
+      "nombre": "Espresso Martini",
+      "descripcion": "Café intenso con vodka.",
+      "dificultad": "medio",
+      "nivel_alcohol": "medio",
+      "sabor": "amargo",
+      "ingredientes": [
+        { "nombre": "Vodka", "cantidad": 45, "unidad": "ml" },
+        { "nombre": "Licor de café", "cantidad": 30, "unidad": "ml" },
+        { "nombre": "Espresso", "cantidad": 30, "unidad": "ml" },
+        { "nombre": "Jarabe simple", "cantidad": 10, "unidad": "ml" },
+        { "nombre": "Hielo", "unidad": "a gusto" }
+      ],
+      "pasos": [
+        { "n": 1, "texto": "Agitar vigorosamente todos los ingredientes con hielo." },
+        { "n": 2, "texto": "Colar en copa de cóctel y decorar con granos de café." }
+      ],
+      "categorias": [
+        { "n": 1, "texto": "cafeteria" },
+        { "n": 2, "texto": "moderno" }
+      ],
+      "imagen": "img_espresso_martini",
+      "ultima_actualizacion": "2025-10-28",
+      "url_video_tutorial": "https://www.youtube.com/watch?v=NANdz-YKMUw"
+    },
+    {
+      "id": "ckt_caipirinha",
+      "nombre": "Caipirinha",
+      "descripcion": "Clásico brasileño a base de cachaça.",
+      "dificultad": "facil",
+      "nivel_alcohol": "medio",
+      "sabor": "citricos",
+      "ingredientes": [
+        { "nombre": "Cachaça", "cantidad": 60, "unidad": "ml" },
+        { "nombre": "Lima", "cantidad": 1, "unidad": "unidad" },
+        { "nombre": "Azúcar", "cantidad": 2, "unidad": "cda" },
+        { "nombre": "Hielo", "unidad": "a gusto" }
+      ],
+      "pasos": [
+        { "n": 1, "texto": "Macerar la lima cortada con azúcar en el vaso." },
+        { "n": 2, "texto": "Agregar cachaça y mucho hielo. Mezclar." }
+      ],
+      "categorias": [
+        { "n": 1, "texto": "clasico" },
+        { "n": 2, "texto": "brasil" }
+      ],
+      "imagen": "img_caipirinha",
+      "ultima_actualizacion": "2025-10-28",
+      "url_video_tutorial": "https://www.youtube.com/watch?v=NANdz-YKMUw"
+    },
+    {
+      "id": "ckt_aperol_spritz",
+      "nombre": "Aperol Spritz",
+      "descripcion": "Ligero, burbujeante y cítrico-amargo.",
+      "dificultad": "facil",
+      "nivel_alcohol": "bajo",
+      "sabor": "amargo",
+      "ingredientes": [
+        { "nombre": "Prosecco", "cantidad": 90, "unidad": "ml" },
+        { "nombre": "Aperol", "cantidad": 60, "unidad": "ml" },
+        { "nombre": "Soda", "cantidad": 30, "unidad": "ml" },
+        { "nombre": "Hielo", "unidad": "a gusto" },
+        { "nombre": "Rodaja de naranja", "unidad": "para decorar" }
+      ],
+      "pasos": [
+        { "n": 1, "texto": "Llenar copa con hielo. Verter prosecco, luego Aperol y al final soda." },
+        { "n": 2, "texto": "Mezclar suavemente y decorar con naranja." }
+      ],
+      "categorias": [
+        { "n": 1, "texto": "aperitivo" },
+        { "n": 2, "texto": "burbujeante" }
+      ],
+      "imagen": "img_aperol_spritz",
+      "ultima_actualizacion": "2025-10-28",
+      "url_video_tutorial": "https://www.youtube.com/watch?v=NANdz-YKMUw"
+    },
+    {
+      "id": "ckt_cosmopolitan",
+      "nombre": "Cosmopolitan",
+      "descripcion": "Un cóctel clásico, elegante y refrescante con un toque ácido.",
+      "dificultad": "medio",
+      "nivel_alcohol": "medio",
+      "sabor": "acido",
+      "ingredientes": [
+        { "nombre": "Vodka", "cantidad": 45, "unidad": "ml" },
+        { "nombre": "Triple sec (Cointreau)", "cantidad": 15, "unidad": "ml" },
+        { "nombre": "Jugo de arándano", "cantidad": 30, "unidad": "ml" },
+        { "nombre": "Jugo de lima", "cantidad": 10, "unidad": "ml" },
+        { "nombre": "Hielo", "unidad": "a gusto" },
+        { "nombre": "Cáscara de naranja", "cantidad": 1, "unidad": "tira" }
+      ],
+      "pasos": [
+        { "n": 1, "texto": "Enfría la coctelera con hielo." },
+        { "n": 2, "texto": "Agrega vodka, triple sec, arándano y lima." },
+        { "n": 3, "texto": "Agita 10–15 s hasta enfriar bien." },
+        { "n": 4, "texto": "Cuela a copa fría." },
+        { "n": 5, "texto": "Decora con cáscara de naranja." }
+      ],
+      "categorias": [
+        { "n": 1, "texto": "clasico" },
+        { "n": 2, "texto": "elegante" }
+      ],
+      "imagen": "img_cosmopolitan",
+      "ultima_actualizacion": "2025-10-28",
+      "url_video_tutorial": "https://www.youtube.com/watch?v=NANdz-YKMUw"
+    },
+    {
+      "id": "ckt_tequila_sunrise",
+      "nombre": "Tequila Sunrise",
+      "descripcion": "Colorido y dulce, con tequila, naranja y granadina.",
+      "dificultad": "facil",
+      "nivel_alcohol": "medio",
+      "sabor": "dulce",
+      "ingredientes": [
+        { "nombre": "Tequila", "cantidad": 45, "unidad": "ml" },
+        { "nombre": "Jugo de naranja", "cantidad": 90, "unidad": "ml" },
+        { "nombre": "Jarabe de granadina", "cantidad": 15, "unidad": "ml" },
+        { "nombre": "Hielo", "unidad": "a gusto" },
+        { "nombre": "Rodaja de naranja", "unidad": "para decorar" }
+      ],
+      "pasos": [
+        { "n": 1, "texto": "Llenar vaso alto con hielo y agregar tequila y jugo de naranja." },
+        { "n": 2, "texto": "Verter lentamente la granadina para crear el degradado." },
+        { "n": 3, "texto": "Decorar con rodaja de naranja." }
+      ],
+      "categorias": [
+        { "n": 1, "texto": "tropical" },
+        { "n": 2, "texto": "dulce" }
+      ],
+      "imagen": "img_tequila_sunrise",
+      "ultima_actualizacion": "2025-10-28",
+      "url_video_tutorial": "https://www.youtube.com/watch?v=NANdz-YKMUw"
+    },
+    {
+      "id": "ckt_whiskey_sour",
+      "nombre": "Whiskey Sour",
+      "descripcion": "Equilibrio entre ácido y dulce, clásico con bourbon.",
+      "dificultad": "medio",
+      "nivel_alcohol": "medio",
+      "sabor": "acido",
+      "ingredientes": [
+        { "nombre": "Whisky bourbon", "cantidad": 50, "unidad": "ml" },
+        { "nombre": "Jugo de limón", "cantidad": 25, "unidad": "ml" },
+        { "nombre": "Jarabe simple", "cantidad": 20, "unidad": "ml" },
+        { "nombre": "Clara de huevo", "cantidad": 1, "unidad": "unidad" }
+      ],
+      "pasos": [
+        { "n": 1, "texto": "Agitar sin hielo para emulsionar la clara (dry shake)." },
+        { "n": 2, "texto": "Agregar hielo y volver a agitar." },
+        { "n": 3, "texto": "Colar en vaso bajo y decorar con una rodaja de limón." }
+      ],
+      "categorias": [
+        { "n": 1, "texto": "clasico" },
+        { "n": 2, "texto": "espumoso" }
+      ],
+      "imagen": "img_whiskey_sour",
+      "ultima_actualizacion": "2025-10-28",
+      "url_video_tutorial": "https://www.youtube.com/watch?v=NANdz-YKMUw"
+    },
+    {
+      "id": "ckt_bloody_mary",
+      "nombre": "Bloody Mary",
+      "descripcion": "Cóctel salado y picante con vodka y jugo de tomate.",
+      "dificultad": "medio",
+      "nivel_alcohol": "medio",
+      "sabor": "picante",
+      "ingredientes": [
+        { "nombre": "Vodka", "cantidad": 45, "unidad": "ml" },
+        { "nombre": "Jugo de tomate", "cantidad": 90, "unidad": "ml" },
+        { "nombre": "Jugo de limón", "cantidad": 15, "unidad": "ml" },
+        { "nombre": "Salsa Worcestershire", "cantidad": 3, "unidad": "gotas" },
+        { "nombre": "Tabasco", "cantidad": 2, "unidad": "gotas" },
+        { "nombre": "Sal y pimienta", "unidad": "a gusto" }
+      ],
+      "pasos": [
+        { "n": 1, "texto": "Mezclar todos los ingredientes en un vaso con hielo." },
+        { "n": 2, "texto": "Remover suavemente y ajustar picante al gusto." },
+        { "n": 3, "texto": "Decorar con tallo de apio o rodaja de limón." }
+      ],
+      "categorias": [
+        { "n": 1, "texto": "salado" },
+        { "n": 2, "texto": "brunch" }
+      ],
+      "imagen": "img_bloody_mary",
+      "ultima_actualizacion": "2025-10-28",
+      "url_video_tutorial": "https://www.youtube.com/watch?v=NANdz-YKMUw"
+    },
+    {
+      "id": "ckt_tom_collins",
+      "nombre": "Tom Collins",
+      "descripcion": "Refrescante mezcla de ginebra, limón y soda.",
+      "dificultad": "facil",
+      "nivel_alcohol": "medio",
+      "sabor": "citricos",
+      "ingredientes": [
+        { "nombre": "Ginebra", "cantidad": 45, "unidad": "ml" },
+        { "nombre": "Jugo de limón", "cantidad": 20, "unidad": "ml" },
+        { "nombre": "Jarabe simple", "cantidad": 15, "unidad": "ml" },
+        { "nombre": "Soda", "cantidad": 60, "unidad": "ml" },
+        { "nombre": "Hielo", "unidad": "a gusto" }
+      ],
+      "pasos": [
+        { "n": 1, "texto": "Agitar los tres primeros ingredientes con hielo." },
+        { "n": 2, "texto": "Colar en vaso alto y completar con soda." },
+        { "n": 3, "texto": "Decorar con rodaja de limón." }
+      ],
+      "categorias": [
+        { "n": 1, "texto": "refrescante" },
+        { "n": 2, "texto": "clasico" }
+      ],
+      "imagen": "img_tom_collins",
+      "ultima_actualizacion": "2025-10-28",
+      "url_video_tutorial": "https://www.youtube.com/watch?v=NANdz-YKMUw"
+    },
+    {
+      "id": "ckt_blue_lagoon",
+      "nombre": "Blue Lagoon",
+      "descripcion": "Color vibrante con vodka, curaçao azul y limón.",
+      "dificultad": "facil",
+      "nivel_alcohol": "medio",
+      "sabor": "citricos",
+      "ingredientes": [
+        { "nombre": "Vodka", "cantidad": 45, "unidad": "ml" },
+        { "nombre": "Licor Curaçao azul", "cantidad": 20, "unidad": "ml" },
+        { "nombre": "Jugo de limón", "cantidad": 30, "unidad": "ml" },
+        { "nombre": "Refresco de limón", "cantidad": 60, "unidad": "ml" },
+        { "nombre": "Hielo", "unidad": "a gusto" }
+      ],
+      "pasos": [
+        { "n": 1, "texto": "Llenar vaso con hielo y añadir los ingredientes." },
+        { "n": 2, "texto": "Remover suavemente y servir." }
+      ],
+      "categorias": [
+        { "n": 1, "texto": "frutal" },
+        { "n": 2, "texto": "llamativo" }
+      ],
+      "imagen": "img_blue_lagoon",
+      "ultima_actualizacion": "2025-10-28",
+      "url_video_tutorial": "https://www.youtube.com/watch?v=NANdz-YKMUw"
+    },
+    {
+      "id": "ckt_black_russian",
+      "nombre": "Black Russian",
+      "descripcion": "Fuerte y simple, mezcla de vodka y licor de café.",
+      "dificultad": "facil",
+      "nivel_alcohol": "alto",
+      "sabor": "amargo",
+      "ingredientes": [
+        { "nombre": "Vodka", "cantidad": 50, "unidad": "ml" },
+        { "nombre": "Licor de café", "cantidad": 25, "unidad": "ml" },
+        { "nombre": "Hielo", "unidad": "a gusto" }
+      ],
+      "pasos": [
+        { "n": 1, "texto": "Llenar vaso bajo con hielo." },
+        { "n": 2, "texto": "Verter vodka y licor de café y remover." }
+      ],
+      "categorias": [
+        { "n": 1, "texto": "fuerte" },
+        { "n": 2, "texto": "cafeteria" }
+      ],
+      "imagen": "img_black_russian",
+      "ultima_actualizacion": "2025-10-28",
+      "url_video_tutorial": "https://www.youtube.com/watch?v=NANdz-YKMUw"
+    },
+    {
+      "id": "ckt_bellini",
+      "nombre": "Bellini",
+      "descripcion": "Dulce y afrutado, con durazno y vino espumoso.",
+      "dificultad": "facil",
+      "nivel_alcohol": "bajo",
+      "sabor": "dulce",
+      "ingredientes": [
+        { "nombre": "Puré de durazno", "cantidad": 30, "unidad": "ml" },
+        { "nombre": "Prosecco", "cantidad": 90, "unidad": "ml" }
+      ],
+      "pasos": [
+        { "n": 1, "texto": "Verter el puré de durazno en una copa de flauta." },
+        { "n": 2, "texto": "Rellenar lentamente con prosecco y mezclar suavemente." }
+      ],
+      "categorias": [
+        { "n": 1, "texto": "brunch" },
+        { "n": 2, "texto": "espumoso" }
+      ],
+      "imagen": "img_bellini",
+      "ultima_actualizacion": "2025-10-28",
+      "url_video_tutorial": "https://www.youtube.com/watch?v=NANdz-YKMUw"
+    },
+    {
+      "id": "ckt_singapore_sling",
+      "nombre": "Singapore Sling",
+      "descripcion": "Complejo cóctel tropical con ginebra y cereza.",
+      "dificultad": "medio",
+      "nivel_alcohol": "medio",
+      "sabor": "dulce",
+      "ingredientes": [
+        { "nombre": "Ginebra", "cantidad": 30, "unidad": "ml" },
+        { "nombre": "Licor de cereza", "cantidad": 15, "unidad": "ml" },
+        { "nombre": "Jugo de piña", "cantidad": 90, "unidad": "ml" },
+        { "nombre": "Jugo de limón", "cantidad": 15, "unidad": "ml" },
+        { "nombre": "Granadina", "cantidad": 10, "unidad": "ml" },
+        { "nombre": "Hielo", "unidad": "a gusto" }
+      ],
+      "pasos": [
+        { "n": 1, "texto": "Agitar todos los ingredientes con hielo." },
+        { "n": 2, "texto": "Colar en vaso alto y decorar con cereza." }
+      ],
+      "categorias": [
+        { "n": 1, "texto": "tropical" },
+        { "n": 2, "texto": "complejo" }
+      ],
+      "imagen": "img_singapore_sling",
+      "ultima_actualizacion": "2025-10-28",
+      "url_video_tutorial": "https://www.youtube.com/watch?v=NANdz-YKMUw"
+    },
+    {
+      "id": "ckt_mint_julep",
+      "nombre": "Mint Julep",
+      "descripcion": "Refrescante cóctel del sur de EE.UU. con menta y bourbon.",
+      "dificultad": "facil",
+      "nivel_alcohol": "medio",
+      "sabor": "refrescante",
+      "ingredientes": [
+        { "nombre": "Bourbon", "cantidad": 60, "unidad": "ml" },
+        { "nombre": "Hojas de menta", "cantidad": 6, "unidad": "hojas" },
+        { "nombre": "Azúcar", "cantidad": 2, "unidad": "cda" },
+        { "nombre": "Agua", "cantidad": 10, "unidad": "ml" },
+        { "nombre": "Hielo picado", "unidad": "a gusto" }
+      ],
+      "pasos": [
+        { "n": 1, "texto": "Macerar menta y azúcar en el vaso." },
+        { "n": 2, "texto": "Agregar bourbon y llenar con hielo picado." },
+        { "n": 3, "texto": "Remover y decorar con menta." }
+      ],
+      "categorias": [
+        { "n": 1, "texto": "refrescante" },
+        { "n": 2, "texto": "menta" }
+      ],
+      "imagen": "img_mint_julep",
+      "ultima_actualizacion": "2025-10-28",
+      "url_video_tutorial": "https://www.youtube.com/watch?v=NANdz-YKMUw"
+    },
+    {
+      "id": "ckt_french_75",
+      "nombre": "French 75",
+      "descripcion": "Elegante combinación de ginebra y champaña con limón.",
+      "dificultad": "medio",
+      "nivel_alcohol": "medio",
+      "sabor": "citricos",
+      "ingredientes": [
+        { "nombre": "Ginebra", "cantidad": 30, "unidad": "ml" },
+        { "nombre": "Jugo de limón", "cantidad": 15, "unidad": "ml" },
+        { "nombre": "Jarabe simple", "cantidad": 15, "unidad": "ml" },
+        { "nombre": "Champaña o cava", "cantidad": 60, "unidad": "ml" }
+      ],
+      "pasos": [
+        { "n": 1, "texto": "Agitar ginebra, limón y jarabe con hielo." },
+        { "n": 2, "texto": "Colar en copa de flauta y completar con champaña." }
+      ],
+      "categorias": [
+        { "n": 1, "texto": "elegante" },
+        { "n": 2, "texto": "espumoso" }
+      ],
+      "imagen": "img_french_75",
+      "ultima_actualizacion": "2025-10-28",
+      "url_video_tutorial": "https://www.youtube.com/watch?v=NANdz-YKMUw"
+    }
+  ]
+}

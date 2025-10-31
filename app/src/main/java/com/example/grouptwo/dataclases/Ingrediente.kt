@@ -1,4 +1,5 @@
-package com.example.grouptwo
+package com.example.grouptwo.dataclases
+
 import kotlinx.serialization.Serializable
 
 @Serializable
@@ -8,4 +9,3 @@ data class Ingrediente(
     val unidad: String,
     val nota: String? = null
 )
-
