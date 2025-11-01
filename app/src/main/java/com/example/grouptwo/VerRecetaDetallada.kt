@@ -1,7 +1,5 @@
 package com.example.grouptwo
 
-import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -15,6 +13,10 @@ import kotlinx.serialization.json.Json
 
 class VerRecetaDetalladaActivity : AppCompatActivity() {
 
+    companion object {
+        const val EXTRA_COCKTAIL_ID = "extra_cocktail_id"
+    }
+
     private lateinit var binding: ActivityVerRecetaDetalladaBinding
     private val ingredientesAdapter = IngredientesAdapter()
     private val pasosAdapter = PasosAdapter()
@@ -25,7 +27,7 @@ class VerRecetaDetalladaActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         setupRecyclerViews()
-        loadMojitoData()
+        loadCocktailData()
         setupListeners()
     }
 
@@ -35,7 +37,6 @@ class VerRecetaDetalladaActivity : AppCompatActivity() {
             adapter = ingredientesAdapter
             isNestedScrollingEnabled = false
         }
-
         binding.rvPasos.apply {
             layoutManager = LinearLayoutManager(this@VerRecetaDetalladaActivity)
             adapter = pasosAdapter
@@ -43,47 +44,48 @@ class VerRecetaDetalladaActivity : AppCompatActivity() {
         }
     }
 
-    private fun loadMojitoData() {
-        // Leer JSON desde assets
+    private fun loadCocktailData() {
+        // 1) Leer el id que viene por Intent
+        val cocktailId = intent?.getStringExtra(EXTRA_COCKTAIL_ID)
+        if (cocktailId.isNullOrEmpty()) {
+            Toast.makeText(this, "ID del cóctel no recibido", Toast.LENGTH_SHORT).show()
+            finish()
+            return
+        }
+        // 2) Leer JSON (usa Json con configuración tolerante)
         val txt = assets.open("cocteles.json").bufferedReader().use { it.readText() }
-        val db = Json.decodeFromString<CoctelesDatabase>(txt)
+        val json = Json { ignoreUnknownKeys = true; isLenient = true }
+        val db = json.decodeFromString<CoctelesDatabase>(txt)
 
-        // Buscar el Mojito por id
-        val mojito = db.cocteles.firstOrNull { it.id == "ckt_mojito" }
-
-        if (mojito == null) {
-            Toast.makeText(this, "Cóctel Mojito no encontrado", Toast.LENGTH_SHORT).show()
+        // 3) Buscar el cóctel por id
+        val cocktail = db.cocteles.firstOrNull { it.id == cocktailId }
+        if (cocktail == null) {
+            Toast.makeText(this, "Cóctel no encontrado: $cocktailId", Toast.LENGTH_SHORT).show()
             finish()
             return
         }
 
-        // Pintar en la UI
-        binding.tvTitulo.text = mojito.nombre
-        binding.tvDescripcion.text = mojito.descripcion
-        binding.tvDificultad.text = mojito.dificultad
-        binding.tvSabor.text = mojito.sabor
-        binding.tvNivel.text = mojito.nivel_alcohol
+        // 4) Pintar la UI
+        binding.tvTitulo.text = cocktail.nombre
+        binding.tvDescripcion.text = cocktail.descripcion
+        binding.tvDificultad.text = cocktail.dificultad
+        binding.tvSabor.text = cocktail.sabor
+        binding.tvNivel.text = cocktail.nivel_alcohol
 
-        // ✅ Asegurarse de que el adapter esté listo antes de pasar la lista
-        binding.rvIngredientes.adapter = ingredientesAdapter
-        ingredientesAdapter.submitList(mojito.ingredientes)
+        ingredientesAdapter.submitList(cocktail.ingredientes)
+        pasosAdapter.submitList(cocktail.pasos.sortedBy { it.n })
 
-        binding.rvPasos.adapter = pasosAdapter
-        pasosAdapter.submitList(mojito.pasos.sortedBy { it.n })
+
+
+        // Botón video (si luego lo habilitas)
+        // binding.btnVideo.setOnClickListener {
+        //     cocktail.url_video_tutorial?.let { url ->
+        //         startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
+        //     } ?: Toast.makeText(this, "Video no disponible", Toast.LENGTH_SHORT).show()
+        // }
     }
 
     private fun setupListeners() {
         binding.btnBack.setOnClickListener { finish() }
-
-//        binding.btnVideo.setOnClickListener {
-//            val txt = assets.open("cocteles.json").bufferedReader().use { it.readText() }
-//            val db = Json.decodeFromString<CoctelesDatabase>(txt)
-//            val mojito = db.cocteles.firstOrNull { it.id == "ckt_mojito" }
-//
-//            mojito?.url_video_tutorial?.let { url ->
-//                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
-//                startActivity(intent)
-//            } ?: Toast.makeText(this, "Video no disponible", Toast.LENGTH_SHORT).show()
-//        }
     }
 }

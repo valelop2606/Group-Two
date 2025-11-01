@@ -36,6 +36,9 @@ class EditarPerfilActivity : AppCompatActivity() {
         binding.EditTextDescripcion.setText(GuardarPerfil.loadDescripcion(this) ?: "")
 
 
+        binding.EditarPerfilFlechaAtras.setOnClickListener {
+            finish()
+        }
 
         binding.cardAceptarCambios.setOnClickListener {
             val nombreUsuarioNuevo: String = binding.EditTextNombreDeUsuario.text.toString()

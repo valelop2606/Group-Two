@@ -19,7 +19,7 @@
         android:paddingStart="8dp"
         android:text="Nombre del ingrediente"
         android:textSize="16sp"
-        android:textColor="@color/black" />
+        android:textColor="@color/blanco" />
 
     <TextView
         android:id="@+id/txtCantidad"
@@ -27,7 +27,7 @@
         android:layout_height="wrap_content"
         android:text="50 ml"
         android:textSize="14sp"
-        android:textColor="@color/black" />
+        android:textColor="@color/blanco" />
 
     <ImageButton
         android:id="@+id/btnEliminar"
