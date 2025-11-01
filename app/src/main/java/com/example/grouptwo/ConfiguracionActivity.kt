@@ -32,6 +32,10 @@ class ConfiguracionActivity : AppCompatActivity() {
         binding.cerrarSesion.setOnClickListener {
             logout()
         }
+        binding.cardEditarPerfil.setOnClickListener {
+            val intent = Intent(this, EditarPerfilActivity::class.java)
+            startActivity(intent)
+        }
 
 
 

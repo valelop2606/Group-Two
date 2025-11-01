@@ -16,12 +16,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GroupTwo">
         <activity
+            android:name=".EditarPerfilActivity"
+            android:exported="false" />
+        <activity
             android:name=".CrearCuentaActivity"
             android:exported="false" />
         <activity
             android:name=".ConfiguracionActivity"
             android:exported="false" />
-
         <activity
             android:name=".BuscadorActivity"
             android:exported="false" />
@@ -63,8 +65,6 @@
         <activity
             android:name=".PantallaDeCrearReceta"
             android:exported="false" />
-
-
     </application>
 
 </manifest>

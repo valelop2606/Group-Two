@@ -28,5 +28,9 @@ class CategoriasActivity : AppCompatActivity() {
         binding.categoriasFlechaAtras.setOnClickListener {
             finish()
         }
+
+        binding.ibClasicos.setOnClickListener {
+
+        }
     }
 }

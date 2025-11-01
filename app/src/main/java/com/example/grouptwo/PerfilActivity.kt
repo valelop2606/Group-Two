@@ -6,10 +6,11 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.example.grouptwo.databinding.ActivityCategoriasBinding
+import com.example.grouptwo.EditarPerfilActivity.Companion.ID_DESCRIPCION
+import com.example.grouptwo.EditarPerfilActivity.Companion.ID_NOMBRE_DE_USUARIO
 import com.example.grouptwo.databinding.ActivityPerfilBinding
-import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
+import com.example.grouptwo.repository.GuardarPerfil   // 👈 IMPORTANTE
 
 class PerfilActivity : AppCompatActivity() {
 
@@ -27,7 +28,11 @@ class PerfilActivity : AppCompatActivity() {
             insets
         }
 
+        val nombre = GuardarPerfil.loadNombre(this)
+        val descripcion = GuardarPerfil.loadDescripcion(this)
 
+        binding.tvNombreUsuario.text = if (!nombre.isNullOrBlank()) nombre else "Nombre de Usuario"
+        binding.tvDescripcion.text   = if (!descripcion.isNullOrBlank()) descripcion else "Descripción"
 
         binding.perfilConfiguracion.setOnClickListener {
             val intent = Intent(this, ConfiguracionActivity::class.java)
@@ -40,22 +45,11 @@ class PerfilActivity : AppCompatActivity() {
 
         binding.perfilCerrarSesion.setOnClickListener {
             logout()
-
-
         }
-
-
-
-
-
-        // 👇 AGREGA ESTA CONEXIÓN
-//        binding.btnMisRecetas.setOnClickListener {
-//            val intent = Intent(this, PantallaDeCrearReceta::class.java)
-//            startActivity(intent)
-//        }
-
-
     }
+
+
+
     fun logout() {
         FirebaseAuth.getInstance().signOut()
         val intent = Intent(this, InicioSesionActivity::class.java)
@@ -64,5 +58,3 @@ class PerfilActivity : AppCompatActivity() {
         finish()
     }
 }
-
-

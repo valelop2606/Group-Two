@@ -8,7 +8,7 @@
     android:background="@color/background_dark"
     tools:context=".VerRecetaDetalladaActivity">
 
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
         android:id="@+id/scrollContent"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -43,6 +43,28 @@
                 android:textSize="28sp"
                 android:textStyle="bold"
                 tools:text="Nombre del Cóctel" />
+
+            <!-- NUEVO: Descripción -->
+            <TextView
+                android:id="@+id/tvDescripcion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="12dp"
+                android:textColor="@color/blanco"
+                android:textSize="16sp"
+                tools:text="Descripción del cóctel" />
+
+            <!-- NUEVO: Dificultad -->
+            <TextView
+                android:id="@+id/tvDificultad"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingBottom="16dp"
+                android:textColor="@color/blanco"
+                android:textSize="14sp"
+                tools:text="Dificultad: Fácil" />
+
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -206,7 +228,7 @@
                 android:layout_height="24dp" />
 
         </LinearLayout>
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 
     <LinearLayout
         android:id="@+id/bottomNav"
