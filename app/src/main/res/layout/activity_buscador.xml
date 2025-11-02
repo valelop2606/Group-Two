@@ -5,348 +5,425 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background_dark"
-    android:padding="16dp"
-    android:fillViewport="true">  <!-- Importante para que el hijo ocupe el alto -->
-
-
-
+    android:padding="16dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/layout_principal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+
         <ImageButton
-            android:id="@+id/buscador_flecha_atras"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:id="@+id/btnBack"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Regresar"
+            android:padding="12dp"
             android:src="@drawable/flecha_atras"
-            android:background="@color/black"
-            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/rosa"
             app:layout_constraintStart_toStartOf="parent"
-            app:tint="@color/rosa" />
+            app:layout_constraintTop_toTopOf="parent" />
 
-
-
-        <!-- Título principal -->
         <TextView
             android:id="@+id/tvTitulo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
             android:text="Lo que tengo en casa"
-            android:textColor="@color/rosa"
+            android:textColor="@color/textColor"
             android:textSize="22sp"
             android:textStyle="bold"
-            app:layout_constraintTop_toBottomOf="@+id/buscador_flecha_atras"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintBottom_toBottomOf="@id/btnBack"
+            app:layout_constraintStart_toEndOf="@id/btnBack"
+            app:layout_constraintTop_toTopOf="@id/btnBack" />
 
-        <!-- Subtítulo -->
         <TextView
             android:id="@+id/tvSubtitulo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
             android:text="Agrega tus ingredientes disponibles"
-            android:textColor="@color/rosa"
+            android:textColor="@color/text_secondary"
             android:textSize="14sp"
-            app:layout_constraintTop_toBottomOf="@id/tvTitulo"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginTop="4dp" />
+            app:layout_constraintTop_toBottomOf="@id/tvTitulo" />
 
-        <!-- Barra de búsqueda -->
         <EditText
             android:id="@+id/etBuscarIngrediente"
             android:layout_width="0dp"
             android:layout_height="48dp"
+            android:layout_marginTop="16dp"
             android:background="@drawable/bg_buscar"
-            android:hint="Buscar ingrediente..."
-            android:drawableStart="@android:drawable/ic_menu_search"
             android:drawablePadding="8dp"
+            android:drawableStart="@android:drawable/ic_menu_search"
+            android:hint="Buscar ingrediente..."
             android:paddingStart="16dp"
             android:textColor="@color/textColor"
             android:textColorHint="@color/hint_color"
-            app:layout_constraintTop_toBottomOf="@id/tvSubtitulo"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="16dp" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvSubtitulo" />
 
-        <!-- Ingredientes seleccionados -->
+
         <TextView
             android:id="@+id/tvSeleccionados"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
             android:text="Ingredientes seleccionados:"
             android:textColor="@color/textColor"
             android:textSize="16sp"
-            app:layout_constraintTop_toBottomOf="@id/etBuscarIngrediente"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginTop="16dp" />
+            app:layout_constraintTop_toBottomOf="@id/etBuscarIngrediente" />
 
-        <!-- Chips seleccionados -->
+
         <com.google.android.material.chip.ChipGroup
             android:id="@+id/chipGroupSeleccionados"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:chipSpacing="8dp"
-            app:singleLine="false"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvSeleccionados">
-
-            <com.google.android.material.chip.Chip
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:checked="true"
-                android:text="Ron"
-                android:textColor="@color/textColor"
-                app:chipBackgroundColor="@color/chip_selected_color"
-                app:closeIconEnabled="true" />
-
-            <com.google.android.material.chip.Chip
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:checked="true"
-                android:text="Lima"
-                android:textColor="@color/textColor"
-                app:chipBackgroundColor="@color/chip_selected_color"
-                app:closeIconEnabled="true" />
-
-            <com.google.android.material.chip.Chip
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:checked="true"
-                android:text="Menta"
-                android:textColor="@color/textColor"
-                app:chipBackgroundColor="@color/chip_selected_color"
-                app:closeIconEnabled="true" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvSeleccionados"
+            app:singleLine="false">
         </com.google.android.material.chip.ChipGroup>
 
-        <!-- Botón: usa MaterialButton en lugar de Button -->
-        <com.google.android.material.button.MaterialButton
+
+        <Button
             android:id="@+id/btnVerPreparar"
             android:layout_width="0dp"
             android:layout_height="55dp"
-            android:text="Ver qué puedo preparar (3)"
-            android:textColor="@color/textColor"
-            app:backgroundTint="@color/colorPrimary"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="@color/colorPrimary"
             android:fontFamily="sans-serif-medium"
+            android:text="Ver qué puedo preparar (0)"
+            android:textColor="@color/textColor"
             app:cornerRadius="20dp"
-            app:layout_constraintTop_toBottomOf="@id/chipGroupSeleccionados"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="20dp" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/chipGroupSeleccionados" />
 
-        <!-- Título ingredientes comunes -->
+        <TextView
+            android:id="@+id/tvResultadosTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="Resultados"
+            android:textColor="@color/textColor"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btnVerPreparar" />
+
+        <LinearLayout
+            android:id="@+id/containerResultados"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:orientation="vertical"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvResultadosTitle">
+        </LinearLayout>
+
         <TextView
             android:id="@+id/tvComunes"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
             android:text="Ingredientes comunes"
             android:textColor="@color/textColor"
             android:textSize="18sp"
             android:textStyle="bold"
-            app:layout_constraintTop_toBottomOf="@id/btnVerPreparar"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginTop="24dp" />
+            app:layout_constraintTop_toBottomOf="@id/containerResultados" />
 
-        <!-- Chips de ingredientes comunes -->
-        <com.google.android.material.chip.ChipGroup
-            android:id="@+id/chipGroupComunes"
+
+        <LinearLayout
+            android:id="@+id/ingredientsContainer"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:chipSpacing="8dp"
-            app:singleLine="false"
-            app:layout_constraintTop_toBottomOf="@id/tvComunes"
-            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="12dp"
+            android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="12dp">
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvComunes">
 
-            <!-- Bebidas -->
-            <com.google.android.material.chip.Chip
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Ron"
-                android:checkable="true"
-                android:textColor="@color/textColor"
-                app:chipBackgroundColor="@color/chip_selected_color" />
-            <com.google.android.material.chip.Chip
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Vodka"
-                android:checkable="true"
-                android:textColor="@color/textColor"
-                app:chipBackgroundColor="@color/chip_selected_color" />
-            <com.google.android.material.chip.Chip
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Gin"
-                android:checkable="true"
-                android:textColor="@color/textColor"
-                app:chipBackgroundColor="@color/chip_selected_color" />
-            <com.google.android.material.chip.Chip
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Tequila"
-                android:checkable="true"
-                android:textColor="@color/textColor"
-                app:chipBackgroundColor="@color/chip_selected_color" />
-            <com.google.android.material.chip.Chip
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Whisky"
-                android:checkable="true"
-                android:textColor="@color/textColor"
-                app:chipBackgroundColor="@color/chip_selected_color" />
-            <com.google.android.material.chip.Chip
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Cointreau"
-                android:checkable="true"
-                android:textColor="@color/textColor"
-                app:chipBackgroundColor="@color/chip_selected_color" />
-            <com.google.android.material.chip.Chip
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Vermut"
-                android:checkable="true"
-                android:textColor="@color/textColor"
-                app:chipBackgroundColor="@color/chip_selected_color" />
-            <com.google.android.material.chip.Chip
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Triple Sec"
-                android:checkable="true"
-                android:textColor="@color/textColor"
-                app:chipBackgroundColor="@color/chip_selected_color" />
-            <com.google.android.material.chip.Chip
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Campari"
-                android:checkable="true"
-                android:textColor="@color/textColor"
-                app:chipBackgroundColor="@color/chip_selected_color" />
-            <com.google.android.material.chip.Chip
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Licor de café"
-                android:checkable="true"
-                android:textColor="@color/textColor"
-                app:chipBackgroundColor="@color/chip_selected_color" />
 
-            <!-- Frutas / cítricos -->
-            <com.google.android.material.chip.Chip
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Lima"
-                android:checkable="true"
+                android:layout_marginBottom="8dp"
+                android:text="Alcoholes"
                 android:textColor="@color/textColor"
-                app:chipBackgroundColor="@color/chip_selected_color" />
-            <com.google.android.material.chip.Chip
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/chipGroupAlcoholes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:chipSpacing="8dp"
+                app:singleLine="false">
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipRon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checkable="true"
+                    android:text="Ron"
+                    android:textColor="@color/textColor"
+                    app:chipBackgroundColor="@color/chip_selected_color" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipVodka"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checkable="true"
+                    android:text="Vodka"
+                    android:textColor="@color/textColor"
+                    app:chipBackgroundColor="@color/chip_selected_color" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipGin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checkable="true"
+                    android:text="Gin"
+                    android:textColor="@color/textColor"
+                    app:chipBackgroundColor="@color/chip_selected_color" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipTequila"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checkable="true"
+                    android:text="Tequila"
+                    android:textColor="@color/textColor"
+                    app:chipBackgroundColor="@color/chip_selected_color" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipWhisky"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checkable="true"
+                    android:text="Whisky"
+                    android:textColor="@color/textColor"
+                    app:chipBackgroundColor="@color/chip_selected_color" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipCointreau"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checkable="true"
+                    android:text="Cointreau"
+                    android:textColor="@color/textColor"
+                    app:chipBackgroundColor="@color/chip_selected_color" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipVermut"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checkable="true"
+                    android:text="Vermut"
+                    android:textColor="@color/textColor"
+                    app:chipBackgroundColor="@color/chip_selected_color" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipTripleSec"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checkable="true"
+                    android:text="Triple Sec"
+                    android:textColor="@color/textColor"
+                    app:chipBackgroundColor="@color/chip_selected_color" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipCampari"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checkable="true"
+                    android:text="Campari"
+                    android:textColor="@color/textColor"
+                    app:chipBackgroundColor="@color/chip_selected_color" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipLicorCafe"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checkable="true"
+                    android:text="Licor de café"
+                    android:textColor="@color/textColor"
+                    app:chipBackgroundColor="@color/chip_selected_color" />
+            </com.google.android.material.chip.ChipGroup>
+
+            <!-- Frutas / Cítricos -->
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Limón"
-                android:checkable="true"
+                android:layout_marginBottom="8dp"
+                android:text="Frutas / Cítricos"
                 android:textColor="@color/textColor"
-                app:chipBackgroundColor="@color/chip_selected_color" />
-            <com.google.android.material.chip.Chip
-                android:layout_width="wrap_content"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/chipGroupFrutas"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Naranja"
-                android:checkable="true"
-                android:textColor="@color/textColor"
-                app:chipBackgroundColor="@color/chip_selected_color" />
-            <com.google.android.material.chip.Chip
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Piña"
-                android:checkable="true"
-                android:textColor="@color/textColor"
-                app:chipBackgroundColor="@color/chip_selected_color" />
-            <com.google.android.material.chip.Chip
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Cereza"
-                android:checkable="true"
-                android:textColor="@color/textColor"
-                app:chipBackgroundColor="@color/chip_selected_color" />
+                android:layout_marginBottom="16dp"
+                app:chipSpacing="8dp"
+                app:singleLine="false">
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipLima"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checkable="true"
+                    android:text="Lima"
+                    android:textColor="@color/textColor"
+                    app:chipBackgroundColor="@color/chip_selected_color" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipLimon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checkable="true"
+                    android:text="Limón"
+                    android:textColor="@color/textColor"
+                    app:chipBackgroundColor="@color/chip_selected_color" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipNaranja"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checkable="true"
+                    android:text="Naranja"
+                    android:textColor="@color/textColor"
+                    app:chipBackgroundColor="@color/chip_selected_color" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipPina"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checkable="true"
+                    android:text="Piña"
+                    android:textColor="@color/textColor"
+                    app:chipBackgroundColor="@color/chip_selected_color" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipCereza"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checkable="true"
+                    android:text="Cereza"
+                    android:textColor="@color/textColor"
+                    app:chipBackgroundColor="@color/chip_selected_color" />
+            </com.google.android.material.chip.ChipGroup>
 
             <!-- Otros -->
-            <com.google.android.material.chip.Chip
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Menta"
-                android:checkable="true"
+                android:layout_marginBottom="8dp"
+                android:text="Otros"
                 android:textColor="@color/textColor"
-                app:chipBackgroundColor="@color/chip_selected_color" />
-            <com.google.android.material.chip.Chip
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Azúcar"
-                android:checkable="true"
-                android:textColor="@color/textColor"
-                app:chipBackgroundColor="@color/chip_selected_color" />
-            <com.google.android.material.chip.Chip
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Hielo"
-                android:checkable="true"
-                android:textColor="@color/textColor"
-                app:chipBackgroundColor="@color/chip_selected_color" />
-            <com.google.android.material.chip.Chip
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Jarabe de granadina"
-                android:checkable="true"
-                android:textColor="@color/textColor"
-                app:chipBackgroundColor="@color/chip_selected_color" />
-            <com.google.android.material.chip.Chip
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Soda"
-                android:checkable="true"
-                android:textColor="@color/textColor"
-                app:chipBackgroundColor="@color/chip_selected_color" />
-            <com.google.android.material.chip.Chip
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Agua con gas"
-                android:checkable="true"
-                android:textColor="@color/textColor"
-                app:chipBackgroundColor="@color/chip_selected_color" />
-            <com.google.android.material.chip.Chip
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Leche"
-                android:checkable="true"
-                android:textColor="@color/textColor"
-                app:chipBackgroundColor="@color/chip_selected_color" />
-            <com.google.android.material.chip.Chip
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Café"
-                android:checkable="true"
-                android:textColor="@color/textColor"
-                app:chipBackgroundColor="@color/chip_selected_color" />
-            <com.google.android.material.chip.Chip
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Crema de coco"
-                android:checkable="true"
-                android:textColor="@color/textColor"
-                app:chipBackgroundColor="@color/chip_selected_color" />
-        </com.google.android.material.chip.ChipGroup>
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
-        <!-- Asegura el “anclaje” inferior para buen cálculo de altura -->
-        <View
-            android:id="@+id/bottomSpacer"
-            android:layout_width="0dp"
-            android:layout_height="1dp"
-            app:layout_constraintTop_toBottomOf="@id/chipGroupComunes"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginBottom="16dp"/>
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/chipGroupOtros"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:chipSpacing="8dp"
+                app:singleLine="false">
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipMenta"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checkable="true"
+                    android:text="Menta"
+                    android:textColor="@color/textColor"
+                    app:chipBackgroundColor="@color/chip_selected_color" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipAzucar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checkable="true"
+                    android:text="Azúcar"
+                    android:textColor="@color/textColor"
+                    app:chipBackgroundColor="@color/chip_selected_color" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipHielo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checkable="true"
+                    android:text="Hielo"
+                    android:textColor="@color/textColor"
+                    app:chipBackgroundColor="@color/chip_selected_color" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipGranadina"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checkable="true"
+                    android:text="Jarabe de granadina"
+                    android:textColor="@color/textColor"
+                    app:chipBackgroundColor="@color/chip_selected_color" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipSoda"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checkable="true"
+                    android:text="Soda"
+                    android:textColor="@color/textColor"
+                    app:chipBackgroundColor="@color/chip_selected_color" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipAguaGas"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checkable="true"
+                    android:text="Agua con gas"
+                    android:textColor="@color/textColor"
+                    app:chipBackgroundColor="@color/chip_selected_color" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipLeche"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checkable="true"
+                    android:text="Leche"
+                    android:textColor="@color/textColor"
+                    app:chipBackgroundColor="@color/chip_selected_color" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipCafe"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checkable="true"
+                    android:text="Café"
+                    android:textColor="@color/textColor"
+                    app:chipBackgroundColor="@color/chip_selected_color" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipCremaCoco"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checkable="true"
+                    android:text="Crema de coco"
+                    android:textColor="@color/textColor"
+                    app:chipBackgroundColor="@color/chip_selected_color" />
+            </com.google.android.material.chip.ChipGroup>
+        </LinearLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
