@@ -3,6 +3,8 @@ package com.example.grouptwo
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -25,17 +27,60 @@ class PantallaInicialActivity : AppCompatActivity() {
         setContentView(binding.root)
         sharedPreferences = this.getSharedPreferences("GroupTwo", MODE_PRIVATE)
 
+        val cocteles = cargarTodosLosCocteles()
+        val recomendados: List<Coctel> = cocteles.shuffled().take(4)
+
+        val primerCoctel  = recomendados[0]
+        val segundoCoctel = recomendados[1]
+        val tercerCoctel  = recomendados[2]
+        val cuartoCoctel  = recomendados[3]
+
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val bars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(bars.left, bars.top, bars.right, bars.bottom)
             insets
         }
 
-        val cocteles = cargarTodosLosCocteles()
+        mostrarPrimerCoctel(primerCoctel)
+        mostrarSegundoCoctel(segundoCoctel)
+        mostrarTercerCoctel(tercerCoctel)
+        mostrarCuartoCoctel(cuartoCoctel)
+
+        binding.btnLoTengoEnCasa.setOnClickListener {
+            val intent = Intent(this, BuscadorActivity::class.java)
+            startActivity(intent)
+        }
+        binding.btnCategorias.setOnClickListener {
+            val intent = Intent(this, CategoriasActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.btnPrimerCoctel.setOnClickListener {
+            val intent = Intent(this, VerRecetaDetalladaActivity::class.java)
+            intent.putExtra("COCTEL_ID", primerCoctel.id)
+            startActivity(intent)
+        }
+        binding.btnSegundoCoctel.setOnClickListener {
+            val intent = Intent(this, VerRecetaDetalladaActivity::class.java)
+            intent.putExtra("COCTEL_ID", segundoCoctel.id)
+            startActivity(intent)
+        }
+        binding.btnTercerCoctel.setOnClickListener {
+            val intent = Intent(this, VerRecetaDetalladaActivity::class.java)
+            intent.putExtra("COCTEL_ID", tercerCoctel.id)
+            startActivity(intent)
+        }
+        binding.btnCuartoCoctel.setOnClickListener {
+            val intent = Intent(this, VerRecetaDetalladaActivity::class.java)
+            intent.putExtra("COCTEL_ID", cuartoCoctel.id)
+            startActivity(intent)
+        }
 
     }
 
 
+    // Función para guardar el coctel en SharedPreferences
     private fun guardarDataClass(proyecto: Coctel) {
         val asdfgh: String = Json.encodeToString(proyecto)
         val editor = sharedPreferences.edit()
@@ -43,6 +88,7 @@ class PantallaInicialActivity : AppCompatActivity() {
         editor.apply()
     }
 
+    // Función para obtener el coctel de SharedPreferences
     private fun obtenerDataClass(): Coctel? {
         val datoGuardado: String = sharedPreferences.getString("cocteles", null) ?: ""
         if (!datoGuardado.isEmpty()) {
@@ -52,17 +98,58 @@ class PantallaInicialActivity : AppCompatActivity() {
         return null
     }
 
+    // Función para guardar el coctel en el JSON
     private fun obtenerDataDeFile(): Coctel? {
         val fileString: String =
             applicationContext.assets.open("cocteles.json").bufferedReader().use { it.readText() }
         val objetoGuardado = Json.decodeFromString<Coctel>(fileString)
         return objetoGuardado
     }
-    private fun cargarTodosLosCocteles(): List<Coctel> {
+
+    // Función para cargar todos los cocteles desde el JSON
+    fun cargarTodosLosCocteles(): List<Coctel> {
         val txt = assets.open("cocteles.json").bufferedReader().use { it.readText() }
-        val json = Json
-        val db = json.decodeFromString<CoctelesDatabase>(txt)
+        val db = Json.decodeFromString<CoctelesDatabase>(txt)
         return db.cocteles
     }
 
+    //Funciones para setear informacion de cocteles
+    fun TextView.setNombre(coctel: Coctel) {
+        text = coctel.nombre
+    }
+    fun TextView.setDificultad(coctel: Coctel) {
+        text = coctel.dificultad
+    }
+    fun TextView.setSabor(coctel: Coctel) {
+        text = coctel.sabor
+    }
+    fun ImageView.setImagen(coctel: Coctel) {
+        val idImagen = context.resources.getIdentifier(coctel.imagen, "drawable", context.packageName)
+        if (idImagen != 0) setImageResource(idImagen)
+    }
+
+    fun mostrarPrimerCoctel(coctel: Coctel) {
+        binding.btnPrimerCoctel.setImagen(coctel)
+        binding.txtTituloPrimerCoctel.setNombre(coctel)
+        binding.txtDificultadPrimerCoctel.setDificultad(coctel)
+        binding.textSaborPrimerCoctel.setSabor(coctel)
+    }
+    fun mostrarSegundoCoctel(coctel: Coctel) {
+        binding.btnSegundoCoctel.setImagen(coctel)
+        binding.textTituloSegundoCoctel.setNombre(coctel)
+        binding.txtDificultadSegundoCoctel.setDificultad(coctel)
+        binding.textSaborSegundoCoctel.setSabor(coctel)
+    }
+    fun mostrarTercerCoctel(coctel: Coctel) {
+        binding.btnTercerCoctel.setImagen(coctel)
+        binding.txtTituloTercerCoctel.setNombre(coctel)
+        binding.txtDificultadTercerCoctel.setDificultad(coctel)
+        binding.textSaborTercerCoctel.setSabor(coctel)
+    }
+    fun mostrarCuartoCoctel(coctel: Coctel) {
+        binding.btnCuartoCoctel.setImagen(coctel)
+        binding.txtTituloCuartoCoctel.setNombre(coctel)
+        binding.txtDificultadCuartoCoctel.setDificultad(coctel)
+        binding.textSaborCuartoCoctel.setSabor(coctel)
+    }
 }

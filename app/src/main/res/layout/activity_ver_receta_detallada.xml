@@ -8,7 +8,7 @@
     android:background="@color/background_dark"
     tools:context=".VerRecetaDetalladaActivity">
 
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
         android:id="@+id/scrollContent"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -25,7 +25,7 @@
             android:padding="20dp">
 
             <ImageButton
-                android:id="@+id/btn_back"
+                android:id="@+id/btnVolver"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:background="@android:color/transparent"
@@ -34,15 +34,14 @@
                 app:tint="@color/rosa" />
 
             <TextView
-                android:id="@+id/tvTitulo"
+                android:id="@+id/txtTitulo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:paddingBottom="16dp"
                 android:textColor="@color/blanco"
                 android:textSize="28sp"
-                android:textStyle="bold"
-                tools:text="Nombre del Cóctel" />
+                android:textStyle="bold"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -68,23 +67,21 @@
                         android:layout_width="24dp"
                         android:layout_height="24dp"
                         android:contentDescription="@null"
-                        app:srcCompat="@drawable/reloj"
-                        app:tint="@color/blanco" />
+                        app:srcCompat="@drawable/reloj"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Tiempo"
+                        android:text="Dificultad"
                         android:textColor="@color/blanco"
                         android:textSize="12sp" />
 
                     <TextView
-                        android:id="@+id/tvTiempo"
+                        android:id="@+id/tvNivelDificultad"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/blanco"
-                        android:textSize="13sp"
-                        tools:text="5 min" />
+                        android:textSize="13sp"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -103,8 +100,7 @@
                         android:layout_width="24dp"
                         android:layout_height="24dp"
                         android:contentDescription="@null"
-                        app:srcCompat="@drawable/sabor_citrico"
-                        app:tint="@color/blanco" />
+                        app:srcCompat="@drawable/sabor_citrico"/>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -118,8 +114,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/blanco"
-                        android:textSize="13sp"
-                        tools:text="Cítrico" />
+                        android:textSize="13sp"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -138,8 +133,7 @@
                         android:layout_width="24dp"
                         android:layout_height="24dp"
                         android:contentDescription="@null"
-                        app:srcCompat="@drawable/dificultad_media"
-                        app:tint="@color/blanco" />
+                        app:srcCompat="@drawable/dificultad_media"/>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -149,12 +143,11 @@
                         android:textSize="12sp" />
 
                     <TextView
-                        android:id="@+id/tvNivel"
+                        android:id="@+id/tvNivelAlcohol"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/blanco"
-                        android:textSize="13sp"
-                        tools:text="Media" />
+                        android:textSize="13sp"/>
                 </LinearLayout>
             </LinearLayout>
 
@@ -201,12 +194,10 @@
                 android:nestedScrollingEnabled="false"
                 tools:layout_height="300dp" />
 
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="24dp" />
+
 
         </LinearLayout>
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 
     <LinearLayout
         android:id="@+id/bottomNav"
@@ -221,7 +212,6 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <LinearLayout
-            android:id="@+id/nav_inicio"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -232,7 +222,7 @@
             android:background="?attr/selectableItemBackground">
 
             <ImageButton
-                android:id="@+id/btn_nav_inicio"
+                android:id="@+id/btnNavInicio"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:background="@null"
@@ -260,7 +250,7 @@
             android:background="?attr/selectableItemBackground">
 
             <ImageButton
-                android:id="@+id/btn_nav_buscar"
+                android:id="@+id/btnNavBuscar"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:background="@null"
@@ -288,7 +278,7 @@
             android:background="?attr/selectableItemBackground">
 
             <ImageButton
-                android:id="@+id/btn_nav_calculadora"
+                android:id="@+id/btnNavCalculadora"
                 android:layout_width="22dp"
                 android:layout_height="22dp"
                 android:background="@null"
@@ -316,7 +306,7 @@
             android:background="?attr/selectableItemBackground">
 
             <ImageButton
-                android:id="@+id/btn_nav_perfil"
+                android:id="@+id/btnNavPerfil"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:background="@null"
