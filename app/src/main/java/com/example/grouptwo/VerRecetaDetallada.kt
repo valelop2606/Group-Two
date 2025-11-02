@@ -8,6 +8,8 @@ import com.example.grouptwo.adapters.IngredientesAdapter
 import com.example.grouptwo.adapters.PasosAdapter
 import com.example.grouptwo.databinding.ActivityVerRecetaDetalladaBinding
 import com.example.grouptwo.dataclases.CoctelesDatabase
+//import com.example.grouptwo.repository.Favoritos
+//import com.example.grouptwo.repository.Favoritos
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 
@@ -20,6 +22,7 @@ class VerRecetaDetalladaActivity : AppCompatActivity() {
     private lateinit var binding: ActivityVerRecetaDetalladaBinding
     private val ingredientesAdapter = IngredientesAdapter()
     private val pasosAdapter = PasosAdapter()
+    private var currentCocktailId: String? = null  // ✅ agregado
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,6 +55,8 @@ class VerRecetaDetalladaActivity : AppCompatActivity() {
             finish()
             return
         }
+        currentCocktailId = cocktailId // ✅ guardamos el id actual
+
         // 2) Leer JSON (usa Json con configuración tolerante)
         val txt = assets.open("cocteles.json").bufferedReader().use { it.readText() }
         val json = Json { ignoreUnknownKeys = true; isLenient = true }
@@ -66,16 +71,22 @@ class VerRecetaDetalladaActivity : AppCompatActivity() {
         }
 
         // 4) Pintar la UI
-        binding.tvTitulo.text = cocktail.nombre
+        binding.txtTitulo.text = cocktail.nombre
         binding.tvDescripcion.text = cocktail.descripcion
         binding.tvDificultad.text = cocktail.dificultad
         binding.tvSabor.text = cocktail.sabor
-        binding.tvNivel.text = cocktail.nivel_alcohol
+        binding.tvNivelAlcohol.text = cocktail.nivel_alcohol
 
-        ingredientesAdapter.submitList(cocktail.ingredientes)
-        pasosAdapter.submitList(cocktail.pasos.sortedBy { it.n })
+        ingredientesAdapter.addDataCards(cocktail.ingredientes)
+        pasosAdapter.addDataCards(cocktail.pasos.sortedBy { it.n })
 
-
+        // ✅ Botón favoritos (solo guardar/quitar de la lista)
+//        binding.btnFavoritos.setOnClickListener {
+//            val id = currentCocktailId ?: return@setOnClickListener
+////            val ahoraEsFavorito = Favoritos.toggle(this, id)
+//            val msg = if (ahoraEsFavorito) "Añadido a Favoritos" else "Eliminado de Favoritos"
+//            Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
+//        }
 
         // Botón video (si luego lo habilitas)
         // binding.btnVideo.setOnClickListener {
@@ -86,6 +97,6 @@ class VerRecetaDetalladaActivity : AppCompatActivity() {
     }
 
     private fun setupListeners() {
-        binding.btnBack.setOnClickListener { finish() }
+        binding.btnVolver.setOnClickListener { finish() }
     }
 }

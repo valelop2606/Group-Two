@@ -58,21 +58,15 @@
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
-            <Button
+            <ImageButton
                 android:id="@+id/btnMenosCoctel"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:backgroundTint="#2E2E2E"
-                android:insetLeft="0dp"
-                android:insetTop="0dp"
-                android:insetRight="0dp"
-                android:insetBottom="0dp"
-                android:minWidth="0dp"
-                android:minHeight="0dp"
-                android:text="-"
-                android:textColor="@color/textColor"
+                android:src="@drawable/menos"
                 android:textSize="20sp"
-                app:cornerRadius="24dp" />
+                app:cornerRadius="24dp"
+                app:tint="@color/blanco" />
 
             <TextView
                 android:id="@+id/tvCantidadCoctel"
@@ -84,21 +78,15 @@
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
-            <Button
+            <ImageButton
                 android:id="@+id/btnMasCoctel"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:backgroundTint="#2E2E2E"
-                android:insetLeft="0dp"
-                android:insetTop="0dp"
-                android:insetRight="0dp"
-                android:insetBottom="0dp"
-                android:minWidth="0dp"
-                android:minHeight="0dp"
-                android:text="+"
-                android:textColor="@color/textColor"
+                android:src="@drawable/mas"
                 android:textSize="20sp"
-                app:cornerRadius="24dp" />
+                app:cornerRadius="24dp"
+                app:tint="@color/blanco" />
         </LinearLayout>
     </LinearLayout>
 </androidx.cardview.widget.CardView>

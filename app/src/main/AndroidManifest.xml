@@ -16,6 +16,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GroupTwo">
         <activity
+            android:name=".CoctelesPorCategoriaActivity"
+            android:exported="false" />
+        <activity
             android:name=".EditarPerfilActivity"
             android:exported="false" />
         <activity

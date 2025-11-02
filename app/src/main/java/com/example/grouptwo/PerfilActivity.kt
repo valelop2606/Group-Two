@@ -34,6 +34,13 @@ class PerfilActivity : AppCompatActivity() {
         binding.tvNombreUsuario.text = if (!nombre.isNullOrBlank()) nombre else "Nombre de Usuario"
         binding.tvDescripcion.text   = if (!descripcion.isNullOrBlank()) descripcion else "Descripción"
 
+        // ✅ Nuevo: abrir lista de favoritos reutilizando la pantalla de categorías
+//        binding.btnFavoritos.setOnClickListener {
+//            val intent = Intent(this, CoctelesPorCategoriaActivity::class.java)
+//            intent.putExtra("mostrar_favoritos", true)
+//            startActivity(intent)
+//        }
+
         binding.perfilConfiguracion.setOnClickListener {
             val intent = Intent(this, ConfiguracionActivity::class.java)
             startActivity(intent)
@@ -47,8 +54,6 @@ class PerfilActivity : AppCompatActivity() {
             logout()
         }
     }
-
-
 
     fun logout() {
         FirebaseAuth.getInstance().signOut()

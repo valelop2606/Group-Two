@@ -35,7 +35,6 @@ class IngredientesAdapter :
         fun bind(data: Ingrediente) {
             binding.txtNombre.text = data.nombre
             binding.txtCantidad.text = data.cantidad?.toString()?: ""
-            binding.txtUnidad.text = data.unidad
         }
     }
 

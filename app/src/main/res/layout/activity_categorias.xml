@@ -12,154 +12,25 @@
         android:id="@+id/categorias_flecha_atras"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:src="@drawable/flecha_atras"
         android:background="@null"
-        app:tint="@color/rosa"/>
+        android:src="@drawable/flecha_atras"
+        app:tint="@color/rosa" />
 
     <TextView
+        android:id="@+id/txtTituloCategorias"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Categorías"
         android:textColor="@color/rosa"
         android:textStyle="bold"
         android:textSize="20sp"
-        android:layout_marginBottom="20dp" />
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="12dp" />
 
-    <!-- Fila 1 -->
-    <LinearLayout
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvCategorias"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <!-- Clásicos -->
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:padding="8dp">
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:cardCornerRadius="15dp">
-                <ImageButton
-                    android:id="@+id/ibClasicos"
-                    android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    android:background="#1E1E1E"
-                    android:src="@mipmap/clasicos_foreground"
-                    android:contentDescription="Clásicos"
-                    android:onClick="onCategoriaClick" />
-
-            </androidx.cardview.widget.CardView>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Clásicos"
-                android:textColor="@color/rosa"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="6dp"/>
-        </LinearLayout>
-
-        <!-- Creativos -->
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:padding="8dp">
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:cardCornerRadius="15dp">
-                <ImageButton
-                    android:id="@+id/ibCreativos"
-                    android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    android:src="@mipmap/creativosfinal_foreground"
-                    android:background="#1E1E1E"
-                    android:contentDescription="Creativos"
-                    android:onClick="onCategoriaClick" />
-            </androidx.cardview.widget.CardView>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Creativos"
-                android:textColor="@color/rosa"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="6dp"/>
-        </LinearLayout>
-    </LinearLayout>
-
-    <!-- Fila 2 -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <!-- Sin Alcohol -->
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:padding="8dp">
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:cardCornerRadius="15dp">
-                <ImageButton
-                    android:id="@+id/ibSinAlcohol"
-                    android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    android:background="#1E1E1E"
-                    android:src="@mipmap/sin_alcohol_foreground"
-                    android:contentDescription="Sin Alcohol"
-                    android:onClick="onCategoriaClick" />
-            </androidx.cardview.widget.CardView>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Sin Alcohol"
-                android:textColor="@color/rosa"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="6dp"/>
-        </LinearLayout>
-
-        <!-- Temáticos -->
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:padding="8dp">
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:cardCornerRadius="15dp">
-                <ImageButton
-                    android:id="@+id/ibTematicos"
-                    android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    android:background="#1E1E1E"
-                    android:contentDescription="Temáticos"
-                    android:src="@mipmap/tematicos_foreground"
-                    android:onClick="onCategoriaClick" />
-            </androidx.cardview.widget.CardView>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Temáticos"
-                android:textColor="@color/rosa"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="6dp"/>
-        </LinearLayout>
-    </LinearLayout>
-
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:paddingBottom="8dp" />
 </LinearLayout>
-
-

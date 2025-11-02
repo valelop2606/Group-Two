@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.Button
 import android.widget.ImageButton
+import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -176,6 +177,7 @@ class CalculadoraActivity : AppCompatActivity() {
         )
 
         val cardCoctel = coctelView.findViewById<CardView>(R.id.cardCoctel)
+        val ivCoctel = coctelView.findViewById<ImageView>(R.id.ivCoctel)
         val tvNombreCoctel = coctelView.findViewById<TextView>(R.id.tvNombreCoctel)
         val tvBebidasCoctel = coctelView.findViewById<TextView>(R.id.tvBebidasCoctel)
         val btnMenos = coctelView.findViewById<Button>(R.id.btnMenosCoctel)

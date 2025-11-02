@@ -12,7 +12,6 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.grouptwo.adapters.IngredientesAdapter
 import com.example.grouptwo.databinding.ActivityPantallaInicialBinding
-import com.example.grouptwo.databinding.PantallaDeBuscarBinding
 import com.example.grouptwo.dataclases.Coctel
 import com.example.grouptwo.dataclases.CoctelesDatabase
 import kotlinx.serialization.json.Json
@@ -62,22 +61,22 @@ class PantallaInicialActivity : AppCompatActivity() {
 
         binding.btnPrimerCoctel.setOnClickListener {
             val intent = Intent(this, VerRecetaDetalladaActivity::class.java)
-            intent.putExtra("COCTEL_ID", primerCoctel.id)
+            intent.putExtra(VerRecetaDetalladaActivity.EXTRA_COCKTAIL_ID, primerCoctel.id)
             startActivity(intent)
         }
         binding.btnSegundoCoctel.setOnClickListener {
             val intent = Intent(this, VerRecetaDetalladaActivity::class.java)
-            intent.putExtra("COCTEL_ID", segundoCoctel.id)
+            intent.putExtra(VerRecetaDetalladaActivity.EXTRA_COCKTAIL_ID, segundoCoctel.id)
             startActivity(intent)
         }
         binding.btnTercerCoctel.setOnClickListener {
             val intent = Intent(this, VerRecetaDetalladaActivity::class.java)
-            intent.putExtra("COCTEL_ID", tercerCoctel.id)
+            intent.putExtra(VerRecetaDetalladaActivity.EXTRA_COCKTAIL_ID, tercerCoctel.id)
             startActivity(intent)
         }
         binding.btnCuartoCoctel.setOnClickListener {
             val intent = Intent(this, VerRecetaDetalladaActivity::class.java)
-            intent.putExtra("COCTEL_ID", cuartoCoctel.id)
+            intent.putExtra(VerRecetaDetalladaActivity.EXTRA_COCKTAIL_ID, cuartoCoctel.id)
             startActivity(intent)
         }
 

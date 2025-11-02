@@ -26,4 +26,5 @@
     <color name="button_secondary">#2E2E2E</color>
     <color name="input_background">#2A2A2A</color>
     <color name="badge_background">#3A3A3A</color>
+    <color name="dorado">#FFC107</color>
 </resources>
