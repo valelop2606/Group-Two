@@ -1,3 +1,18 @@
 <resources>
     <string name="app_name">GroupTwo</string>
+    <string name="texto_dificultad">Dificultad</string>
+    <string name="texto_sabor">Sabor</string>
+    <string name="texto_nivel">Nivel</string>
+    <string name="ver_video">▶ Ver Video Corto</string>
+    <string name="ingredientes">Ingredientes</string>
+    <string name="preparacion">Preparación</string>
+    <string name="inicio">Inicio</string>
+    <string name="boton_para_regresar">Boton para regresar a la pantalla anterior</string>
+    <string name="boton_inicio">Boton de inicio, lleva a la pantalla inicial</string>
+    <string name="buscar">Buscar</string>
+    <string name="boton_buscar">Boton que lleva a la pantalla de buscar</string>
+    <string name="boton_calculadora">Boton que lleva a la pantalla de calculadora</string>
+    <string name="calculadora">Calculadora</string>
+    <string name="boton_perfil">Boton que lleva a la pantalla de perfil</string>
+    <string name="perfil">Perfil</string>
 </resources>
