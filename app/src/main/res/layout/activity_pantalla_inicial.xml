@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/black">
 
-    <!-- Scrollable content -->
+
     <ScrollView
         android:id="@+id/scrollContent"
         android:layout_width="0dp"
@@ -23,7 +23,6 @@
             android:orientation="vertical"
             android:padding="12dp">
 
-            <!-- Header -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -41,7 +40,6 @@
                 android:textColor="#FF69B4"
                 android:textSize="14sp" />
 
-            <!-- Search -->
             <EditText
                 android:id="@+id/etBuscarIngrediente"
                 android:layout_width="match_parent"
@@ -52,7 +50,6 @@
                 android:textColor="#FFFFFF"
                 android:textColorHint="#B0B0B0" />
 
-            <!-- Filter Button -->
             <Button
                 android:id="@+id/btnLoTengoEnCasa"
                 android:layout_width="match_parent"
@@ -62,7 +59,6 @@
                 android:text="Lo que tengo en casa"
                 android:textColor="#FFFFFF" />
 
-            <!-- RESULTADOS DE BÚSQUEDA -->
             <TextView
                 android:id="@+id/tvResultadosTitle"
                 android:layout_width="wrap_content"
@@ -80,14 +76,12 @@
                 android:orientation="vertical"
                 android:visibility="gone"></LinearLayout>
 
-            <!-- CONTENIDO ESTÁTICO (se oculta cuando hay resultados) -->
             <LinearLayout
                 android:id="@+id/contenidoEstatico"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <!-- Tabs -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -119,7 +113,6 @@
                     android:text="Categorias"
                     android:textColor="@color/blanco" />
 
-                <!-- Sección: Para ti -->
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -252,7 +245,6 @@
                     </LinearLayout>
                 </LinearLayout>
 
-                <!-- Sección: Tendencias -->
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
