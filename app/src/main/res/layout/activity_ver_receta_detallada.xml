@@ -29,7 +29,7 @@
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:background="@android:color/transparent"
-                android:contentDescription="volver"
+                android:contentDescription="@string/boton_para_regresar"
                 app:srcCompat="@drawable/flecha_atras"
                 app:tint="@color/rosa" />
 
@@ -69,6 +69,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
+                android:baselineAligned="false"
                 android:gravity="center"
                 android:orientation="horizontal"
                 android:weightSum="3">
@@ -94,7 +95,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Dificultad"
+                        android:text="@string/texto_dificultad"
                         android:textColor="@color/blanco"
                         android:textSize="12sp" />
 
@@ -127,7 +128,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Sabor"
+                        android:text="@string/texto_sabor"
                         android:textColor="@color/blanco"
                         android:textSize="12sp" />
 
@@ -160,7 +161,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Nivel"
+                        android:text="@string/texto_nivel"
                         android:textColor="@color/blanco"
                         android:textSize="12sp" />
 
@@ -179,7 +180,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
                 android:backgroundTint="@color/rosa"
-                android:text="▶ Ver Video Corto"
+                android:text="@string/ver_video"
                 android:textColor="@color/blanco"
                 app:cornerRadius="8dp" />
 
@@ -187,7 +188,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingBottom="12dp"
-                android:text="Ingredientes"
+                android:text="@string/ingredientes"
                 android:textColor="@color/blanco"
                 android:textSize="18sp"
                 android:textStyle="bold" />
@@ -204,7 +205,7 @@
                 android:layout_height="wrap_content"
                 android:paddingTop="8dp"
                 android:paddingBottom="12dp"
-                android:text="Preparación"
+                android:text="@string/preparacion"
                 android:textColor="@color/blanco"
                 android:textSize="18sp"
                 android:textStyle="bold" />
@@ -226,6 +227,7 @@
         android:layout_width="0dp"
         android:layout_height="60dp"
         android:background="@color/gris_claro"
+        android:baselineAligned="false"
         android:elevation="8dp"
         android:gravity="center"
         android:orientation="horizontal"
@@ -248,14 +250,14 @@
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:background="@null"
-                android:contentDescription="inicio"
+                android:contentDescription="@string/boton_inicio"
                 app:srcCompat="@drawable/home_icon_silhouette_svgrepo_com"
                 app:tint="@color/rosa" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Inicio"
+                android:text="@string/inicio"
                 android:textColor="@color/rosa"
                 android:textSize="12sp" />
         </LinearLayout>
@@ -276,14 +278,14 @@
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:background="@null"
-                android:contentDescription="buscar"
+                android:contentDescription="@string/boton_buscar"
                 app:srcCompat="@drawable/buscar"
                 app:tint="@color/rosa" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Buscar"
+                android:text="@string/buscar"
                 android:textColor="@color/rosa"
                 android:textSize="12sp" />
         </LinearLayout>
@@ -304,14 +306,14 @@
                 android:layout_width="22dp"
                 android:layout_height="22dp"
                 android:background="@null"
-                android:contentDescription="calculadora"
+                android:contentDescription="@string/boton_calculadora"
                 app:srcCompat="@drawable/calculadora"
                 app:tint="@color/rosa" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Calculadora"
+                android:text="@string/calculadora"
                 android:textColor="@color/rosa"
                 android:textSize="12sp" />
         </LinearLayout>
@@ -332,14 +334,14 @@
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:background="@null"
-                android:contentDescription="perfil"
+                android:contentDescription="@string/boton_perfil"
                 app:srcCompat="@drawable/perfil"
                 app:tint="@color/rosa" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Perfil"
+                android:text="@string/perfil"
                 android:textColor="@color/rosa"
                 android:textSize="12sp" />
         </LinearLayout>

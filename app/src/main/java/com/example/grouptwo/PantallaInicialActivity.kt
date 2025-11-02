@@ -85,36 +85,6 @@ class PantallaInicialActivity : AppCompatActivity() {
             val intent = Intent(this, PerfilActivity::class.java)
             startActivity(intent)
         }
-
-        binding.botonCategorias.setOnClickListener {
-            val intent = Intent(this, CategoriasActivity::class.java)
-            startActivity(intent)
-        }
-
-
-        binding.btnMojito.setOnClickListener {
-            val intent = Intent(this, VerRecetaDetalladaActivity::class.java)
-            intent.putExtra(VerRecetaDetalladaActivity.EXTRA_COCKTAIL_ID, "ckt_mojito")
-            startActivity(intent)
-        }
-
-        binding.btnCosmopolitan.setOnClickListener {
-            val intent = Intent(this, VerRecetaDetalladaActivity::class.java)
-            intent.putExtra(VerRecetaDetalladaActivity.EXTRA_COCKTAIL_ID, "ckt_cosmopolitan")
-            startActivity(intent)
-        }
-        binding.btnMargarita.setOnClickListener {
-            val intent = Intent(this, VerRecetaDetalladaActivity::class.java)
-            intent.putExtra(VerRecetaDetalladaActivity.EXTRA_COCKTAIL_ID, "ckt_margarita")
-            startActivity(intent)
-        }
-        binding.btnNegroni.setOnClickListener {
-            val intent = Intent(this, VerRecetaDetalladaActivity::class.java)
-            intent.putExtra(VerRecetaDetalladaActivity.EXTRA_COCKTAIL_ID, "ckt_negroni")
-            startActivity(intent)
-        }
-
-
         binding.btnBuscarIcon.setOnClickListener {
             val intent = Intent(this, BuscadorActivity::class.java)
             startActivity(intent)
@@ -123,7 +93,6 @@ class PantallaInicialActivity : AppCompatActivity() {
             val intent = Intent(this, CalculadoraActivity::class.java)
             startActivity(intent)
         }
-
 
     }
 
