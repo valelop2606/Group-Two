@@ -48,12 +48,7 @@ class IngredientesAdapter : ListAdapter<Ingrediente, IngredientesAdapter.Ingredi
                 txtCantidad.text = "$cantidadTexto\n${ingrediente.nota}"
             }
 
-            // Por ahora ocultamos el botón eliminar en la vista de receta
-            // Solo lo mostraríamos en una pantalla de edición
             btnEliminar.visibility = View.GONE
-
-            // Opcional: Podrías agregar iconos diferentes según el ingrediente
-            // Por ahora usamos el icono por defecto
         }
     }
 
