@@ -77,6 +77,19 @@ class PantallaInicialActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        binding.perfil.setOnClickListener {
+            val intent = Intent(this, PerfilActivity::class.java)
+            startActivity(intent)
+        }
+        binding.btnBuscarIcon.setOnClickListener {
+            val intent = Intent(this, BuscadorActivity::class.java)
+            startActivity(intent)
+        }
+        binding.btnCalculadora.setOnClickListener {
+            val intent = Intent(this, CalculadoraActivity::class.java)
+            startActivity(intent)
+        }
+
     }
 
 
