@@ -1,69 +1,48 @@
 package com.example.grouptwo.adapters
 
+import android.content.Context
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageButton
-import android.widget.ImageView
-import android.widget.TextView
-import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.grouptwo.R
+import com.example.grouptwo.databinding.ItemIngredienteBinding
 import com.example.grouptwo.dataclases.Ingrediente
 
-class IngredientesAdapter : ListAdapter<Ingrediente, IngredientesAdapter.IngredienteViewHolder>(
-    IngredienteDiffCallback()
-) {
+class IngredientesAdapter :
+    RecyclerView.Adapter<IngredientesAdapter.IngredienteViewHolder>() {
+
+    private val dataCards = mutableListOf<Ingrediente>()
+    private var context: Context? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): IngredienteViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_ingrediente, parent, false)
-        return IngredienteViewHolder(view)
+        context = parent.context
+        return IngredienteViewHolder(
+            ItemIngredienteBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
+        )
     }
 
     override fun onBindViewHolder(holder: IngredienteViewHolder, position: Int) {
-        holder.bind(getItem(position))
+        holder.bind(dataCards[position])
     }
 
-    class IngredienteViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val imgIcono: ImageView = itemView.findViewById(R.id.imgIcono)
-        private val txtNombre: TextView = itemView.findViewById(R.id.txtNombre)
-        private val txtCantidad: TextView = itemView.findViewById(R.id.txtCantidad)
-        private val btnEliminar: ImageButton = itemView.findViewById(R.id.btnEliminar)
+    override fun getItemCount(): Int = dataCards.size
 
-        fun bind(ingrediente: Ingrediente) {
-            txtNombre.text = ingrediente.nombre
-
-            // Formatear cantidad
-            val cantidadTexto = if (ingrediente.cantidad != null) {
-                "${ingrediente.cantidad} ${ingrediente.unidad}"
-            } else {
-                ingrediente.unidad
-            }
-            txtCantidad.text = cantidadTexto
-
-            // Si hay nota, agregarla
-            if (!ingrediente.nota.isNullOrBlank()) {
-                txtCantidad.text = "$cantidadTexto\n${ingrediente.nota}"
-            }
-
-            // Por ahora ocultamos el botón eliminar en la vista de receta
-            // Solo lo mostraríamos en una pantalla de edición
-            btnEliminar.visibility = View.GONE
-
-            // Opcional: Podrías agregar iconos diferentes según el ingrediente
-            // Por ahora usamos el icono por defecto
+    inner class IngredienteViewHolder(private val binding: ItemIngredienteBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun bind(data: Ingrediente) {
+            binding.txtNombre.text = data.nombre
+            binding.txtCantidad.text = data.cantidad?.toString()?: ""
+            binding.txtUnidad.text = data.unidad
         }
     }
 
-    class IngredienteDiffCallback : DiffUtil.ItemCallback<Ingrediente>() {
-        override fun areItemsTheSame(oldItem: Ingrediente, newItem: Ingrediente): Boolean {
-            return oldItem.nombre == newItem.nombre
-        }
-
-        override fun areContentsTheSame(oldItem: Ingrediente, newItem: Ingrediente): Boolean {
-            return oldItem == newItem
-        }
+    fun addDataCards(list: List<Ingrediente>) {
+        dataCards.clear()
+        dataCards.addAll(list)
     }
+
+
 }

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/main"
     android:layout_width="match_parent"
@@ -13,10 +12,10 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:fillViewport="true"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@id/bottomNav"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -28,50 +27,50 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:paddingBottom="4dp"
                 android:text="Mixify"
-                android:textSize="20sp"
                 android:textColor="#FFFFFF"
-                android:textStyle="bold"
-                android:paddingBottom="4dp" />
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:paddingBottom="8dp"
                 android:text="Tu bar personal"
-                android:textSize="14sp"
                 android:textColor="#FF69B4"
-                android:paddingBottom="8dp" />
+                android:textSize="14sp" />
 
             <!-- Search -->
             <EditText
                 android:id="@+id/etBuscarIngrediente"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
+                android:layout_marginBottom="8dp"
                 android:hint="Buscar por nombre, tipo o ingrediente"
-                android:textColorHint="#B0B0B0"
-                android:textColor="#FFFFFF"
                 android:padding="8dp"
-                android:layout_marginBottom="8dp" />
+                android:textColor="#FFFFFF"
+                android:textColorHint="#B0B0B0" />
 
             <!-- Filter Button -->
             <Button
-                android:id="@+id/btnTengoEnCasa"
+                android:id="@+id/btnLoTengoEnCasa"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:text="Lo que tengo en casa"
+                android:layout_marginBottom="12dp"
                 android:background="#00CED1"
-                android:textColor="#FFFFFF"
-                android:layout_marginBottom="12dp" />
+                android:text="Lo que tengo en casa"
+                android:textColor="#FFFFFF" />
 
             <!-- RESULTADOS DE BÚSQUEDA -->
             <TextView
                 android:id="@+id/tvResultadosTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Resultados de búsqueda"
-                android:textSize="16sp"
-                android:textColor="#FF69B4"
                 android:paddingBottom="8dp"
+                android:text="Resultados de búsqueda"
+                android:textColor="#FF69B4"
+                android:textSize="16sp"
                 android:visibility="gone" />
 
             <LinearLayout
@@ -79,8 +78,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:visibility="gone">
-            </LinearLayout>
+                android:visibility="gone"></LinearLayout>
 
             <!-- CONTENIDO ESTÁTICO (se oculta cuando hay resultados) -->
             <LinearLayout
@@ -93,42 +91,42 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
+                    android:layout_marginBottom="12dp"
                     android:gravity="center"
-                    android:layout_marginBottom="12dp">
+                    android:orientation="horizontal">
 
                     <Button
                         android:layout_width="0dp"
                         android:layout_height="40dp"
                         android:layout_weight="1"
-                        android:text="Clásicos"
                         android:background="@android:color/darker_gray"
+                        android:text="Clásicos"
                         android:textColor="#FFFFFF" />
 
                     <Button
                         android:layout_width="0dp"
                         android:layout_height="40dp"
                         android:layout_weight="1"
-                        android:text="Creativos"
                         android:background="@android:color/darker_gray"
+                        android:text="Creativos"
                         android:textColor="#FFFFFF" />
                 </LinearLayout>
 
                 <Button
-                    android:id="@+id/boton_categorias"
+                    android:id="@+id/btnCategorias"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Categorias"
-                    android:textColor="@color/blanco"/>
+                    android:textColor="@color/blanco" />
 
                 <!-- Sección: Para ti -->
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:paddingBottom="8dp"
                     android:text="Para ti"
-                    android:textSize="16sp"
                     android:textColor="#FF69B4"
-                    android:paddingBottom="8dp" />
+                    android:textSize="16sp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -140,76 +138,117 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:orientation="vertical"
                         android:gravity="center"
+                        android:orientation="vertical"
                         android:padding="4dp">
+
                         <androidx.cardview.widget.CardView
                             android:layout_width="80dp"
                             android:layout_height="80dp"
                             app:cardCornerRadius="10dp">
 
                             <ImageButton
-                                android:id="@+id/btnMojito"
+                                android:id="@+id/btnPrimerCoctel"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:background="@color/black"
-                                android:contentDescription="Imagen de Mojito"
-                                android:scaleType="centerCrop"
-                                app:srcCompat="@drawable/mojito" />
+                                android:scaleType="centerCrop" />
                         </androidx.cardview.widget.CardView>
 
                         <TextView
+                            android:id="@+id/txtTituloPrimerCoctel"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Mojito"
                             android:textColor="#FFFFFF"
-                            android:textStyle="bold"
-                            android:textSize="14sp" />
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
 
-                        <TextView
+                        <LinearLayout
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Fácil"
-                            android:textColor="#B0B0B0"
-                            android:textSize="12sp" />
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:id="@+id/txtDificultadPrimerCoctel"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="#B0B0B0"
+                                android:textSize="12sp"
+                                android:gravity="left"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="#B0B0B0"
+                                android:textSize="12sp"
+                                android:gravity="center"
+                                android:text=" - "/>
+
+                            <TextView
+                                android:id="@+id/textSaborPrimerCoctel"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="#B0B0B0"
+                                android:textSize="12sp"
+                                android:gravity="right"/>
+                        </LinearLayout>
+
                     </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:orientation="vertical"
                         android:gravity="center"
+                        android:orientation="vertical"
                         android:padding="4dp">
+
                         <androidx.cardview.widget.CardView
                             android:layout_width="80dp"
                             android:layout_height="80dp"
                             app:cardCornerRadius="10dp">
+
                             <ImageButton
-                                android:id="@+id/btnCosmopolitan"
+                                android:id="@+id/btnSegundoCoctel"
                                 android:layout_width="match_parent"
                                 android:layout_height="80dp"
                                 android:background="@color/black"
-                                android:scaleType="centerCrop"
-                                app:srcCompat="@drawable/cosmopolitan"
-                                android:contentDescription="Imagen de Cosmopolitan" />
+                                android:scaleType="centerCrop"/>
                         </androidx.cardview.widget.CardView>
 
                         <TextView
-                            android:id="@+id/textView_cosmopolitan"
+                            android:id="@+id/textTituloSegundoCoctel"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Cosmopolitan"
                             android:textColor="#FFFFFF"
-                            android:textStyle="bold"
-                            android:textSize="14sp" />
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
 
-                        <TextView
+                        <LinearLayout
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Media"
-                            android:textColor="#B0B0B0"
-                            android:textSize="12sp" />
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:id="@+id/txtDificultadSegundoCoctel"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="#B0B0B0"
+                                android:textSize="12sp"
+                                android:gravity="left"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="#B0B0B0"
+                                android:textSize="12sp"
+                                android:gravity="center"
+                                android:text=" - "/>
+                            <TextView
+                                android:id="@+id/textSaborSegundoCoctel"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="#B0B0B0"
+                                android:textSize="12sp"
+                                android:gravity="right"/>
+                        </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
 
@@ -217,10 +256,10 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:paddingBottom="8dp"
                     android:text="Tendencias"
-                    android:textSize="16sp"
                     android:textColor="#FF69B4"
-                    android:paddingBottom="8dp" />
+                    android:textSize="16sp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -232,74 +271,114 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:orientation="vertical"
                         android:gravity="center"
+                        android:orientation="vertical"
                         android:padding="4dp">
+
                         <androidx.cardview.widget.CardView
                             android:layout_width="80dp"
                             android:layout_height="80dp"
                             app:cardCornerRadius="10dp">
+
                             <ImageButton
-                                android:id="@+id/btnMargarita"
+                                android:id="@+id/btnTercerCoctel"
                                 android:layout_width="match_parent"
                                 android:layout_height="80dp"
-                                android:scaleType="centerCrop"
                                 android:background="@color/black"
-                                app:srcCompat="@drawable/margarita"
-                                android:contentDescription="Imagen de Margarita" />
+                                android:scaleType="centerCrop" />
                         </androidx.cardview.widget.CardView>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Margarita"
-                            android:textColor="#FFFFFF"
-                            android:textStyle="bold"
-                            android:textSize="14sp" />
 
                         <TextView
+                            android:id="@+id/txtTituloTercerCoctel"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Clásico - Fácil"
-                            android:textColor="#B0B0B0"
-                            android:textSize="12sp" />
+                            android:textColor="#FFFFFF"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:id="@+id/txtDificultadTercerCoctel"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="#B0B0B0"
+                                android:textSize="12sp"
+                                android:gravity="left"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="#B0B0B0"
+                                android:textSize="12sp"
+                                android:gravity="center"
+                                android:text=" - "/>
+                            <TextView
+                                android:id="@+id/textSaborTercerCoctel"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="#B0B0B0"
+                                android:textSize="12sp"
+                                android:gravity="right"/>
+                        </LinearLayout>
                     </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:orientation="vertical"
                         android:gravity="center"
+                        android:orientation="vertical"
                         android:padding="4dp">
 
                         <androidx.cardview.widget.CardView
                             android:layout_width="80dp"
                             android:layout_height="80dp"
                             app:cardCornerRadius="10dp">
+
                             <ImageButton
-                                android:id="@+id/btnNegroni"
+                                android:id="@+id/btnCuartoCoctel"
                                 android:layout_width="match_parent"
                                 android:layout_height="80dp"
-                                android:scaleType="centerCrop"
                                 android:background="@color/black"
-                                app:srcCompat="@drawable/negroni"
-                                android:contentDescription="Imagen de Negroni" />
+                                android:scaleType="centerCrop"/>
                         </androidx.cardview.widget.CardView>
 
                         <TextView
+                            android:id="@+id/txtTituloCuartoCoctel"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Negroni"
                             android:textColor="#FFFFFF"
-                            android:textStyle="bold"
-                            android:textSize="14sp" />
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
 
-                        <TextView
+                        <LinearLayout
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Amargo - Media"
-                            android:textColor="#B0B0B0"
-                            android:textSize="12sp" />
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:id="@+id/txtDificultadCuartoCoctel"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="#B0B0B0"
+                                android:textSize="12sp"
+                                android:gravity="left"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="#B0B0B0"
+                                android:textSize="12sp"
+                                android:gravity="center"
+                                android:text=" - "/>
+                            <TextView
+                                android:id="@+id/textSaborCuartoCoctel"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="#B0B0B0"
+                                android:textSize="12sp"
+                                android:gravity="right"/>
+                        </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
 
@@ -312,29 +391,29 @@
         android:id="@+id/bottomNav"
         android:layout_width="0dp"
         android:layout_height="60dp"
-        android:orientation="horizontal"
         android:background="#2F2F2F"
-        android:gravity="center"
         android:elevation="4dp"
+        android:gravity="center"
+        android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:orientation="vertical"
-            android:gravity="center">
+            android:gravity="center"
+            android:orientation="vertical">
 
             <ImageButton
                 android:id="@+id/buscador"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                app:srcCompat="@drawable/home_icon_silhouette_svgrepo_com"
                 android:background="@null"
-                app:tint="#FF69B4"
-                android:contentDescription="Inicio" />
+                android:contentDescription="Inicio"
+                app:srcCompat="@drawable/home_icon_silhouette_svgrepo_com"
+                app:tint="#FF69B4" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -348,18 +427,18 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:orientation="vertical"
-            android:gravity="center">
+            android:gravity="center"
+            android:orientation="vertical">
 
             <ImageButton
                 android:id="@+id/btnBuscarIcon"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                app:srcCompat="@drawable/buscar"
-                android:scaleType="fitCenter"
                 android:background="@null"
-                app:tint="@color/rosa"
-                android:contentDescription="Buscar" />
+                android:contentDescription="Buscar"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/buscar"
+                app:tint="@color/rosa" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -373,18 +452,18 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:orientation="vertical"
-            android:gravity="center">
+            android:gravity="center"
+            android:orientation="vertical">
 
             <ImageButton
                 android:id="@+id/btnCalculadora"
                 android:layout_width="22dp"
                 android:layout_height="22dp"
-                app:srcCompat="@drawable/calculadora"
-                android:scaleType="fitCenter"
                 android:background="@null"
-                app:tint="@color/rosa"
-                android:contentDescription="Calculadora" />
+                android:contentDescription="Calculadora"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/calculadora"
+                app:tint="@color/rosa" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -398,18 +477,18 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:orientation="vertical"
-            android:gravity="center">
+            android:gravity="center"
+            android:orientation="vertical">
 
             <ImageButton
                 android:id="@+id/perfil"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                app:srcCompat="@drawable/perfil"
-                android:scaleType="fitCenter"
                 android:background="@null"
-                app:tint="@color/rosa"
-                android:contentDescription="Perfil" />
+                android:contentDescription="Perfil"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/perfil"
+                app:tint="@color/rosa" />
 
             <TextView
                 android:layout_width="wrap_content"
