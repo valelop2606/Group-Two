@@ -10,6 +10,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.grouptwo.VerRecetaDetalladaActivity.Companion.EXTRA_COCKTAIL_ID
 import com.example.grouptwo.adapters.IngredientesAdapter
 import com.example.grouptwo.databinding.ActivityPantallaInicialBinding
 import com.example.grouptwo.dataclases.Coctel
@@ -61,22 +62,22 @@ class PantallaInicialActivity : AppCompatActivity() {
 
         binding.btnPrimerCoctel.setOnClickListener {
             val intent = Intent(this, VerRecetaDetalladaActivity::class.java)
-            intent.putExtra(VerRecetaDetalladaActivity.EXTRA_COCKTAIL_ID, primerCoctel.id)
+            intent.putExtra(EXTRA_COCKTAIL_ID, primerCoctel.id)
             startActivity(intent)
         }
         binding.btnSegundoCoctel.setOnClickListener {
             val intent = Intent(this, VerRecetaDetalladaActivity::class.java)
-            intent.putExtra(VerRecetaDetalladaActivity.EXTRA_COCKTAIL_ID, segundoCoctel.id)
+            intent.putExtra(EXTRA_COCKTAIL_ID, segundoCoctel.id)
             startActivity(intent)
         }
         binding.btnTercerCoctel.setOnClickListener {
             val intent = Intent(this, VerRecetaDetalladaActivity::class.java)
-            intent.putExtra(VerRecetaDetalladaActivity.EXTRA_COCKTAIL_ID, tercerCoctel.id)
+            intent.putExtra(EXTRA_COCKTAIL_ID, tercerCoctel.id)
             startActivity(intent)
         }
         binding.btnCuartoCoctel.setOnClickListener {
             val intent = Intent(this, VerRecetaDetalladaActivity::class.java)
-            intent.putExtra(VerRecetaDetalladaActivity.EXTRA_COCKTAIL_ID, cuartoCoctel.id)
+            intent.putExtra(EXTRA_COCKTAIL_ID, cuartoCoctel.id)
             startActivity(intent)
         }
 

@@ -29,10 +29,13 @@
         android:textSize="14sp"
         android:textColor="@color/blanco" />
 
-    <ImageButton
-        android:id="@+id/btnEliminar"
-        android:layout_width="24dp"
+    <TextView
+        android:id="@+id/txtUnidad"
+        android:layout_width="100dp"
         android:layout_height="24dp"
+        android:text="unidad"
+        android:textSize="14sp"
+        android:textColor="@color/blanco"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:contentDescription="Eliminar ingrediente" />
 </LinearLayout>

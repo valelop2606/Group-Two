@@ -79,6 +79,7 @@ class VerRecetaDetalladaActivity : AppCompatActivity() {
         binding.tvSabor.text = cocktail.sabor
         binding.tvNivelAlcohol.text = cocktail.nivel_alcohol
 
+
         ingredientesAdapter.addDataCards(cocktail.ingredientes)
         pasosAdapter.addDataCards(cocktail.pasos.sortedBy { it.n })
 

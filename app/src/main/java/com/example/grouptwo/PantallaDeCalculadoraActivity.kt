@@ -180,9 +180,9 @@ class CalculadoraActivity : AppCompatActivity() {
         val ivCoctel = coctelView.findViewById<ImageView>(R.id.ivCoctel)
         val tvNombreCoctel = coctelView.findViewById<TextView>(R.id.tvNombreCoctel)
         val tvBebidasCoctel = coctelView.findViewById<TextView>(R.id.tvBebidasCoctel)
-        val btnMenos = coctelView.findViewById<Button>(R.id.btnMenosCoctel)
+        val btnMenos = coctelView.findViewById< ImageButton>(R.id.btnMenosCoctel)
         val tvCantidad = coctelView.findViewById<TextView>(R.id.tvCantidadCoctel)
-        val btnMas = coctelView.findViewById<Button>(R.id.btnMasCoctel)
+        val btnMas = coctelView.findViewById<ImageButton>(R.id.btnMasCoctel)
 
         tvNombreCoctel.text = coctel.nombre
         tvBebidasCoctel.text = coctel.cantidad.toString() + " bebidas"
