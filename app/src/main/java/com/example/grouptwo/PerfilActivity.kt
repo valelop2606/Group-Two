@@ -10,7 +10,8 @@ import com.example.grouptwo.EditarPerfilActivity.Companion.ID_DESCRIPCION
 import com.example.grouptwo.EditarPerfilActivity.Companion.ID_NOMBRE_DE_USUARIO
 import com.example.grouptwo.databinding.ActivityPerfilBinding
 import com.google.firebase.auth.FirebaseAuth
-import com.example.grouptwo.repository.GuardarPerfil   // 👈 IMPORTANTE
+import com.example.grouptwo.repository.GuardarPerfil
+import com.example.grouptwo.repository.Favoritos // ✅ importa el objeto
 
 class PerfilActivity : AppCompatActivity() {
 
@@ -32,14 +33,15 @@ class PerfilActivity : AppCompatActivity() {
         val descripcion = GuardarPerfil.loadDescripcion(this)
 
         binding.tvNombreUsuario.text = if (!nombre.isNullOrBlank()) nombre else "Nombre de Usuario"
-        binding.tvDescripcion.text   = if (!descripcion.isNullOrBlank()) descripcion else "Descripción"
+        binding.tvDescripcion.text = if (!descripcion.isNullOrBlank()) descripcion else "Descripción"
 
-        // ✅ Nuevo: abrir lista de favoritos reutilizando la pantalla de categorías
-//        binding.btnFavoritos.setOnClickListener {
-//            val intent = Intent(this, CoctelesPorCategoriaActivity::class.java)
-//            intent.putExtra("mostrar_favoritos", true)
-//            startActivity(intent)
-//        }
+
+        // ✅ Nuevo: botón para ver lista de favoritos
+        binding.btnFavoritos.setOnClickListener {
+            val intent = Intent(this, CoctelesPorCategoriaActivity::class.java)
+            intent.putExtra("mostrar_favoritos", true) // decimos que muestre favoritos
+            startActivity(intent)
+        }
 
         binding.perfilConfiguracion.setOnClickListener {
             val intent = Intent(this, ConfiguracionActivity::class.java)

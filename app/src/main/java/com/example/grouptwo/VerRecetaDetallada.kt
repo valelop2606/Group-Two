@@ -8,6 +8,7 @@ import com.example.grouptwo.adapters.IngredientesAdapter
 import com.example.grouptwo.adapters.PasosAdapter
 import com.example.grouptwo.databinding.ActivityVerRecetaDetalladaBinding
 import com.example.grouptwo.dataclases.CoctelesDatabase
+import com.example.grouptwo.repository.Favoritos
 //import com.example.grouptwo.repository.Favoritos
 //import com.example.grouptwo.repository.Favoritos
 import kotlinx.serialization.decodeFromString
@@ -28,6 +29,7 @@ class VerRecetaDetalladaActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityVerRecetaDetalladaBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
 
         setupRecyclerViews()
         loadCocktailData()
@@ -98,5 +100,16 @@ class VerRecetaDetalladaActivity : AppCompatActivity() {
 
     private fun setupListeners() {
         binding.btnVolver.setOnClickListener { finish() }
+        binding.btnFavoritos.setOnClickListener {
+            val id = currentCocktailId ?: return@setOnClickListener
+            val added = Favoritos.toggle(this, id)   // ← pasa this
+            val msg = if (added) "Añadido a favoritos" else "Quitado de favoritos"
+            if (added) {
+                binding.btnFavoritos.setImageResource(R.drawable.favorito_on)
+            } else {
+                binding.btnFavoritos.setImageResource(R.drawable.favorito)
+            }
+            Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
+        }
     }
 }

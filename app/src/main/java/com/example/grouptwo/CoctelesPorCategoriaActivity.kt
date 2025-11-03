@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.grouptwo.adapters.CoctelesAdapter
 import com.example.grouptwo.databinding.ActivityCoctelesPorCategoriaBinding
 import com.example.grouptwo.dataclases.Coctel
+import com.example.grouptwo.repository.Favoritos
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.jsonObject
 import java.io.InputStream
@@ -20,15 +21,24 @@ class CoctelesPorCategoriaActivity : AppCompatActivity() {
         binding = ActivityCoctelesPorCategoriaBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val mostrarFavoritos = intent.getBooleanExtra("mostrar_favoritos", false)
         val categoriaSeleccionada = intent.getStringExtra("categoria")
-        binding.txtTituloCategoria.text = categoriaSeleccionada ?: "Cócteles"
 
         val listaCocteles = cargarCoctelesDesdeJson()
-        val filtrados = listaCocteles.filter { c ->
-            c.categorias.any { it.texto.equals(categoriaSeleccionada, ignoreCase = true) }
+        val filtrados = if (mostrarFavoritos) {
+            // ✅ Favoritos usando el contexto actual
+            val favoritosIds = Favoritos.all(this)
+            listaCocteles.filter { it.id in favoritosIds }
+        } else {
+            // ✅ Filtrado por categoría (comportamiento normal)
+            listaCocteles.filter { c ->
+                c.categorias.any { it.texto.equals(categoriaSeleccionada, ignoreCase = true) }
+            }
         }
 
-        // ✅ Adapter modificado para abrir la receta detallada
+        binding.txtTituloCategoria.text =
+            if (mostrarFavoritos) "Tus Favoritos" else (categoriaSeleccionada ?: "Cócteles")
+
         val adapter = CoctelesAdapter(filtrados) { coctel ->
             val intent = Intent(this, VerRecetaDetalladaActivity::class.java)
             intent.putExtra(VerRecetaDetalladaActivity.EXTRA_COCKTAIL_ID, coctel.id)
