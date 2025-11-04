@@ -12,6 +12,6 @@
         android:hint="@string/describe_el_paso"
         android:minLines="3"
         android:gravity="top"
-        android:textColor="@color/background_dark"
+        android:textColor="@color/blanco"
         android:textColorHint="@color/hint_color" />
 </LinearLayout>

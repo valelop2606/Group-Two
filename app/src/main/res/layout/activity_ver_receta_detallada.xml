@@ -14,7 +14,7 @@
         android:layout_height="0dp"
         android:fillViewport="true"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/bottomNav"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
@@ -43,7 +43,6 @@
                 android:textSize="28sp"
                 android:textStyle="bold"/>
 
-            <!-- NUEVO: Descripción -->
             <TextView
                 android:id="@+id/tvDescripcion"
                 android:layout_width="300dp"
@@ -52,7 +51,6 @@
                 android:textColor="@color/blanco"
                 android:textSize="16sp"/>
 
-            <!-- NUEVO: Dificultad -->
             <TextView
                 android:id="@+id/tvDificultad"
                 android:layout_width="wrap_content"
@@ -213,135 +211,9 @@
                 android:layout_height="wrap_content"
                 android:nestedScrollingEnabled="false"
                 tools:layout_height="300dp" />
-
-
-
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 
-    <LinearLayout
-        android:id="@+id/bottomNav"
-        android:layout_width="0dp"
-        android:layout_height="60dp"
-        android:background="@color/gris_claro"
-        android:elevation="8dp"
-        android:gravity="center"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:clickable="true"
-            android:focusable="true"
-            android:background="?attr/selectableItemBackground">
-
-            <ImageButton
-                android:id="@+id/btnNavInicio"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:background="@null"
-                android:contentDescription="@string/boton_inicio"
-                app:srcCompat="@drawable/home_icon_silhouette_svgrepo_com"
-                app:tint="@color/rosa" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/inicio"
-                android:textColor="@color/rosa"
-                android:textSize="12sp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/nav_buscar"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:clickable="true"
-            android:focusable="true"
-            android:background="?attr/selectableItemBackground">
-
-            <ImageButton
-                android:id="@+id/btnNavBuscar"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:background="@null"
-                android:contentDescription="@string/boton_buscar"
-                app:srcCompat="@drawable/buscar"
-                app:tint="@color/rosa" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/buscar"
-                android:textColor="@color/rosa"
-                android:textSize="12sp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/nav_calculadora"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:clickable="true"
-            android:focusable="true"
-            android:background="?attr/selectableItemBackground">
-
-            <ImageButton
-                android:id="@+id/btnNavCalculadora"
-                android:layout_width="22dp"
-                android:layout_height="22dp"
-                android:background="@null"
-                android:contentDescription="@string/boton_calculadora"
-                app:srcCompat="@drawable/calculadora"
-                app:tint="@color/rosa" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/calculadora"
-                android:textColor="@color/rosa"
-                android:textSize="12sp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/nav_perfil"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:clickable="true"
-            android:focusable="true"
-            android:background="?attr/selectableItemBackground">
-
-            <ImageButton
-                android:id="@+id/btnNavPerfil"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:background="@null"
-                android:contentDescription="@string/boton_perfil"
-                app:srcCompat="@drawable/perfil"
-                app:tint="@color/rosa" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/perfil"
-                android:textColor="@color/rosa"
-                android:textSize="12sp" />
-        </LinearLayout>
-    </LinearLayout>
     <ImageButton
         android:id="@+id/btnFavoritos"
         android:layout_width="50dp"
@@ -353,7 +225,5 @@
         android:layout_marginEnd="15dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
