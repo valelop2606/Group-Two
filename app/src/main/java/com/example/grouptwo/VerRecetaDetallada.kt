@@ -6,11 +6,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.grouptwo.adapters.IngredientesAdapter
 import com.example.grouptwo.adapters.PasosAdapter
+import com.example.grouptwo.data.GuardarMiReceta
 import com.example.grouptwo.databinding.ActivityVerRecetaDetalladaBinding
 import com.example.grouptwo.dataclases.CoctelesDatabase
+import com.example.grouptwo.dataclases.Coctel
 import com.example.grouptwo.repository.Favoritos
-//import com.example.grouptwo.repository.Favoritos
-//import com.example.grouptwo.repository.Favoritos
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 
@@ -29,7 +29,6 @@ class VerRecetaDetalladaActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityVerRecetaDetalladaBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
 
         setupRecyclerViews()
         loadCocktailData()
@@ -50,60 +49,49 @@ class VerRecetaDetalladaActivity : AppCompatActivity() {
     }
 
     private fun loadCocktailData() {
-        // 1) Leer el id que viene por Intent
         val cocktailId = intent?.getStringExtra(EXTRA_COCKTAIL_ID)
         if (cocktailId.isNullOrEmpty()) {
             Toast.makeText(this, "ID del cóctel no recibido", Toast.LENGTH_SHORT).show()
             finish()
             return
         }
-        currentCocktailId = cocktailId // ✅ guardamos el id actual
+        currentCocktailId = cocktailId
 
-        // 2) Leer JSON (usa Json con configuración tolerante)
+        // ✅ 1) Intentar cargar desde JSON
         val txt = assets.open("cocteles.json").bufferedReader().use { it.readText() }
         val json = Json { ignoreUnknownKeys = true; isLenient = true }
         val db = json.decodeFromString<CoctelesDatabase>(txt)
+        var cocktail: Coctel? = db.cocteles.firstOrNull { it.id == cocktailId }
 
-        // 3) Buscar el cóctel por id
-        val cocktail = db.cocteles.firstOrNull { it.id == cocktailId }
+        // ✅ 2) Si no está en el JSON, buscar en las recetas creadas por el usuario
+        if (cocktail == null) {
+            val guardadas = GuardarMiReceta.getAll(this)
+            cocktail = guardadas.firstOrNull { it.id == cocktailId }
+        }
+
+        // ✅ 3) Si no existe en ningún lado, salir
         if (cocktail == null) {
             Toast.makeText(this, "Cóctel no encontrado: $cocktailId", Toast.LENGTH_SHORT).show()
             finish()
             return
         }
 
-        // 4) Pintar la UI
+        // ✅ 4) Pintar UI
         binding.txtTitulo.text = cocktail.nombre
         binding.tvDescripcion.text = cocktail.descripcion
         binding.tvDificultad.text = cocktail.dificultad
         binding.tvSabor.text = cocktail.sabor
         binding.tvNivelAlcohol.text = cocktail.nivel_alcohol
 
-
         ingredientesAdapter.addDataCards(cocktail.ingredientes)
         pasosAdapter.addDataCards(cocktail.pasos.sortedBy { it.n })
-
-        // ✅ Botón favoritos (solo guardar/quitar de la lista)
-//        binding.btnFavoritos.setOnClickListener {
-//            val id = currentCocktailId ?: return@setOnClickListener
-////            val ahoraEsFavorito = Favoritos.toggle(this, id)
-//            val msg = if (ahoraEsFavorito) "Añadido a Favoritos" else "Eliminado de Favoritos"
-//            Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
-//        }
-
-        // Botón video (si luego lo habilitas)
-        // binding.btnVideo.setOnClickListener {
-        //     cocktail.url_video_tutorial?.let { url ->
-        //         startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
-        //     } ?: Toast.makeText(this, "Video no disponible", Toast.LENGTH_SHORT).show()
-        // }
     }
 
     private fun setupListeners() {
         binding.btnVolver.setOnClickListener { finish() }
         binding.btnFavoritos.setOnClickListener {
             val id = currentCocktailId ?: return@setOnClickListener
-            val added = Favoritos.toggle(this, id)   // ← pasa this
+            val added = Favoritos.toggle(this, id)
             val msg = if (added) "Añadido a favoritos" else "Quitado de favoritos"
             if (added) {
                 binding.btnFavoritos.setImageResource(R.drawable.favorito_on)

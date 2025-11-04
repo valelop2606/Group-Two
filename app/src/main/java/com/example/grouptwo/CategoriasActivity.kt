@@ -25,7 +25,6 @@ class CategoriasActivity : AppCompatActivity() {
             // Usa tus mipmaps/imagenes. Reutilicé algunos nombres de tu layout previo:
             Categoria("Clasico", R.mipmap.clasicos_foreground),
             Categoria("Moderno_Complejo", R.mipmap.creativosfinal_foreground),
-            // Si quieres ya las 10 finales (puedes apuntar a ic_category mientras tanto):
             Categoria("Tropical", R.mipmap.tropical_foreground),
             Categoria("Refrescante", R.mipmap.refrescante_foreground),
             Categoria("Dulce", R.mipmap.dulces_foreground),

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    tools:context=".SoporteActivity">
+
+    <ImageButton
+        android:id="@+id/soporte_flecha_atras"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginStart="25dp"
+        android:src="@drawable/flecha_atras"
+        app:tint="@color/rosa"
+        android:backgroundTint="@color/black"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <TextView
+        android:id="@+id/Txt_Soporte"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:text="Soporte"
+        android:textSize="30sp"
+        android:textColor="@color/blanco"
+        android:layout_marginStart="15dp"
+        app:layout_constraintStart_toEndOf="@id/soporte_flecha_atras"
+        app:layout_constraintTop_toTopOf="@id/soporte_flecha_atras"
+        app:layout_constraintBottom_toBottomOf="@id/soporte_flecha_atras"/>
+
+    <TextView
+        android:id="@+id/Txt_enviaTuComentario"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:text="Envia tu comentario"
+        android:textColor="@color/blanco"
+        android:textSize="25sp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="30dp"
+        app:layout_constraintTop_toBottomOf="@id/soporte_flecha_atras"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <EditText
+        android:id="@+id/EditText_comentario"
+        android:layout_width="380dp"
+        android:layout_height="300dp"
+        android:hint="Escribe tu comentario"
+        android:textSize="20dp"
+        android:textColorHint="@color/blanco"
+        android:textColor="@color/blanco"
+        android:gravity="top"
+        app:layout_constraintStart_toStartOf="@id/Txt_enviaTuComentario"
+        app:layout_constraintTop_toBottomOf="@id/Txt_enviaTuComentario"/>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card_Enviar_comentario"
+        android:layout_width="250dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginTop="10dp"
+        android:backgroundTint="@color/black"
+        app:strokeColor="@color/blanco"
+        app:strokeWidth="1dp"
+        android:clickable="true"
+        app:layout_constraintTop_toBottomOf="@id/EditText_comentario"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:padding="16dp"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/comentario"
+                app:tint="@color/rosa" />
+
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:text="Enviar comentario"
+                android:textColor="@color/blanco"
+                android:textSize="16sp"
+                android:gravity="center"/>
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.grouptwo.adapters.CoctelesAdapter
+import com.example.grouptwo.data.GuardarMiReceta
 import com.example.grouptwo.databinding.ActivityCoctelesPorCategoriaBinding
 import com.example.grouptwo.dataclases.Coctel
 import com.example.grouptwo.repository.Favoritos
@@ -22,22 +23,36 @@ class CoctelesPorCategoriaActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val mostrarFavoritos = intent.getBooleanExtra("mostrar_favoritos", false)
+        val mostrarMisRecetas = intent.getBooleanExtra("mostrar_mis_recetas", false)
         val categoriaSeleccionada = intent.getStringExtra("categoria")
 
-        val listaCocteles = cargarCoctelesDesdeJson()
-        val filtrados = if (mostrarFavoritos) {
-            // ✅ Favoritos usando el contexto actual
-            val favoritosIds = Favoritos.all(this)
-            listaCocteles.filter { it.id in favoritosIds }
-        } else {
-            // ✅ Filtrado por categoría (comportamiento normal)
-            listaCocteles.filter { c ->
-                c.categorias.any { it.texto.equals(categoriaSeleccionada, ignoreCase = true) }
+        // Base desde assets + recetas creadas y persistidas
+        val base = cargarCoctelesDesdeJson()
+        val creados = GuardarMiReceta.getAll(this)
+        val todos = (base + creados).distinctBy { it.id }
+
+        val filtrados: List<Coctel> = when {
+            mostrarFavoritos -> {
+                val favoritosIds = Favoritos.all(this)
+                todos.filter { it.id in favoritosIds }
             }
+            mostrarMisRecetas -> {
+                creados
+            }
+            !categoriaSeleccionada.isNullOrBlank() -> {
+                todos.filter { c ->
+                    c.categorias.any { it.texto.equals(categoriaSeleccionada, ignoreCase = true) }
+                }
+            }
+            else -> todos
         }
 
-        binding.txtTituloCategoria.text =
-            if (mostrarFavoritos) "Tus Favoritos" else (categoriaSeleccionada ?: "Cócteles")
+        binding.txtTituloCategoria.text = when {
+            mostrarFavoritos -> "Tus Favoritos y Preparados"
+            mostrarMisRecetas -> "Mis Recetas"
+            !categoriaSeleccionada.isNullOrBlank() -> categoriaSeleccionada
+            else -> "Cócteles"
+        }
 
         val adapter = CoctelesAdapter(filtrados) { coctel ->
             val intent = Intent(this, VerRecetaDetalladaActivity::class.java)
@@ -59,6 +74,6 @@ class CoctelesPorCategoriaActivity : AppCompatActivity() {
         val jsonObject = formato.parseToJsonElement(jsonString).jsonObject
         val coctelesJson = jsonObject["cocteles"]!!.toString()
 
-        return formato.decodeFromString<List<Coctel>>(coctelesJson)
+        return formato.decodeFromString(coctelesJson)
     }
 }

@@ -2,6 +2,7 @@ package com.example.grouptwo
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -36,6 +37,28 @@ class ConfiguracionActivity : AppCompatActivity() {
             val intent = Intent(this, EditarPerfilActivity::class.java)
             startActivity(intent)
         }
+
+        binding.switchNotificaciones.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) {
+                Toast.makeText(this, "Notificaciones activadas", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(this, "Notificaciones desactivadas", Toast.LENGTH_SHORT).show()
+            }
+        }
+        binding.switchModoOscuro.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) {
+                Toast.makeText(this, "Ya esta en modo oscuro", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(this, "No existe de momento modo claro", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        binding.cardSoporte.setOnClickListener {
+            val intent = Intent(this, SoporteActivity::class.java)
+            startActivity(intent)
+        }
+
+
 
 
 

@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background_dark"
-    android:fillViewport="true">
+    android:fillViewport="true"
+    tools:context=".PantallaDeCrearReceta">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -17,13 +19,12 @@
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:background="?attr/selectableItemBackgroundBorderless"
-            android:contentDescription="Regresar"
+            android:contentDescription="@string/cd_back"
             android:padding="12dp"
             android:src="@drawable/flecha_atras"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:tint="@color/rosa"
-            />
+            app:tint="@color/rosa" />
 
         <!-- Título -->
         <TextView
@@ -31,7 +32,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:text="Crear Cóctel"
+            android:text="@string/crear_coctel_title"
             android:textColor="@color/textColor"
             android:textSize="24sp"
             android:textStyle="bold"
@@ -45,7 +46,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/colorPrimary"
-            android:text="Guardar"
+            android:contentDescription="@string/cd_save"
+            android:text="@string/guardar"
             android:textColor="@android:color/black"
             app:cornerRadius="12dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -57,7 +59,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:text="Nombre del cóctel *"
+            android:text="@string/nombre_coctel_oblig"
             android:textColor="@color/textColor"
             android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent"
@@ -69,7 +71,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:background="@drawable/bg_buscar"
-            android:hint="Ej: Sunset Paradise"
+            android:hint="@string/hint_nombre_ej"
             android:padding="12dp"
             android:textColor="@color/textColor"
             android:textColorHint="@color/hint_color"
@@ -83,7 +85,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="Descripción"
+            android:text="@string/descripcion"
             android:textColor="@color/textColor"
             android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent"
@@ -95,7 +97,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:background="@drawable/bg_buscar"
-            android:hint="Ej: Refrescante, Sofisticado, Tropical..."
+            android:hint="@string/hint_desc_ej"
             android:padding="12dp"
             android:textColor="@color/textColor"
             android:textColorHint="@color/hint_color"
@@ -109,7 +111,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="Categoría *"
+            android:text="@string/categoria_oblig"
             android:textColor="@color/textColor"
             android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent"
@@ -121,46 +123,23 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             app:chipSpacing="8dp"
+            app:singleSelection="true"
+            app:singleLine="false"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvCategoriaLabel"
-            app:singleSelection="true">
+            app:layout_constraintTop_toBottomOf="@id/tvCategoriaLabel">
 
+            <!-- 4 chips base (el código agrega más si quieres) -->
             <com.google.android.material.chip.Chip
                 android:id="@+id/chipClasicos"
                 style="@style/Widget.MaterialComponents.Chip.Choice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Clásicos"
-                android:textColor="@color/textColor"
-                app:chipBackgroundColor="@color/chip_selected_color" />
+                android:textColor="@color/black"
+                app:chipBackgroundColor="@color/blanco" />
 
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chipCreativos"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Creativos"
-                android:textColor="@color/textColor"
-                app:chipBackgroundColor="@color/chip_selected_color" />
 
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chipSinAlcohol"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Sin Alcohol"
-                android:textColor="@color/textColor"
-                app:chipBackgroundColor="@color/chip_selected_color" />
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chipTematicos"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Temáticos"
-                android:textColor="@color/textColor"
-                app:chipBackgroundColor="@color/chip_selected_color" />
         </com.google.android.material.chip.ChipGroup>
 
         <!-- Perfil de sabor -->
@@ -169,7 +148,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="Perfil de sabor"
+            android:text="@string/perfil_sabor"
             android:textColor="@color/textColor"
             android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent"
@@ -181,7 +160,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:background="@drawable/bg_buscar"
-            android:hint="Ej: Cítrico &amp; Dulce, Amargo &amp; Herbáceo..."
+            android:hint="sabor"
             android:padding="12dp"
             android:textColor="@color/textColor"
             android:textColorHint="@color/hint_color"
@@ -195,7 +174,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="Tiempo de preparación"
+            android:text="@string/tiempo_preparacion"
             android:textColor="@color/textColor"
             android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent"
@@ -207,7 +186,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:background="@drawable/bg_buscar"
-            android:hint="Ej: 5 min, 10 min..."
+            android:hint="@string/hint_tiempo"
             android:padding="12dp"
             android:textColor="@color/textColor"
             android:textColorHint="@color/hint_color"
@@ -231,7 +210,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Ingredientes *"
+                android:text="@string/ingredientes_oblig"
                 android:textColor="@color/textColor"
                 android:textSize="14sp" />
 
@@ -240,7 +219,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="36dp"
                 android:backgroundTint="@color/colorPrimary"
-                android:text="+ Agregar"
+                android:text="@string/agregar_mas"
                 android:textColor="@android:color/black"
                 android:textSize="12sp"
                 app:cornerRadius="8dp" />
@@ -254,8 +233,7 @@
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/layoutIngredientesHeader">
-        </LinearLayout>
+            app:layout_constraintTop_toBottomOf="@id/layoutIngredientesHeader" />
 
         <!-- Pasos de preparación -->
         <LinearLayout
@@ -273,7 +251,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Pasos de preparación *"
+                android:text="@string/pasos_oblig"
                 android:textColor="@color/textColor"
                 android:textSize="14sp" />
 
@@ -282,7 +260,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="36dp"
                 android:backgroundTint="@color/colorPrimary"
-                android:text="+ Agregar"
+                android:text="@string/agregar_mas"
                 android:textColor="@android:color/black"
                 android:textSize="12sp"
                 app:cornerRadius="8dp" />
@@ -298,8 +276,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/layoutPasosHeader">
-        </LinearLayout>
+            app:layout_constraintTop_toBottomOf="@id/layoutPasosHeader" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

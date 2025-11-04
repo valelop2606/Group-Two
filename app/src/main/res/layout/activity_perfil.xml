@@ -94,21 +94,6 @@
 
 
 
-
-
-        <Button
-            android:id="@+id/btnPreparados"
-            android:layout_width="0dp"
-            android:layout_height="48dp"
-            android:layout_marginEnd="8dp"
-            android:layout_weight="1"
-            android:backgroundTint="@android:color/transparent"
-            android:text="Preparados"
-            android:textAllCaps="false"
-            android:textColor="#FFFFFF"
-            android:textSize="13sp"
-            style="?attr/borderlessButtonStyle" />
-
         <Button
             android:id="@+id/btnFavoritos"
             android:layout_width="0dp"
@@ -116,7 +101,7 @@
             android:layout_marginEnd="8dp"
             android:layout_weight="1"
             android:backgroundTint="@android:color/transparent"
-            android:text="Favoritos"
+            android:text="Favoritos / Preparados"
             android:textAllCaps="false"
             android:textColor="#FFFFFF"
             android:textSize="13sp"
@@ -134,6 +119,44 @@
             android:textSize="13sp"
             style="?attr/borderlessButtonStyle" />
     </LinearLayout>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/crearReceta"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginTop="10dp"
+        app:cardCornerRadius="12dp"
+        android:backgroundTint="@color/black"
+        app:strokeColor="@color/gris_claro"
+        app:strokeWidth="1dp"
+        android:clickable="true"
+        app:layout_constraintTop_toBottomOf="@id/layoutBotones"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:padding="16dp"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/crear"
+                app:tint="@color/rosa" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:text="crear receta"
+                android:textColor="@color/rosa"
+                android:textSize="16sp" />
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
 
     <!-- Cerrar Sesión -->
     <com.google.android.material.card.MaterialCardView
@@ -170,5 +193,6 @@
                 android:textSize="16sp" />
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
