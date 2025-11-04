@@ -93,11 +93,12 @@ class PantallaInicialActivity : AppCompatActivity() {
             val intent = Intent(this, CalculadoraActivity::class.java)
             startActivity(intent)
         }
+        binding.btnElegirAlAzar.setOnClickListener {
+            elegirCoctelAlAzarYAbrirReceta(cocteles)
+        }
 
     }
 
-
-    // Función para guardar el coctel en SharedPreferences
     private fun guardarDataClass(proyecto: Coctel) {
         val asdfgh: String = Json.encodeToString(proyecto)
         val editor = sharedPreferences.edit()
@@ -105,7 +106,6 @@ class PantallaInicialActivity : AppCompatActivity() {
         editor.apply()
     }
 
-    // Función para obtener el coctel de SharedPreferences
     private fun obtenerDataClass(): Coctel? {
         val datoGuardado: String = sharedPreferences.getString("cocteles", null) ?: ""
         if (!datoGuardado.isEmpty()) {
@@ -115,7 +115,6 @@ class PantallaInicialActivity : AppCompatActivity() {
         return null
     }
 
-    // Función para guardar el coctel en el JSON
     private fun obtenerDataDeFile(): Coctel? {
         val fileString: String =
             applicationContext.assets.open("cocteles.json").bufferedReader().use { it.readText() }
@@ -168,5 +167,13 @@ class PantallaInicialActivity : AppCompatActivity() {
         binding.txtTituloCuartoCoctel.setNombre(coctel)
         binding.txtDificultadCuartoCoctel.setDificultad(coctel)
         binding.textSaborCuartoCoctel.setSabor(coctel)
+    }
+    private fun elegirCoctelAlAzarYAbrirReceta(cocteles: List<Coctel>) {
+
+        val coctelElegido = cocteles.random()
+
+        val intent = Intent(this, VerRecetaDetalladaActivity::class.java)
+        intent.putExtra(EXTRA_COCKTAIL_ID, coctelElegido.id)
+        startActivity(intent)
     }
 }

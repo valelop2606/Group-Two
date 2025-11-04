@@ -32,10 +32,25 @@ class IngredientesAdapter :
 
     inner class IngredienteViewHolder(private val binding: ItemIngredienteBinding) :
         RecyclerView.ViewHolder(binding.root) {
+
         fun bind(data: Ingrediente) {
             binding.txtNombre.text = data.nombre
-            binding.txtCantidad.text = data.cantidad?.toString()?: ""
-            binding.txtUnidad.text = " ${data.unidad}"
+
+            val cantidadYUnidad = when {
+                data.cantidad != null -> {
+                    val cantidadFormateada = if (data.cantidad == data.cantidad.toInt().toDouble()) {
+                        data.cantidad.toInt().toString()
+                    } else {
+                        String.format("%.1f", data.cantidad)
+                    }
+                    "${cantidadFormateada} ${data.unidad.lowercase()}"
+                }
+                data.unidad.isNotEmpty() -> data.unidad
+                else -> ""
+            }
+
+            binding.txtCantidad.text = cantidadYUnidad
+
         }
     }
 
@@ -43,6 +58,4 @@ class IngredientesAdapter :
         dataCards.clear()
         dataCards.addAll(list)
     }
-
-
 }

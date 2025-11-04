@@ -12,28 +12,41 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
+import com.example.grouptwo.databinding.PantallaDeCalculadoraBinding
 import com.example.grouptwo.dataclases.Coctel
+import java.io.Serializable
 import kotlinx.serialization.json.Json
-import kotlinx.serialization.decodeFromString
 
 
 data class CoctelCalculadora(
     val id: String,
     val nombre: String,
     var cantidad: Int = 5
-)
+) : Serializable
 
 class CalculadoraActivity : AppCompatActivity() {
 
     private var numeroInvitados = 10
     private val coctelesSeleccionados = mutableListOf<CoctelCalculadora>()
+    private lateinit var binding: PantallaDeCalculadoraBinding
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.pantalla_de_calculadora)
+
+        binding = PantallaDeCalculadoraBinding.inflate(layoutInflater)
+
+        setContentView(binding.root)
 
         inicializarVistas()
+
         actualizarUI()
+
+        binding.btnVerListaCompras.setOnClickListener {
+            val intent = Intent(this, ListaDeCompras::class.java)
+            intent.putExtra("coctelesConCantidad", ArrayList(coctelesSeleccionados))
+            startActivity(intent)
+        }
     }
 
     private fun inicializarVistas() {
@@ -41,7 +54,6 @@ class CalculadoraActivity : AppCompatActivity() {
         val btnMenosInvitados = findViewById<ImageButton>(R.id.btnMenosInvitados)
         val btnMasInvitados = findViewById<ImageButton>(R.id.btnMasInvitados)
         val btnAgregarCoctel = findViewById<Button>(R.id.btnAgregarCoctel)
-        val btnVerListaCompras = findViewById<Button>(R.id.btnVerListaCompras)
 
         btnBack.setOnClickListener {
             finish()
@@ -63,10 +75,7 @@ class CalculadoraActivity : AppCompatActivity() {
             mostrarDialogoSeleccionarCoctel()
         }
 
-        btnVerListaCompras.setOnClickListener {
-            val intent = Intent(this, ListaDeCompras::class.java)
-            startActivity(intent)
-        }
+
     }
 
     private fun mostrarDialogoSeleccionarCoctel() {

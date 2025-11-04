@@ -5,11 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <ImageView
-        android:id="@+id/imgIcono"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:contentDescription="@null" />
 
     <TextView
         android:id="@+id/txtNombre"
@@ -17,7 +12,6 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:paddingStart="8dp"
-        android:text="Nombre del ingrediente"
         android:textSize="16sp"
         android:textColor="@color/blanco" />
 
@@ -25,17 +19,7 @@
         android:id="@+id/txtCantidad"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="50 ml"
         android:textSize="14sp"
         android:textColor="@color/blanco" />
 
-    <TextView
-        android:id="@+id/txtUnidad"
-        android:layout_width="100dp"
-        android:layout_height="24dp"
-        android:text="unidad"
-        android:textSize="14sp"
-        android:textColor="@color/blanco"
-        android:background="?attr/selectableItemBackgroundBorderless"
-        android:contentDescription="Eliminar ingrediente" />
 </LinearLayout>

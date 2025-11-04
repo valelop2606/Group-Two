@@ -23,7 +23,7 @@ class VerRecetaDetalladaActivity : AppCompatActivity() {
     private lateinit var binding: ActivityVerRecetaDetalladaBinding
     private val ingredientesAdapter = IngredientesAdapter()
     private val pasosAdapter = PasosAdapter()
-    private var currentCocktailId: String? = null  // ✅ agregado
+    private var currentCocktailId: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,14 +57,12 @@ class VerRecetaDetalladaActivity : AppCompatActivity() {
             finish()
             return
         }
-        currentCocktailId = cocktailId // ✅ guardamos el id actual
+        currentCocktailId = cocktailId
 
-        // 2) Leer JSON (usa Json con configuración tolerante)
         val txt = assets.open("cocteles.json").bufferedReader().use { it.readText() }
         val json = Json { ignoreUnknownKeys = true; isLenient = true }
         val db = json.decodeFromString<CoctelesDatabase>(txt)
 
-        // 3) Buscar el cóctel por id
         val cocktail = db.cocteles.firstOrNull { it.id == cocktailId }
         if (cocktail == null) {
             Toast.makeText(this, "Cóctel no encontrado: $cocktailId", Toast.LENGTH_SHORT).show()
@@ -72,7 +70,6 @@ class VerRecetaDetalladaActivity : AppCompatActivity() {
             return
         }
 
-        // 4) Pintar la UI
         binding.txtTitulo.text = cocktail.nombre
         binding.tvDescripcion.text = cocktail.descripcion
         binding.tvDificultad.text = cocktail.dificultad

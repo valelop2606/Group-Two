@@ -23,32 +23,45 @@
             android:orientation="vertical"
             android:padding="12dp">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingBottom="4dp"
-                android:text="Mixify"
-                android:textColor="#FFFFFF"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingBottom="8dp"
-                android:text="Tu bar personal"
-                android:textColor="#FF69B4"
-                android:textSize="14sp" />
-
-            <EditText
-                android:id="@+id/etBuscarIngrediente"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginBottom="8dp"
-                android:hint="Buscar por nombre, tipo o ingrediente"
-                android:padding="8dp"
-                android:textColor="#FFFFFF"
-                android:textColorHint="#B0B0B0" />
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:paddingBottom="8dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="4dp"
+                        android:text="Mixify"
+                        android:textColor="#FFFFFF"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Tu bar personal"
+                        android:textColor="#FF69B4"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+                <ImageButton
+                    android:id="@+id/btnElegirAlAzar"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:contentDescription="Elegir cóctel al azar"
+                    android:scaleType="centerInside"
+                    android:padding="8dp"
+                    app:srcCompat="@drawable/dado_icon"/>
+            </LinearLayout>
+
+
 
             <Button
                 android:id="@+id/btnLoTengoEnCasa"
@@ -82,29 +95,6 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="12dp"
-                    android:gravity="center"
-                    android:orientation="horizontal">
-
-                    <Button
-                        android:layout_width="0dp"
-                        android:layout_height="40dp"
-                        android:layout_weight="1"
-                        android:background="@android:color/darker_gray"
-                        android:text="Clásicos"
-                        android:textColor="#FFFFFF" />
-
-                    <Button
-                        android:layout_width="0dp"
-                        android:layout_height="40dp"
-                        android:layout_weight="1"
-                        android:background="@android:color/darker_gray"
-                        android:text="Creativos"
-                        android:textColor="#FFFFFF" />
-                </LinearLayout>
 
                 <Button
                     android:id="@+id/btnCategorias"
