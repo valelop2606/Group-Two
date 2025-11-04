@@ -1,5 +1,6 @@
 package com.example.grouptwo
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -8,34 +9,33 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
+import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.cardview.widget.CardView
 import com.example.grouptwo.dataclases.Coctel
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
-import kotlinx.serialization.json.Json
-import kotlinx.serialization.decodeFromString
+import org.json.JSONObject
 
 class BuscadorActivity : AppCompatActivity() {
 
     private val ingredientesSeleccionados = mutableListOf<String>()
-    private var todosLosCocteles = listOf<Coctel>()
+    private var todosLosCocteles = mutableListOf<Coctel>()
+    private lateinit var etBuscar: EditText
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_buscador)
 
-        todosLosCocteles = cargarCoctelesDesdeJSON()
-
+        cargarCoctelesDesdeJSON()
         configurarVistas()
         configurarChips()
     }
 
     private fun configurarVistas() {
         val btnBack = findViewById<ImageButton>(R.id.btnBack)
-        val etBuscar = findViewById<EditText>(R.id.etBuscarIngrediente)
+        etBuscar = findViewById<EditText>(R.id.etBuscarIngrediente)
         val btnVerPreparar = findViewById<Button>(R.id.btnVerPreparar)
 
         btnBack.setOnClickListener {
@@ -46,7 +46,13 @@ class BuscadorActivity : AppCompatActivity() {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
             override fun afterTextChanged(s: Editable?) {
-                filtrarChips(s.toString())
+                val busqueda = s.toString()
+
+                if (ingredientesSeleccionados.isEmpty()) {
+                    mostrarCoctelesDisponibles()
+                }
+
+                filtrarChips(busqueda)
             }
         })
 
@@ -68,13 +74,24 @@ class BuscadorActivity : AppCompatActivity() {
     }
 
     private fun configurarChipGroup(chipGroup: ChipGroup) {
-        for (i in 0 until chipGroup.childCount) {
+        var i = 0
+        while (i < chipGroup.childCount) {
             val chip = chipGroup.getChildAt(i) as? Chip
             chip?.setOnCheckedChangeListener { buttonView, isChecked ->
                 val nombreIngrediente = buttonView.text.toString()
 
                 if (isChecked) {
-                    if (!ingredientesSeleccionados.contains(nombreIngrediente)) {
+                    var existe = false
+                    var j = 0
+                    while (j < ingredientesSeleccionados.size) {
+                        if (ingredientesSeleccionados[j] == nombreIngrediente) {
+                            existe = true
+                            break
+                        }
+                        j = j + 1
+                    }
+
+                    if (!existe) {
                         ingredientesSeleccionados.add(nombreIngrediente)
                         agregarChipSeleccionado(nombreIngrediente)
                     }
@@ -85,6 +102,7 @@ class BuscadorActivity : AppCompatActivity() {
 
                 actualizarContadorBoton()
             }
+            i = i + 1
         }
     }
 
@@ -107,12 +125,14 @@ class BuscadorActivity : AppCompatActivity() {
     private fun quitarChipSeleccionado(nombre: String) {
         val chipGroupSeleccionados = findViewById<ChipGroup>(R.id.chipGroupSeleccionados)
 
-        for (i in 0 until chipGroupSeleccionados.childCount) {
+        var i = 0
+        while (i < chipGroupSeleccionados.childCount) {
             val chip = chipGroupSeleccionados.getChildAt(i) as? Chip
             if (chip?.text.toString() == nombre) {
                 chipGroupSeleccionados.removeView(chip)
                 break
             }
+            i = i + 1
         }
     }
 
@@ -127,19 +147,21 @@ class BuscadorActivity : AppCompatActivity() {
     }
 
     private fun desmarcarEnGrupo(chipGroup: ChipGroup, nombre: String) {
-        for (i in 0 until chipGroup.childCount) {
+        var i = 0
+        while (i < chipGroup.childCount) {
             val chip = chipGroup.getChildAt(i) as? Chip
             if (chip?.text.toString() == nombre) {
                 chip?.isChecked = false
                 break
             }
+            i = i + 1
         }
     }
 
     private fun actualizarContadorBoton() {
         val btnVerPreparar = findViewById<Button>(R.id.btnVerPreparar)
         val cantidad = ingredientesSeleccionados.size
-        btnVerPreparar.text = "Ver qué puedo preparar ($cantidad)"
+        btnVerPreparar.text = "Ver qué puedo preparar (" + cantidad.toString() + ")"
     }
 
     private fun filtrarChips(busqueda: String) {
@@ -155,7 +177,8 @@ class BuscadorActivity : AppCompatActivity() {
     }
 
     private fun filtrarGrupo(chipGroup: ChipGroup, busqueda: String) {
-        for (i in 0 until chipGroup.childCount) {
+        var i = 0
+        while (i < chipGroup.childCount) {
             val chip = chipGroup.getChildAt(i) as? Chip
             if (chip != null) {
                 if (busqueda.isEmpty()) {
@@ -165,6 +188,7 @@ class BuscadorActivity : AppCompatActivity() {
                     chip.visibility = if (coincide) View.VISIBLE else View.GONE
                 }
             }
+            i = i + 1
         }
     }
 
@@ -174,68 +198,121 @@ class BuscadorActivity : AppCompatActivity() {
 
         containerResultados.removeAllViews()
 
-        if (ingredientesSeleccionados.isEmpty()) {
+        val busquedaGeneral = etBuscar.text.toString().lowercase()
+        val hayBusquedaGeneral = busquedaGeneral.isNotEmpty()
+
+        val coctelesDisponibles = mutableListOf<Coctel>()
+
+        if (ingredientesSeleccionados.isEmpty() && !hayBusquedaGeneral) {
             tvResultadosTitle.visibility = View.GONE
             containerResultados.visibility = View.GONE
             return
         }
 
-        val coctelesDisponibles = mutableListOf<Coctel>()
+        var i = 0
+        while (i < todosLosCocteles.size) {
+            val coctel = todosLosCocteles[i]
 
-        for (coctel in todosLosCocteles) {
-            var coincidencias = 0
+            // 1. Filtro General (Nombre, Dificultad, Alcohol, Sabor)
+            val cumpleFiltroGeneral = if (hayBusquedaGeneral) {
+                coctel.nombre.lowercase().contains(busquedaGeneral) ||
+                        coctel.dificultad.lowercase().contains(busquedaGeneral) ||
+                        coctel.nivel_alcohol.lowercase().contains(busquedaGeneral) ||
+                        coctel.sabor.lowercase().contains(busquedaGeneral)
+            } else {
+                true
+            }
 
-            for (ingrediente in coctel.ingredientes) {
-                val nombreIngrediente = ingrediente.nombre.lowercase()
+            if (ingredientesSeleccionados.isEmpty()) {
+                // Caso A: Solo se busca por Nombre o Atributos
+                if (cumpleFiltroGeneral) {
+                    coctelesDisponibles.add(coctel)
+                }
 
-                for (seleccionado in ingredientesSeleccionados) {
-                    if (nombreIngrediente.contains(seleccionado.lowercase()) ||
-                        seleccionado.lowercase().contains(nombreIngrediente)) {
-                        coincidencias = coincidencias + 1
-                        break
+            } else {
+
+                var coincidenciasIngredientes = 0
+                var j = 0
+                while (j < coctel.ingredientes.size) {
+                    val ingrediente = coctel.ingredientes[j]
+                    val nombreIngrediente = ingrediente.nombre.lowercase()
+
+                    var k = 0
+                    while (k < ingredientesSeleccionados.size) {
+                        val seleccionado = ingredientesSeleccionados[k]
+                        if (nombreIngrediente.contains(seleccionado.lowercase()) ||
+                            seleccionado.lowercase().contains(nombreIngrediente)) {
+                            coincidenciasIngredientes = coincidenciasIngredientes + 1
+                            break
+                        }
+                        k = k + 1
                     }
+                    j = j + 1
+                }
+
+                // Si hay coincidencias de ingredientes Y cumple el filtro general
+                if (coincidenciasIngredientes > 0 && cumpleFiltroGeneral) {
+                    coctelesDisponibles.add(coctel)
                 }
             }
 
-            if (coincidencias > 0) {
-                coctelesDisponibles.add(coctel)
-            }
+            i = i + 1
         }
 
         if (coctelesDisponibles.isEmpty()) {
-            tvResultadosTitle.visibility = View.GONE
+            tvResultadosTitle.text = "No se encontraron cócteles."
+            tvResultadosTitle.visibility = View.VISIBLE
             containerResultados.visibility = View.GONE
         } else {
+            tvResultadosTitle.text = "Cócteles disponibles (" + coctelesDisponibles.size + ")"
             tvResultadosTitle.visibility = View.VISIBLE
             containerResultados.visibility = View.VISIBLE
 
-            for (coctel in coctelesDisponibles) {
-                agregarCoctelView(coctel, containerResultados)
+            var m = 0
+            while (m < coctelesDisponibles.size) {
+                agregarCoctelView(coctelesDisponibles[m], containerResultados)
+                m = m + 1
             }
         }
     }
 
     private fun agregarCoctelView(coctel: Coctel, container: LinearLayout) {
         val coctelView = LayoutInflater.from(this).inflate(
-            R.layout.item_coctel_calculadora,
+            R.layout.item_coctel,
             container,
             false
         )
 
-        val tvNombreCoctel = coctelView.findViewById<TextView>(R.id.tvNombreCoctel)
-        val tvBebidasCoctel = coctelView.findViewById<TextView>(R.id.tvBebidasCoctel)
+        val imgCoctel = coctelView.findViewById<ImageView>(R.id.imgCoctel)
+        val tvNombreCoctel = coctelView.findViewById<TextView>(R.id.txtNombreCoctel)
+        val tvDescripcionCoctel = coctelView.findViewById<TextView>(R.id.txtDescripcionCoctel)
 
         tvNombreCoctel.text = coctel.nombre
-        tvBebidasCoctel.text = coctel.dificultad + " - " + coctel.nivel_alcohol
+        tvDescripcionCoctel.text = coctel.dificultad + " - " + coctel.nivel_alcohol
+
+        if (coctel.imagen != null) {
+            val resourceId = resources.getIdentifier(coctel.imagen, "drawable", packageName)
+            if (resourceId != 0) {
+                imgCoctel.setImageResource(resourceId)
+            } else {
+                imgCoctel.setImageResource(R.drawable.ic_launcher_background)
+            }
+        } else {
+            imgCoctel.setImageResource(R.drawable.ic_launcher_background)
+        }
+
 
         coctelView.setOnClickListener {
-            // Aquí puedes abrir la pantalla de detalle del coctel
+            val intent = Intent(this, VerRecetaDetalladaActivity::class.java)
+            intent.putExtra(VerRecetaDetalladaActivity.EXTRA_COCKTAIL_ID, coctel.id)
+            startActivity(intent)
         }
 
         container.addView(coctelView)
     }
 
-    private fun cargarCoctelesDesdeJSON(): List<Coctel> {
+
+    private fun cargarCoctelesDesdeJSON() {
         try {
             val inputStream = assets.open("cocteles.json")
             val size = inputStream.available()
@@ -244,14 +321,72 @@ class BuscadorActivity : AppCompatActivity() {
             inputStream.close()
 
             val jsonString = String(buffer, Charsets.UTF_8)
+            val jsonObject = JSONObject(jsonString)
+            val coctelesArray = jsonObject.getJSONArray("cocteles")
 
-            val json = Json { ignoreUnknownKeys = true }
-            val database = json.decodeFromString<com.example.grouptwo.dataclases.CoctelesDatabase>(jsonString)
+            var i = 0
+            while (i < coctelesArray.length()) {
+                val coctelJson = coctelesArray.getJSONObject(i)
 
-            return database.cocteles
+                val ingredientesList = mutableListOf<com.example.grouptwo.dataclases.Ingrediente>()
+                val ingredientesArray = coctelJson.getJSONArray("ingredientes")
+                var j = 0
+                while (j < ingredientesArray.length()) {
+                    val ingJson = ingredientesArray.getJSONObject(j)
+                    val ingrediente = com.example.grouptwo.dataclases.Ingrediente(
+                        nombre = ingJson.getString("nombre"),
+                        unidad = ingJson.getString("unidad")
+                    )
+                    ingredientesList.add(ingrediente)
+                    j = j + 1
+                }
+
+                val pasosList = mutableListOf<com.example.grouptwo.dataclases.Paso>()
+                val pasosArray = coctelJson.getJSONArray("pasos")
+                var k = 0
+                while (k < pasosArray.length()) {
+                    val pasoJson = pasosArray.getJSONObject(k)
+                    val paso = com.example.grouptwo.dataclases.Paso(
+                        n = pasoJson.getInt("n"),
+                        texto = pasoJson.getString("texto")
+                    )
+                    pasosList.add(paso)
+                    k = k + 1
+                }
+
+                val categoriasList = mutableListOf<com.example.grouptwo.dataclases.Categoria>()
+                val categoriasArray = coctelJson.getJSONArray("categorias")
+                var l = 0
+                while (l < categoriasArray.length()) {
+                    val catJson = categoriasArray.getJSONObject(l)
+                    val categoria = com.example.grouptwo.dataclases.Categoria(
+                        n = catJson.getInt("n"),
+                        texto = catJson.getString("texto")
+                    )
+                    categoriasList.add(categoria)
+                    l = l + 1
+                }
+
+                val coctel = Coctel(
+                    id = coctelJson.getString("id"),
+                    nombre = coctelJson.getString("nombre"),
+                    descripcion = if (coctelJson.has("descripcion")) coctelJson.getString("descripcion") else "",
+                    dificultad = coctelJson.getString("dificultad"),
+                    nivel_alcohol = coctelJson.getString("nivel_alcohol"),
+                    sabor = coctelJson.getString("sabor"),
+                    ingredientes = ingredientesList,
+                    pasos = pasosList,
+                    categorias = categoriasList,
+                    imagen = if (coctelJson.has("imagen")) coctelJson.getString("imagen") else null,
+                    ultima_actualizacion = coctelJson.getString("ultima_actualizacion"),
+                    url_video_tutorial = if (coctelJson.has("url_video_tutorial")) coctelJson.getString("url_video_tutorial") else null
+                )
+
+                todosLosCocteles.add(coctel)
+                i = i + 1
+            }
         } catch (e: Exception) {
             e.printStackTrace()
-            return emptyList()
         }
     }
 }

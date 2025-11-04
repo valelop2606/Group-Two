@@ -15,4 +15,27 @@
     <string name="calculadora">Calculadora</string>
     <string name="boton_perfil">Boton que lleva a la pantalla de perfil</string>
     <string name="perfil">Perfil</string>
+
+    <string name="cd_back">Regresar</string>
+    <string name="cd_save">Guardar receta</string>
+    <string name="crear_coctel_title">Crear Cóctel</string>
+    <string name="guardar">Guardar</string>
+    <string name="agregar_mas">+ Agregar</string>
+    <string name="nombre_coctel_oblig">Nombre del cóctel *</string>
+    <string name="descripcion">Descripción</string>
+    <string name="categoria_oblig">Categoría *</string>
+    <string name="perfil_sabor">Perfil de sabor</string>
+    <string name="tiempo_preparacion">Tiempo de preparación</string>
+    <string name="ingredientes_oblig">Ingredientes *</string>
+    <string name="pasos_oblig">Pasos de preparación *</string>
+    <string name="hint_nombre_ej">Ej: Sunset Paradise</string>
+    <string name="hint_desc_ej">Ej: Refrescante, Sofisticado, Tropical...</string>
+    <string name="hint_tiempo">Ej: 5 min, 10 min...</string>
+    <string name="msg_completa_campos">Completa ambos campos</string>
+    <string name="msg_describe_paso">Describe el paso</string>
+    <string name="msg_nombre_oblig">Nombre obligatorio</string>
+    <string name="msg_categoria_oblig">Selecciona una categoría</string>
+    <string name="msg_ingrediente_oblig">Agrega al menos 1 ingrediente</string>
+    <string name="msg_paso_oblig">Agrega al menos 1 paso</string>
+    <string name="msg_guardado_exito">Receta creada</string>
 </resources>

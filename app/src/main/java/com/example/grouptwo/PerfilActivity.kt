@@ -6,12 +6,9 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.example.grouptwo.EditarPerfilActivity.Companion.ID_DESCRIPCION
-import com.example.grouptwo.EditarPerfilActivity.Companion.ID_NOMBRE_DE_USUARIO
 import com.example.grouptwo.databinding.ActivityPerfilBinding
-import com.google.firebase.auth.FirebaseAuth
 import com.example.grouptwo.repository.GuardarPerfil
-import com.example.grouptwo.repository.Favoritos // ✅ importa el objeto
+import com.google.firebase.auth.FirebaseAuth
 
 class PerfilActivity : AppCompatActivity() {
 
@@ -29,35 +26,45 @@ class PerfilActivity : AppCompatActivity() {
             insets
         }
 
+        // Cargar nombre y descripción guardados
         val nombre = GuardarPerfil.loadNombre(this)
         val descripcion = GuardarPerfil.loadDescripcion(this)
-
         binding.tvNombreUsuario.text = if (!nombre.isNullOrBlank()) nombre else "Nombre de Usuario"
         binding.tvDescripcion.text = if (!descripcion.isNullOrBlank()) descripcion else "Descripción"
 
-
-        // ✅ Nuevo: botón para ver lista de favoritos
+        // Abrir Favoritos (ya funciona con CoctelesPorCategoriaActivity)
         binding.btnFavoritos.setOnClickListener {
             val intent = Intent(this, CoctelesPorCategoriaActivity::class.java)
-            intent.putExtra("mostrar_favoritos", true) // decimos que muestre favoritos
+            intent.putExtra("mostrar_favoritos", true)
             startActivity(intent)
         }
 
+        // Abrir Mis Recetas (usa el mismo diseño que categorías)
+        binding.btnMisRecetas.setOnClickListener {
+            val intent = Intent(this, CoctelesPorCategoriaActivity::class.java)
+            intent.putExtra("mostrar_mis_recetas", true)
+            startActivity(intent)
+        }
+
+        // Ir a Configuración
         binding.perfilConfiguracion.setOnClickListener {
-            val intent = Intent(this, ConfiguracionActivity::class.java)
+            startActivity(Intent(this, ConfiguracionActivity::class.java))
+        }
+
+        // Atrás
+        binding.perfilFlechaAtras.setOnClickListener { finish() }
+
+        // Crear Receta
+        binding.crearReceta.setOnClickListener {
+            val intent = Intent(this, PantallaDeCrearReceta::class.java)
             startActivity(intent)
         }
 
-        binding.perfilFlechaAtras.setOnClickListener {
-            finish()
-        }
-
-        binding.perfilCerrarSesion.setOnClickListener {
-            logout()
-        }
+        // Cerrar sesión
+        binding.perfilCerrarSesion.setOnClickListener { logout() }
     }
 
-    fun logout() {
+    private fun logout() {
         FirebaseAuth.getInstance().signOut()
         val intent = Intent(this, InicioSesionActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK

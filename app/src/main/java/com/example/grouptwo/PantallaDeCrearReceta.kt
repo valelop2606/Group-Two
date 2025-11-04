@@ -1,151 +1,214 @@
 package com.example.grouptwo
 
-import android.app.AlertDialog
+import android.annotation.SuppressLint
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.widget.*
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.material.chip.ChipGroup
+import com.example.grouptwo.data.GuardarMiReceta
+import com.example.grouptwo.dataclases.Categoria
+import com.example.grouptwo.dataclases.Coctel
+import com.example.grouptwo.dataclases.Ingrediente
+import com.example.grouptwo.dataclases.Paso
+import com.example.grouptwo.databinding.DialogAgregarIngredienteBinding
+import com.example.grouptwo.databinding.DialogAgregarPasoBinding
+import com.example.grouptwo.databinding.ItemIngredienteBinding
+import com.example.grouptwo.databinding.ItemIngredienteNuevoBinding
+import com.example.grouptwo.databinding.ItemPasoBinding
+import com.example.grouptwo.databinding.ItemPasoNuevoBinding
+import com.example.grouptwo.databinding.PantallaCrearRecetaBinding
+import com.google.android.material.chip.Chip
 
 class PantallaDeCrearReceta : AppCompatActivity() {
 
-    private lateinit var btnBack: ImageButton
-    private lateinit var btnGuardar: Button
-    private lateinit var etNombre: EditText
-    private lateinit var etDescripcion: EditText
-    private lateinit var chipGroupCategoria: ChipGroup
-    private lateinit var etPerfilSabor: EditText
-    private lateinit var etTiempo: EditText
-    private lateinit var btnAgregarIngrediente: Button
-    private lateinit var btnAgregarPaso: Button
-    private lateinit var containerIngredientes: LinearLayout
-    private lateinit var containerPasos: LinearLayout
+    private lateinit var binding: PantallaCrearRecetaBinding
 
-    private val ingredientes = mutableListOf<Pair<String, String>>()
-    private val pasos = mutableListOf<String>()
+    // Estado temporal de la UI
+    private val ingredientes = mutableListOf<Pair<String, String>>() // (nombre, cantidad)
+    private val pasos = mutableListOf<String>()                      // texto del paso
+
+    private val categorias = listOf(
+        "clasico",
+        "tropical",
+        "refrescante",
+        "dulce",
+        "acido_citrico",
+        "amargo",
+        "espumoso_burbujeante",
+        "cafe_y_desayunos",
+        "aperitivo"
+    )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.pantalla_crear_receta) // ← Usa el XML unificado
+        binding = PantallaCrearRecetaBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        inicializarVistas()
+        agregarChipsExtra()     // añade chips faltantes manteniendo singleSelection
         configurarListeners()
     }
 
-    private fun inicializarVistas() {
-        btnBack = findViewById(R.id.btnBack)
-        btnGuardar = findViewById(R.id.btnGuardar)
-        etNombre = findViewById(R.id.etNombre)
-        etDescripcion = findViewById(R.id.etDescripcion)
-        chipGroupCategoria = findViewById(R.id.chipGroupCategoria)
-        etPerfilSabor = findViewById(R.id.etPerfilSabor)
-        etTiempo = findViewById(R.id.etTiempo)
-        btnAgregarIngrediente = findViewById(R.id.btnAgregarIngrediente)
-        btnAgregarPaso = findViewById(R.id.btnAgregarPaso)
-        containerIngredientes = findViewById(R.id.containerIngredientes)
-        containerPasos = findViewById(R.id.containerPasos)
-    }
-
-    private fun configurarListeners() {
+    private fun configurarListeners() = with(binding) {
         btnBack.setOnClickListener { finish() }
         btnGuardar.setOnClickListener { guardarCoctel() }
         btnAgregarIngrediente.setOnClickListener { mostrarDialogoAgregarIngrediente() }
         btnAgregarPaso.setOnClickListener { mostrarDialogoAgregarPaso() }
     }
 
+    /** Agrega chips adicionales (opcional) respetando singleSelection del ChipGroup */
+    private fun agregarChipsExtra() {
+        categorias.forEach { slug ->
+            val chip = Chip(this).apply {
+                text = slug.replace("_", " ")
+                isCheckable = true
+            }
+            binding.chipGroupCategoria.addView(chip)
+        }
+    }
+
     private fun mostrarDialogoAgregarIngrediente() {
-        val dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_agregar_ingrediente, null)
-        val etIngrediente = dialogView.findViewById<EditText>(R.id.etIngredienteDialog)
-        val etCantidad = dialogView.findViewById<EditText>(R.id.etCantidadDialog)
+        val dialogBinding = DialogAgregarIngredienteBinding.inflate(layoutInflater)
 
         AlertDialog.Builder(this)
             .setTitle("Agregar Ingrediente")
-            .setView(dialogView)
-            .setPositiveButton("Agregar") { _, _ ->
-                val ingrediente = etIngrediente.text.toString().trim()
-                val cantidad = etCantidad.text.toString().trim()
-                if (ingrediente.isNotEmpty() && cantidad.isNotEmpty()) {
-                    ingredientes.add(Pair(ingrediente, cantidad))
+            .setView(dialogBinding.root)
+            .setPositiveButton("Agregar") { d, _ ->
+                val ing = dialogBinding.etIngredienteDialog.text.toString()
+                val cant = dialogBinding.etCantidadDialog.text.toString()
+                if (ing.isNotEmpty() && cant.isNotEmpty()) {
+                    ingredientes.add(ing to cant)
                     actualizarListaIngredientes()
                 } else {
                     Toast.makeText(this, "Completa ambos campos", Toast.LENGTH_SHORT).show()
                 }
+                d.dismiss()
             }
             .setNegativeButton("Cancelar", null)
             .show()
     }
 
     private fun mostrarDialogoAgregarPaso() {
-        val dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_agregar_paso, null)
-        val etPaso = dialogView.findViewById<EditText>(R.id.etPasoDialog)
+        val dialogBinding = DialogAgregarPasoBinding.inflate(layoutInflater)
 
         AlertDialog.Builder(this)
             .setTitle("Paso ${pasos.size + 1}")
-            .setView(dialogView)
-            .setPositiveButton("Agregar") { _, _ ->
-                val paso = etPaso.text.toString().trim()
+            .setView(dialogBinding.root)
+            .setPositiveButton("Agregar") { d, _ ->
+                val paso = dialogBinding.etPasoDialog.text.toString()
                 if (paso.isNotEmpty()) {
                     pasos.add(paso)
                     actualizarListaPasos()
                 } else {
                     Toast.makeText(this, "Describe el paso", Toast.LENGTH_SHORT).show()
                 }
+                d.dismiss()
             }
             .setNegativeButton("Cancelar", null)
             .show()
     }
 
-    private fun actualizarListaIngredientes() {
-        containerIngredientes.removeAllViews()
-        ingredientes.forEachIndexed { index, (ing, cant) ->
-            val itemView = LayoutInflater.from(this).inflate(R.layout.item_ingrediente, containerIngredientes, false)
-            itemView.findViewById<TextView>(R.id.txtNombre).text = ing
-            itemView.findViewById<TextView>(R.id.txtCantidad).text = cant
-            itemView.findViewById<ImageButton>(R.id.btnEliminar).setOnClickListener {
-                ingredientes.removeAt(index)
-                actualizarListaIngredientes()
+        private fun actualizarListaIngredientes()  {
+            binding.containerIngredientes.removeAllViews()
+            ingredientes.forEachIndexed { index, (nombre, cantidad) ->
+                val itemBinding = ItemIngredienteNuevoBinding.inflate(layoutInflater, binding.containerIngredientes, false)
+                itemBinding.txtNombre.text = nombre
+                itemBinding.txtCantidad.text = cantidad
+                itemBinding.btnEliminar.setOnClickListener {
+                    ingredientes.removeAt(index)
+                    actualizarListaIngredientes()
+                }
+                binding.containerIngredientes.addView(itemBinding.root)
             }
-            containerIngredientes.addView(itemView)
         }
+
+        private fun actualizarListaPasos()  {
+            binding.containerPasos.removeAllViews()
+            pasos.forEachIndexed { index, texto ->
+                val itemBinding = ItemPasoNuevoBinding.inflate(layoutInflater, binding.containerPasos, false)
+                itemBinding.txtIndice.text = "${index + 1}"
+                itemBinding.txtDescripcion.text = texto
+                // Si quieres eliminar pasos, puedes hacerlo tocando el card completo:
+                itemBinding.root.setOnLongClickListener {
+                    pasos.removeAt(index)
+                    actualizarListaPasos()
+                    true
+                }
+                binding.containerPasos.addView(itemBinding.root)
+            }
+        }
+
+
+    /** Lee el chip seleccionado y lo convierte al slug que guardamos en JSON */
+    private fun categoriaSeleccionada(): String? {
+        val id = binding.chipGroupCategoria.checkedChipId
+        if (id == -1) return null
+        val chip = binding.chipGroupCategoria.findViewById<Chip>(id)
+        return chip.text.toString().trim().lowercase().replace(" ", "_")
     }
 
-    private fun actualizarListaPasos() {
-        containerPasos.removeAllViews()
-        pasos.forEachIndexed { index, paso ->
-            val itemView = LayoutInflater.from(this).inflate(R.layout.item_paso, containerPasos, false)
-            itemView.findViewById<TextView>(R.id.txtIndice).text = "${index + 1}."
-            itemView.findViewById<TextView>(R.id.txtDescripcion).text = paso
-            itemView.findViewById<ImageButton>(R.id.btnEliminarPaso).setOnClickListener {
-                pasos.removeAt(index)
-                actualizarListaPasos()
-            }
-            containerIngredientes.addView(itemView)
-        }
-    }
-
-    private fun guardarCoctel() {
+    private fun guardarCoctel() = with(binding) {
         val nombre = etNombre.text.toString().trim()
-        val categoriaId = chipGroupCategoria.checkedChipId
+        val descripcion = etDescripcion.text.toString().trim()
+        val perfilSabor = etPerfilSabor.text.toString().trim() // lo usamos como "sabor"
 
-        if (nombre.isEmpty()) return Toast.makeText(this, "Nombre obligatorio", Toast.LENGTH_SHORT).show()
-        if (categoriaId == -1) return Toast.makeText(this, "Selecciona categoría", Toast.LENGTH_SHORT).show()
-        if (ingredientes.isEmpty()) return Toast.makeText(this, "Agrega al menos 1 ingrediente", Toast.LENGTH_SHORT).show()
-        if (pasos.isEmpty()) return Toast.makeText(this, "Agrega al menos 1 paso", Toast.LENGTH_SHORT).show()
-
-        val categoria = when (categoriaId) {
-            R.id.chipClasicos -> "Clásicos"
-            R.id.chipCreativos -> "Creativos"
-            R.id.chipSinAlcohol -> "Sin Alcohol"
-            R.id.chipTematicos -> "Temáticos"
-            else -> ""
+        if (nombre.isEmpty()) {
+            Toast.makeText(this@PantallaDeCrearReceta, "Nombre obligatorio", Toast.LENGTH_SHORT).show()
+            return@with
         }
+        val cat = categoriaSeleccionada()
+        if (cat == null) {
+            Toast.makeText(this@PantallaDeCrearReceta, "Selecciona una categoría", Toast.LENGTH_SHORT).show()
+            return@with
+        }
+        if (ingredientes.isEmpty()) {
+            Toast.makeText(this@PantallaDeCrearReceta, "Agrega al menos 1 ingrediente", Toast.LENGTH_SHORT).show()
+            return@with
+        }
+        if (pasos.isEmpty()) {
+            Toast.makeText(this@PantallaDeCrearReceta, "Agrega al menos 1 paso", Toast.LENGTH_SHORT).show()
+            return@with
+        }
+
+        // Mapear a tus dataclasses (unidad es obligatoria → "a gusto" por defecto)
+        val ingList = ingredientes.map { (nom, cantStr) ->
+            val cant = cantStr.toDoubleOrNull()
+            Ingrediente(nombre = nom, cantidad = cant, unidad = "a gusto", nota = null)
+        }
+        val pasosList = pasos.mapIndexed { i, t -> Paso(n = i + 1, texto = t) }
+        val categoriasList = listOf(Categoria(n = 1, texto = cat))
+
+        val coctel = Coctel(
+            id = GuardarMiReceta.generarIdDesdeNombre(nombre),
+            nombre = nombre,
+            descripcion = descripcion.ifBlank { null },
+            dificultad = "facil",                      // no tienes campo específico en el XML
+            nivel_alcohol = "medio",                   // idem
+            sabor = if (perfilSabor.isBlank()) "neutro" else perfilSabor.lowercase(),
+            ingredientes = ingList,
+            pasos = pasosList,
+            categorias = categoriasList,
+            imagen = "moderno_complejo",               // siempre mipmap/moderno_complejo
+            ultima_actualizacion = GuardarMiReceta.hoyISO(),
+            url_video_tutorial = null
+        )
+
+        GuardarMiReceta.addRecipe(this@PantallaDeCrearReceta, coctel)
 
         Toast.makeText(
-            this,
-            "Cóctel '$nombre' guardado!\nCategoría: $categoria\nIngredientes: ${ingredientes.size}\nPasos: ${pasos.size}",
-            Toast.LENGTH_LONG
+            this@PantallaDeCrearReceta,
+            "Receta creada. Procesaremos tu solicitud 🍹",
+            Toast.LENGTH_SHORT
         ).show()
 
-        finish()
+        // Limpieza de UI
+        etNombre.text?.clear()
+        etDescripcion.text?.clear()
+        etPerfilSabor.text?.clear()
+        etTiempo.text?.clear()
+        ingredientes.clear()
+        pasos.clear()
+        actualizarListaIngredientes()
+        actualizarListaPasos()
+        chipGroupCategoria.clearCheck()
     }
 }
