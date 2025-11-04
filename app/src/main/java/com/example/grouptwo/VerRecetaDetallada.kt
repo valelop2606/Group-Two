@@ -1,5 +1,7 @@
 package com.example.grouptwo
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -24,6 +26,7 @@ class VerRecetaDetalladaActivity : AppCompatActivity() {
     private val ingredientesAdapter = IngredientesAdapter()
     private val pasosAdapter = PasosAdapter()
     private var currentCocktailId: String? = null
+    private var currentCocktail: Coctel? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -75,6 +78,8 @@ class VerRecetaDetalladaActivity : AppCompatActivity() {
             return
         }
 
+        currentCocktail = cocktail
+
         binding.txtTitulo.text = cocktail.nombre
         binding.tvDescripcion.text = cocktail.descripcion
         binding.tvDificultad.text = cocktail.dificultad
@@ -97,6 +102,17 @@ class VerRecetaDetalladaActivity : AppCompatActivity() {
                 binding.btnFavoritos.setImageResource(R.drawable.favorito)
             }
             Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
+        }
+        binding.btnVideo.setOnClickListener {
+            val url = currentCocktail?.url_video_tutorial
+
+            if (url.isNullOrEmpty()) {
+                Toast.makeText(this, "Video no disponible para este cóctel.", Toast.LENGTH_SHORT)
+                    .show()
+            } else {
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+                startActivity(intent)
+            }
         }
     }
 }
