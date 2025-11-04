@@ -102,6 +102,7 @@
                         android:id="@+id/tvNivelDificultad"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:text="Medio"
                         android:textColor="@color/blanco"
                         android:textSize="13sp"/>
                 </LinearLayout>

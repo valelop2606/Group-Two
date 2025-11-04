@@ -82,7 +82,7 @@ class VerRecetaDetalladaActivity : AppCompatActivity() {
 
         binding.txtTitulo.text = cocktail.nombre
         binding.tvDescripcion.text = cocktail.descripcion
-        binding.tvDificultad.text = cocktail.dificultad
+        binding.tvNivelDificultad.text = cocktail.dificultad
         binding.tvSabor.text = cocktail.sabor
         binding.tvNivelAlcohol.text = cocktail.nivel_alcohol
 
