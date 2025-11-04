@@ -1,5 +1,6 @@
 package com.example.grouptwo
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -26,8 +27,8 @@ class PantallaDeCrearReceta : AppCompatActivity() {
     private val ingredientes = mutableListOf<Pair<String, String>>() // (nombre, cantidad)
     private val pasos = mutableListOf<String>()                      // texto del paso
 
-    // Si quieres TODAS las categorías, las inyectamos sin tocar tu XML:
-    private val extraCategorias = listOf(
+    private val categorias = listOf(
+        "clasico",
         "tropical",
         "refrescante",
         "dulce",
@@ -36,7 +37,6 @@ class PantallaDeCrearReceta : AppCompatActivity() {
         "espumoso_burbujeante",
         "cafe_y_desayunos",
         "aperitivo"
-        // ya tienes en el XML: clasico, creativo, sin_alcohol, tematicos
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -57,7 +57,7 @@ class PantallaDeCrearReceta : AppCompatActivity() {
 
     /** Agrega chips adicionales (opcional) respetando singleSelection del ChipGroup */
     private fun agregarChipsExtra() {
-        extraCategorias.forEach { slug ->
+        categorias.forEach { slug ->
             val chip = Chip(this).apply {
                 text = slug.replace("_", " ")
                 isCheckable = true
@@ -73,8 +73,8 @@ class PantallaDeCrearReceta : AppCompatActivity() {
             .setTitle("Agregar Ingrediente")
             .setView(dialogBinding.root)
             .setPositiveButton("Agregar") { d, _ ->
-                val ing = dialogBinding.etIngredienteDialog.text.toString().trim()
-                val cant = dialogBinding.etCantidadDialog.text.toString().trim()
+                val ing = dialogBinding.etIngredienteDialog.text.toString()
+                val cant = dialogBinding.etCantidadDialog.text.toString()
                 if (ing.isNotEmpty() && cant.isNotEmpty()) {
                     ingredientes.add(ing to cant)
                     actualizarListaIngredientes()
@@ -94,7 +94,7 @@ class PantallaDeCrearReceta : AppCompatActivity() {
             .setTitle("Paso ${pasos.size + 1}")
             .setView(dialogBinding.root)
             .setPositiveButton("Agregar") { d, _ ->
-                val paso = dialogBinding.etPasoDialog.text.toString().trim()
+                val paso = dialogBinding.etPasoDialog.text.toString()
                 if (paso.isNotEmpty()) {
                     pasos.add(paso)
                     actualizarListaPasos()

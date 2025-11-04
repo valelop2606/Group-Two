@@ -29,7 +29,7 @@
                 android:paddingBottom="4dp"
                 android:text="Mixify"
                 android:textColor="#FFFFFF"
-                android:textSize="20sp"
+                android:textSize="40sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -40,22 +40,12 @@
                 android:textColor="#FF69B4"
                 android:textSize="14sp" />
 
-            <EditText
-                android:id="@+id/etBuscarIngrediente"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginBottom="8dp"
-                android:hint="Buscar por nombre, tipo o ingrediente"
-                android:padding="8dp"
-                android:textColor="#FFFFFF"
-                android:textColorHint="#B0B0B0" />
-
             <Button
                 android:id="@+id/btnLoTengoEnCasa"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="50dp"
                 android:layout_marginBottom="12dp"
-                android:background="#00CED1"
+                android:backgroundTint="@color/rosa"
                 android:text="Lo que tengo en casa"
                 android:textColor="#FFFFFF" />
 
@@ -82,36 +72,14 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="12dp"
-                    android:gravity="center"
-                    android:orientation="horizontal">
-
-                    <Button
-                        android:layout_width="0dp"
-                        android:layout_height="40dp"
-                        android:layout_weight="1"
-                        android:background="@android:color/darker_gray"
-                        android:text="Clásicos"
-                        android:textColor="#FFFFFF" />
-
-                    <Button
-                        android:layout_width="0dp"
-                        android:layout_height="40dp"
-                        android:layout_weight="1"
-                        android:background="@android:color/darker_gray"
-                        android:text="Creativos"
-                        android:textColor="#FFFFFF" />
-                </LinearLayout>
 
                 <Button
                     android:id="@+id/btnCategorias"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Categorias"
-                    android:textColor="@color/blanco" />
+                    android:textColor="@color/blanco"
+                    android:backgroundTint="@color/rosa"/>
 
                 <TextView
                     android:layout_width="wrap_content"

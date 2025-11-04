@@ -130,15 +130,6 @@
             app:layout_constraintTop_toBottomOf="@id/tvCategoriaLabel">
 
             <!-- 4 chips base (el código agrega más si quieres) -->
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chipClasicos"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Clásicos"
-                android:textColor="@color/black"
-                app:chipBackgroundColor="@color/blanco" />
-
 
         </com.google.android.material.chip.ChipGroup>
 
