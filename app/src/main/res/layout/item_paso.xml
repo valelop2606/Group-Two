@@ -16,7 +16,6 @@
         android:gravity="center_vertical"
         android:padding="12dp">
 
-        <!-- Número dentro de “pill”/círculo -->
         <TextView
             android:id="@+id/txtNumero"
             android:layout_width="28dp"
