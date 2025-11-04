@@ -13,13 +13,13 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import com.example.grouptwo.dataclases.Coctel
-import kotlinx.serialization.json.Json
-import kotlinx.serialization.decodeFromString
+import org.json.JSONObject
 
 
 data class CoctelCalculadora(
     val id: String,
     val nombre: String,
+    val imagen: String?, // <-- CAMBIO: Añadido campo para la imagen
     var cantidad: Int = 5
 )
 
@@ -49,13 +49,13 @@ class CalculadoraActivity : AppCompatActivity() {
 
         btnMenosInvitados.setOnClickListener {
             if (numeroInvitados > 1) {
-                numeroInvitados--
+                numeroInvitados = numeroInvitados - 1
                 actualizarUI()
             }
         }
 
         btnMasInvitados.setOnClickListener {
-            numeroInvitados++
+            numeroInvitados = numeroInvitados + 1
             actualizarUI()
         }
 
@@ -70,31 +70,36 @@ class CalculadoraActivity : AppCompatActivity() {
     }
 
     private fun mostrarDialogoSeleccionarCoctel() {
-        // Cargar cócteles desde el JSON
         val todosLosCocteles = cargarCoctelesDesdeJSON()
 
-        val nombresCocteles = Array(todosLosCocteles.size) { i ->
-            todosLosCocteles[i].nombre
+        val nombresCocteles = Array(todosLosCocteles.size) { "" }
+        var i = 0
+        while (i < todosLosCocteles.size) {
+            nombresCocteles[i] = todosLosCocteles[i].nombre
+            i = i + 1
         }
 
         AlertDialog.Builder(this)
             .setTitle("Selecciona un cóctel")
             .setItems(nombresCocteles) { dialog, position ->
-                val coctelSeleccionado: Coctel = todosLosCocteles[position]
+                val coctelSeleccionado = todosLosCocteles[position]
 
                 var encontrado = false
-                for (coctel in coctelesSeleccionados) {
-                    if (coctel.id == coctelSeleccionado.id) {
-                        coctel.cantidad = coctel.cantidad + 5
+                var j = 0
+                while (j < coctelesSeleccionados.size) {
+                    if (coctelesSeleccionados[j].id == coctelSeleccionado.id) {
+                        coctelesSeleccionados[j].cantidad = coctelesSeleccionados[j].cantidad + 5
                         encontrado = true
                         break
                     }
+                    j = j + 1
                 }
 
                 if (!encontrado) {
                     val nuevoCoctel = CoctelCalculadora(
                         id = coctelSeleccionado.id,
                         nombre = coctelSeleccionado.nombre,
+                        imagen = coctelSeleccionado.imagen, // <-- CAMBIO: Guardamos la imagen
                         cantidad = 5
                     )
                     coctelesSeleccionados.add(nuevoCoctel)
@@ -107,6 +112,8 @@ class CalculadoraActivity : AppCompatActivity() {
     }
 
     private fun cargarCoctelesDesdeJSON(): List<Coctel> {
+        val listaCocteles = mutableListOf<Coctel>()
+
         try {
             val inputStream = assets.open("cocteles.json")
             val size = inputStream.available()
@@ -115,15 +122,76 @@ class CalculadoraActivity : AppCompatActivity() {
             inputStream.close()
 
             val jsonString = String(buffer, Charsets.UTF_8)
+            val jsonObject = JSONObject(jsonString)
+            val coctelesArray = jsonObject.getJSONArray("cocteles")
 
-            val json = Json { ignoreUnknownKeys = true }
-            val database = json.decodeFromString<com.example.grouptwo.dataclases.CoctelesDatabase>(jsonString)
+            var i = 0
+            while (i < coctelesArray.length()) {
+                val coctelJson = coctelesArray.getJSONObject(i)
 
-            return database.cocteles
+                val ingredientesList = mutableListOf<com.example.grouptwo.dataclases.Ingrediente>()
+                val ingredientesArray = coctelJson.getJSONArray("ingredientes")
+                var j = 0
+                while (j < ingredientesArray.length()) {
+                    val ingJson = ingredientesArray.getJSONObject(j)
+                    val ingrediente = com.example.grouptwo.dataclases.Ingrediente(
+                        nombre = ingJson.getString("nombre"),
+                        // cantidad = if (ingJson.has("cantidad")) ingJson.getInt("cantidad") else null,
+                        unidad = ingJson.getString("unidad")
+                    )
+                    ingredientesList.add(ingrediente)
+                    j = j + 1
+                }
+
+                val pasosList = mutableListOf<com.example.grouptwo.dataclases.Paso>()
+                val pasosArray = coctelJson.getJSONArray("pasos")
+                var k = 0
+                while (k < pasosArray.length()) {
+                    val pasoJson = pasosArray.getJSONObject(k)
+                    val paso = com.example.grouptwo.dataclases.Paso(
+                        n = pasoJson.getInt("n"),
+                        texto = pasoJson.getString("texto")
+                    )
+                    pasosList.add(paso)
+                    k = k + 1
+                }
+
+                val categoriasList = mutableListOf<com.example.grouptwo.dataclases.Categoria>()
+                val categoriasArray = coctelJson.getJSONArray("categorias")
+                var l = 0
+                while (l < categoriasArray.length()) {
+                    val catJson = categoriasArray.getJSONObject(l)
+                    val categoria = com.example.grouptwo.dataclases.Categoria(
+                        n = catJson.getInt("n"),
+                        texto = catJson.getString("texto")
+                    )
+                    categoriasList.add(categoria)
+                    l = l + 1
+                }
+
+                val coctel = Coctel(
+                    id = coctelJson.getString("id"),
+                    nombre = coctelJson.getString("nombre"),
+                    descripcion = if (coctelJson.has("descripcion")) coctelJson.getString("descripcion") else "",
+                    dificultad = coctelJson.getString("dificultad"),
+                    nivel_alcohol = coctelJson.getString("nivel_alcohol"),
+                    sabor = coctelJson.getString("sabor"),
+                    ingredientes = ingredientesList,
+                    pasos = pasosList,
+                    categorias = categoriasList,
+                    imagen = if (coctelJson.has("imagen")) coctelJson.getString("imagen") else null,
+                    ultima_actualizacion = coctelJson.getString("ultima_actualizacion"),
+                    url_video_tutorial = if (coctelJson.has("url_video_tutorial")) coctelJson.getString("url_video_tutorial") else null
+                )
+
+                listaCocteles.add(coctel)
+                i = i + 1
+            }
         } catch (e: Exception) {
             e.printStackTrace()
-            return emptyList()
         }
+
+        return listaCocteles
     }
 
     private fun actualizarUI() {
@@ -146,13 +214,17 @@ class CalculadoraActivity : AppCompatActivity() {
         }
 
         containerCocteles.removeAllViews()
-        for (coctel in coctelesSeleccionados) {
-            agregarCoctelView(coctel)
+        var i = 0
+        while (i < coctelesSeleccionados.size) {
+            agregarCoctelView(coctelesSeleccionados[i])
+            i = i + 1
         }
 
         var totalBebidas = 0
-        for (coctel in coctelesSeleccionados) {
-            totalBebidas = totalBebidas + coctel.cantidad
+        var j = 0
+        while (j < coctelesSeleccionados.size) {
+            totalBebidas = totalBebidas + coctelesSeleccionados[j].cantidad
+            j = j + 1
         }
 
         val promedio: Float = if (numeroInvitados > 0) {
@@ -188,6 +260,17 @@ class CalculadoraActivity : AppCompatActivity() {
         tvBebidasCoctel.text = coctel.cantidad.toString() + " bebidas"
         tvCantidad.text = coctel.cantidad.toString()
 
+        if (coctel.imagen != null) {
+            val resourceId = resources.getIdentifier(coctel.imagen, "drawable", packageName)
+            if (resourceId != 0) {
+                ivCoctel.setImageResource(resourceId)
+            } else {
+                ivCoctel.setImageResource(R.drawable.ic_launcher_background)
+            }
+        } else {
+            ivCoctel.setImageResource(R.drawable.ic_launcher_background)
+        }
+
         btnMenos.setOnClickListener {
             if (coctel.cantidad > 1) {
                 coctel.cantidad = coctel.cantidad - 1
@@ -205,6 +288,13 @@ class CalculadoraActivity : AppCompatActivity() {
         cardCoctel.setOnLongClickListener {
             mostrarDialogoEliminar(coctel)
             true
+        }
+
+
+        ivCoctel.setOnClickListener {
+            val intent = Intent(this, VerRecetaDetalladaActivity::class.java)
+            intent.putExtra(VerRecetaDetalladaActivity.EXTRA_COCKTAIL_ID, coctel.id)
+            startActivity(intent)
         }
 
         containerCocteles.addView(coctelView)
