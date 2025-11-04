@@ -57,27 +57,24 @@ class VerRecetaDetalladaActivity : AppCompatActivity() {
         }
         currentCocktailId = cocktailId
 
-        // ✅ 1) Intentar cargar desde JSON
         val txt = assets.open("cocteles.json").bufferedReader().use { it.readText() }
         val json = Json { ignoreUnknownKeys = true; isLenient = true }
         val db = json.decodeFromString<CoctelesDatabase>(txt)
         var cocktail: Coctel? = db.cocteles.firstOrNull { it.id == cocktailId }
 
-        // ✅ 2) Si no está en el JSON, buscar en las recetas creadas por el usuario
+
         if (cocktail == null) {
             val guardadas = GuardarMiReceta.getAll(this)
             cocktail = guardadas.firstOrNull { it.id == cocktailId }
         }
 
-        // ✅ 3) Si no existe en ningún lado, salir
-        val cocktail = db.cocteles.firstOrNull { it.id == cocktailId }
+
         if (cocktail == null) {
             Toast.makeText(this, "Cóctel no encontrado: $cocktailId", Toast.LENGTH_SHORT).show()
             finish()
             return
         }
 
-        // ✅ 4) Pintar UI
         binding.txtTitulo.text = cocktail.nombre
         binding.tvDescripcion.text = cocktail.descripcion
         binding.tvDificultad.text = cocktail.dificultad
