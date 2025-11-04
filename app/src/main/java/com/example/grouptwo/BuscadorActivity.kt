@@ -198,12 +198,12 @@ class BuscadorActivity : AppCompatActivity() {
 
         containerResultados.removeAllViews()
 
-        val busquedaPorNombre = etBuscar.text.toString().lowercase()
-        val hayBusquedaPorNombre = busquedaPorNombre.isNotEmpty()
+        val busquedaGeneral = etBuscar.text.toString().lowercase()
+        val hayBusquedaGeneral = busquedaGeneral.isNotEmpty()
 
         val coctelesDisponibles = mutableListOf<Coctel>()
 
-        if (ingredientesSeleccionados.isEmpty() && !hayBusquedaPorNombre) {
+        if (ingredientesSeleccionados.isEmpty() && !hayBusquedaGeneral) {
             tvResultadosTitle.visibility = View.GONE
             containerResultados.visibility = View.GONE
             return
@@ -213,14 +213,19 @@ class BuscadorActivity : AppCompatActivity() {
         while (i < todosLosCocteles.size) {
             val coctel = todosLosCocteles[i]
 
-            val cumpleFiltroNombre = if (hayBusquedaPorNombre) {
-                coctel.nombre.lowercase().contains(busquedaPorNombre)
+            // 1. Filtro General (Nombre, Dificultad, Alcohol, Sabor)
+            val cumpleFiltroGeneral = if (hayBusquedaGeneral) {
+                coctel.nombre.lowercase().contains(busquedaGeneral) ||
+                        coctel.dificultad.lowercase().contains(busquedaGeneral) ||
+                        coctel.nivel_alcohol.lowercase().contains(busquedaGeneral) ||
+                        coctel.sabor.lowercase().contains(busquedaGeneral)
             } else {
                 true
             }
 
             if (ingredientesSeleccionados.isEmpty()) {
-                if (cumpleFiltroNombre) {
+                // Caso A: Solo se busca por Nombre o Atributos
+                if (cumpleFiltroGeneral) {
                     coctelesDisponibles.add(coctel)
                 }
 
@@ -245,7 +250,8 @@ class BuscadorActivity : AppCompatActivity() {
                     j = j + 1
                 }
 
-                if (coincidenciasIngredientes > 0 && cumpleFiltroNombre) {
+                // Si hay coincidencias de ingredientes Y cumple el filtro general
+                if (coincidenciasIngredientes > 0 && cumpleFiltroGeneral) {
                     coctelesDisponibles.add(coctel)
                 }
             }
