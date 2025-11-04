@@ -48,19 +48,12 @@
         <activity
             android:name=".CategoriasActivity"
             android:exported="false" />
-        <activity
-            android:name=".MainActivity"
-            android:exported="false" /> <!-- <activity -->
-        <!-- android:name=".PantallaInicialActivity" -->
-        <!-- android:exported="false" /> -->
+
         <activity
             android:name=".PantallaInicialActivity"
             android:exported="false" />
         <activity
             android:name=".VerRecetaDetalladaActivity"
-            android:exported="false" />
-        <activity
-            android:name=".PantallaDeBuscarActivity"
             android:exported="false" />
         <activity
             android:name=".CalculadoraActivity"

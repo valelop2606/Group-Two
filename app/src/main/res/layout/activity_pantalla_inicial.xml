@@ -101,7 +101,7 @@
                     android:id="@+id/btnCategorias"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Categorias"
+                    android:text="@string/categorias"
                     android:textColor="@color/blanco"
                     android:backgroundTint="@color/rosa"/>
 
@@ -109,7 +109,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingBottom="8dp"
-                    android:text="Para ti"
+                    android:text="@string/para_ti"
                     android:textColor="#FF69B4"
                     android:textSize="20sp" />
 
@@ -166,7 +166,7 @@
                                 android:textColor="#B0B0B0"
                                 android:textSize="12sp"
                                 android:gravity="center"
-                                android:text=" - "/>
+                                android:text="@string/separador_dificultad_nivel"/>
 
                             <TextView
                                 android:id="@+id/textSaborPrimerCoctel"
@@ -241,7 +241,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingBottom="8dp"
-                    android:text="Tendencias"
+                    android:text="@string/tendencias"
                     android:textColor="#FF69B4"
                     android:textSize="20sp" />
 
@@ -297,7 +297,7 @@
                                 android:textColor="#B0B0B0"
                                 android:textSize="12sp"
                                 android:gravity="center"
-                                android:text=" - "/>
+                                android:text="@string/separador_dificultad_nivel"/>
                             <TextView
                                 android:id="@+id/textSaborTercerCoctel"
                                 android:layout_width="wrap_content"
@@ -354,7 +354,7 @@
                                 android:textColor="#B0B0B0"
                                 android:textSize="12sp"
                                 android:gravity="center"
-                                android:text=" - "/>
+                                android:text="@string/separador_dificultad_nivel"/>
                             <TextView
                                 android:id="@+id/textSaborCuartoCoctel"
                                 android:layout_width="wrap_content"
@@ -395,14 +395,14 @@
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:background="@null"
-                android:contentDescription="Inicio"
+                android:contentDescription="@string/inicio"
                 app:srcCompat="@drawable/home_icon_silhouette_svgrepo_com"
                 app:tint="#FF69B4" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Inicio"
+                android:text="@string/inicio"
                 android:textColor="#FF69B4"
                 android:textSize="12sp" />
         </LinearLayout>
@@ -419,7 +419,7 @@
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:background="@null"
-                android:contentDescription="Buscar"
+                android:contentDescription="@string/buscar"
                 android:scaleType="fitCenter"
                 app:srcCompat="@drawable/buscar"
                 app:tint="@color/rosa" />
@@ -427,7 +427,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Buscar"
+                android:text="@string/buscar"
                 android:textColor="@color/rosa"
                 android:textSize="12sp" />
         </LinearLayout>
@@ -444,7 +444,7 @@
                 android:layout_width="22dp"
                 android:layout_height="22dp"
                 android:background="@null"
-                android:contentDescription="Calculadora"
+                android:contentDescription="@string/calculadora"
                 android:scaleType="fitCenter"
                 app:srcCompat="@drawable/calculadora"
                 app:tint="@color/rosa" />
@@ -452,7 +452,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Calculadora"
+                android:text="@string/calculadora"
                 android:textColor="@color/rosa"
                 android:textSize="12sp" />
         </LinearLayout>
@@ -469,7 +469,7 @@
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:background="@null"
-                android:contentDescription="Perfil"
+                android:contentDescription="@string/perfil"
                 android:scaleType="fitCenter"
                 app:srcCompat="@drawable/perfil"
                 app:tint="@color/rosa" />
@@ -477,7 +477,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Perfil"
+                android:text="@string/perfil"
                 android:textColor="@color/rosa"
                 android:textSize="12sp" />
         </LinearLayout>

@@ -18,7 +18,7 @@
         android:layout_height="80dp"
         android:layout_marginTop="80dp"
         android:src="@android:drawable/ic_menu_myplaces"
-        android:contentDescription="Foto de perfil"
+        android:contentDescription="@string/foto_de_perfil"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>
@@ -58,7 +58,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Group two"
+        android:text="@string/group_two"
         android:textColor="#F9FBFB"
         android:textSize="22sp"
         android:textStyle="bold"
@@ -72,7 +72,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="Amante de los cócteles 🍹"
+        android:text="@string/amante_de_los_c_cteles"
         android:textColor="#CCCCCC"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -101,7 +101,7 @@
             android:layout_marginEnd="8dp"
             android:layout_weight="1"
             android:backgroundTint="@android:color/transparent"
-            android:text="Favoritos / Preparados"
+            android:text="@string/favoritos_preparados"
             android:textAllCaps="false"
             android:textColor="#FFFFFF"
             android:textSize="13sp"
@@ -113,7 +113,7 @@
             android:layout_height="48dp"
             android:layout_weight="1"
             android:backgroundTint="@android:color/transparent"
-            android:text="Mis Recetas"
+            android:text="@string/mis_recetas"
             android:textAllCaps="false"
             android:textColor="#FFFFFF"
             android:textSize="13sp"
@@ -152,7 +152,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
-                android:text="crear receta"
+                android:text="@string/crear_receta"
                 android:textColor="@color/rosa"
                 android:textSize="16sp" />
         </LinearLayout>
@@ -188,7 +188,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
-                android:text="Cerrar Sesión"
+                android:text="@string/cerrar_sesi_n"
                 android:textColor="@color/rojo"
                 android:textSize="16sp" />
         </LinearLayout>

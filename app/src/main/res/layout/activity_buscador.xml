@@ -17,7 +17,7 @@
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:background="?attr/selectableItemBackgroundBorderless"
-            android:contentDescription="Regresar"
+            android:contentDescription="@string/regresar_descripcion"
             android:padding="12dp"
             android:src="@drawable/flecha_atras"
             app:tint="@color/rosa"
@@ -29,7 +29,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:text="Lo que tengo en casa"
+            android:text="@string/lo_que_tengo_en_casa_boton"
             android:textColor="@color/textColor"
             android:textSize="22sp"
             android:textStyle="bold"
@@ -42,7 +42,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:text="Agrega tus ingredientes disponibles"
+            android:text="@string/agrega_tus_ingredientes_disponibles"
             android:textColor="@color/text_secondary"
             android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent"
@@ -56,7 +56,7 @@
             android:background="@drawable/bg_buscar"
             android:drawablePadding="8dp"
             android:drawableStart="@android:drawable/ic_menu_search"
-            android:hint="Buscar ingrediente..."
+            android:hint="@string/buscar_ingrediente"
             android:paddingStart="16dp"
             android:textColor="@color/textColor"
             android:textColorHint="@color/hint_color"
@@ -70,7 +70,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="Ingredientes seleccionados:"
+            android:text="@string/ingredientes_seleccionados"
             android:textColor="@color/textColor"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
@@ -96,7 +96,7 @@
             android:layout_marginTop="20dp"
             android:backgroundTint="@color/colorPrimary"
             android:fontFamily="sans-serif-medium"
-            android:text="Ver qué puedo preparar (0)"
+            android:text="@string/ver_qu_puedo_preparar"
             android:textColor="@color/textColor"
             app:cornerRadius="20dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -108,7 +108,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:text="Resultados"
+            android:text="@string/resultados"
             android:textColor="@color/textColor"
             android:textSize="18sp"
             android:textStyle="bold"
@@ -133,7 +133,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:text="Ingredientes comunes"
+            android:text="@string/ingredientes_comunes"
             android:textColor="@color/textColor"
             android:textSize="18sp"
             android:textStyle="bold"
@@ -157,7 +157,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
-                android:text="Alcoholes"
+                android:text="@string/alcoholes"
                 android:textColor="@color/textColor"
                 android:textSize="16sp"
                 android:textStyle="bold" />
@@ -175,7 +175,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checkable="true"
-                    android:text="Ron"
+                    android:text="@string/ron"
                     android:textColor="@color/textColor"
                     app:chipBackgroundColor="@color/chip_selected_color" />
 
@@ -184,7 +184,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checkable="true"
-                    android:text="Vodka"
+                    android:text="@string/vodka"
                     android:textColor="@color/textColor"
                     app:chipBackgroundColor="@color/chip_selected_color" />
 
@@ -193,7 +193,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checkable="true"
-                    android:text="Gin"
+                    android:text="@string/gin"
                     android:textColor="@color/textColor"
                     app:chipBackgroundColor="@color/chip_selected_color" />
 
@@ -202,7 +202,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checkable="true"
-                    android:text="Tequila"
+                    android:text="@string/tequila"
                     android:textColor="@color/textColor"
                     app:chipBackgroundColor="@color/chip_selected_color" />
 
@@ -211,7 +211,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checkable="true"
-                    android:text="Whisky"
+                    android:text="@string/whisky"
                     android:textColor="@color/textColor"
                     app:chipBackgroundColor="@color/chip_selected_color" />
 
@@ -220,7 +220,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checkable="true"
-                    android:text="Cointreau"
+                    android:text="@string/cointreau"
                     android:textColor="@color/textColor"
                     app:chipBackgroundColor="@color/chip_selected_color" />
 
@@ -229,7 +229,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checkable="true"
-                    android:text="Vermut"
+                    android:text="@string/vermut"
                     android:textColor="@color/textColor"
                     app:chipBackgroundColor="@color/chip_selected_color" />
 
@@ -238,7 +238,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checkable="true"
-                    android:text="Triple Sec"
+                    android:text="@string/triple_sec"
                     android:textColor="@color/textColor"
                     app:chipBackgroundColor="@color/chip_selected_color" />
 
@@ -247,7 +247,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checkable="true"
-                    android:text="Campari"
+                    android:text="@string/campari"
                     android:textColor="@color/textColor"
                     app:chipBackgroundColor="@color/chip_selected_color" />
 
@@ -256,7 +256,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checkable="true"
-                    android:text="Licor de café"
+                    android:text="@string/licor_de_caf"
                     android:textColor="@color/textColor"
                     app:chipBackgroundColor="@color/chip_selected_color" />
             </com.google.android.material.chip.ChipGroup>
@@ -266,7 +266,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
-                android:text="Frutas / Cítricos"
+                android:text="@string/frutas_c_tricos"
                 android:textColor="@color/textColor"
                 android:textSize="16sp"
                 android:textStyle="bold" />
@@ -284,7 +284,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checkable="true"
-                    android:text="Lima"
+                    android:text="@string/lima"
                     android:textColor="@color/textColor"
                     app:chipBackgroundColor="@color/chip_selected_color" />
 
@@ -293,7 +293,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checkable="true"
-                    android:text="Limón"
+                    android:text="@string/lim_n"
                     android:textColor="@color/textColor"
                     app:chipBackgroundColor="@color/chip_selected_color" />
 
@@ -302,7 +302,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checkable="true"
-                    android:text="Naranja"
+                    android:text="@string/naranja"
                     android:textColor="@color/textColor"
                     app:chipBackgroundColor="@color/chip_selected_color" />
 
@@ -311,7 +311,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checkable="true"
-                    android:text="Piña"
+                    android:text="@string/pi_a"
                     android:textColor="@color/textColor"
                     app:chipBackgroundColor="@color/chip_selected_color" />
 
@@ -320,7 +320,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checkable="true"
-                    android:text="Cereza"
+                    android:text="@string/cereza"
                     android:textColor="@color/textColor"
                     app:chipBackgroundColor="@color/chip_selected_color" />
             </com.google.android.material.chip.ChipGroup>
@@ -330,7 +330,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
-                android:text="Otros"
+                android:text="@string/otros"
                 android:textColor="@color/textColor"
                 android:textSize="16sp"
                 android:textStyle="bold" />
@@ -348,7 +348,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checkable="true"
-                    android:text="Menta"
+                    android:text="@string/menta"
                     android:textColor="@color/textColor"
                     app:chipBackgroundColor="@color/chip_selected_color" />
 
@@ -357,7 +357,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checkable="true"
-                    android:text="Azúcar"
+                    android:text="@string/az_car"
                     android:textColor="@color/textColor"
                     app:chipBackgroundColor="@color/chip_selected_color" />
 
@@ -366,7 +366,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checkable="true"
-                    android:text="Hielo"
+                    android:text="@string/hielo"
                     android:textColor="@color/textColor"
                     app:chipBackgroundColor="@color/chip_selected_color" />
 
@@ -375,7 +375,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checkable="true"
-                    android:text="Jarabe de granadina"
+                    android:text="@string/jarabe_de_granadina"
                     android:textColor="@color/textColor"
                     app:chipBackgroundColor="@color/chip_selected_color" />
 
@@ -384,7 +384,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checkable="true"
-                    android:text="Soda"
+                    android:text="@string/soda"
                     android:textColor="@color/textColor"
                     app:chipBackgroundColor="@color/chip_selected_color" />
 
@@ -393,7 +393,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checkable="true"
-                    android:text="Agua con gas"
+                    android:text="@string/agua_con_gas"
                     android:textColor="@color/textColor"
                     app:chipBackgroundColor="@color/chip_selected_color" />
 
@@ -402,7 +402,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checkable="true"
-                    android:text="Leche"
+                    android:text="@string/leche"
                     android:textColor="@color/textColor"
                     app:chipBackgroundColor="@color/chip_selected_color" />
 
@@ -411,7 +411,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checkable="true"
-                    android:text="Café"
+                    android:text="@string/caf"
                     android:textColor="@color/textColor"
                     app:chipBackgroundColor="@color/chip_selected_color" />
 
@@ -420,7 +420,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checkable="true"
-                    android:text="Crema de coco"
+                    android:text="@string/crema_de_coco"
                     android:textColor="@color/textColor"
                     app:chipBackgroundColor="@color/chip_selected_color" />
             </com.google.android.material.chip.ChipGroup>

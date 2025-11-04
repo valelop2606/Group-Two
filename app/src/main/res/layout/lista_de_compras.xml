@@ -29,7 +29,7 @@
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:background="@android:color/transparent"
-                android:contentDescription="Volver"
+                android:contentDescription="@string/volver"
                 app:srcCompat="@drawable/flecha_atras"
                 app:tint="@color/rosa" />
 
@@ -37,7 +37,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingBottom="16dp"
-                android:text="Lista de Compras"
+                android:text="@string/lista_de_compras"
                 android:textColor="@color/blanco"
                 android:textSize="22sp"
                 android:textStyle="bold" />

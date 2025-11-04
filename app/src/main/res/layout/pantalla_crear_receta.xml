@@ -151,7 +151,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:background="@drawable/bg_buscar"
-            android:hint="sabor"
+            android:hint="@string/hint_sabor"
             android:padding="12dp"
             android:textColor="@color/textColor"
             android:textColorHint="@color/hint_color"

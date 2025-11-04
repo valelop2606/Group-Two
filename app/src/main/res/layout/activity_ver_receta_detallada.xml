@@ -50,8 +50,7 @@
                 android:layout_height="wrap_content"
                 android:paddingBottom="12dp"
                 android:textColor="@color/blanco"
-                android:textSize="16sp"
-                tools:text="Descripción del cóctel" />
+                android:textSize="16sp"/>
 
             <!-- NUEVO: Dificultad -->
             <TextView
@@ -60,8 +59,7 @@
                 android:layout_height="wrap_content"
                 android:paddingBottom="16dp"
                 android:textColor="@color/blanco"
-                android:textSize="14sp"
-                tools:text="Dificultad: Fácil" />
+                android:textSize="14sp"/>
 
 
 
@@ -102,7 +100,6 @@
                         android:id="@+id/tvNivelDificultad"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Medio"
                         android:textColor="@color/blanco"
                         android:textSize="13sp"/>
                 </LinearLayout>

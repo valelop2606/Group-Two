@@ -16,7 +16,7 @@
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:background="?attr/selectableItemBackgroundBorderless"
-            android:contentDescription="Regresar"
+            android:contentDescription="@string/regresar"
             android:padding="12dp"
             android:src="@drawable/flecha_atras"
             app:tint="@color/rosa"
@@ -29,7 +29,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:text="Calculadora 🧮"
+            android:text="@string/calculadora_i"
             android:textColor="@color/textColor"
             android:textSize="24sp"
             android:textStyle="bold"
@@ -43,7 +43,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:text="Calcula cantidades para tu fiesta"
+            android:text="@string/calcula_cantidades_para_tu_fiesta"
             android:textColor="@color/text_secondary"
             android:textSize="14sp"
             app:layout_constraintStart_toStartOf="@id/tvTitulo"
@@ -77,14 +77,14 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="👥"
+                        android:text="@string/personas_i"
                         android:textSize="20sp" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
-                        android:text="Número de invitados"
+                        android:text="@string/n_mero_de_invitados"
                         android:textColor="@color/textColor"
                         android:textSize="16sp"
                         android:textStyle="bold" />
@@ -114,7 +114,7 @@
                         android:background="#2A2A2A"
                         android:gravity="center"
                         android:paddingVertical="12dp"
-                        android:text="10"
+                        android:text="@string/_10"
                         android:textColor="@color/textColor"
                         android:textSize="32sp"
                         android:textStyle="bold" />
@@ -147,7 +147,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Cócteles seleccionados"
+                android:text="@string/c_cteles_seleccionados"
                 android:textColor="@color/textColor"
                 android:textSize="18sp"
                 android:textStyle="bold" />
@@ -159,7 +159,7 @@
                 android:background="#3A3A3A"
                 android:paddingHorizontal="12dp"
                 android:paddingVertical="4dp"
-                android:text="0 bebidas"
+                android:text="@string/_0_bebidas"
                 android:textColor="@color/textColor"
                 android:textSize="12sp"
                 android:textStyle="bold" />
@@ -172,7 +172,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
             android:backgroundTint="@color/colorPrimary"
-            android:text="➕ Agregar Cóctel"
+            android:text="@string/agregar_c_ctel_i"
             android:textColor="@android:color/black"
             android:textStyle="bold"
             app:cornerRadius="12dp"
@@ -198,7 +198,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:text="No hay cócteles seleccionados\nPresiona '➕ Agregar Cóctel' para empezar"
+            android:text="@string/no_hay_c_cteles_seleccionados_npresiona_agregar_c_ctel_para_empezar"
             android:textAlignment="center"
             android:textColor="@color/text_secondary"
             android:textSize="14sp"
@@ -234,14 +234,14 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="📋"
+                        android:text="@string/tablero_i"
                         android:textSize="20sp" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
-                        android:text="Resumen del evento"
+                        android:text="@string/resumen_del_evento"
                         android:textColor="@color/textColor"
                         android:textSize="16sp"
                         android:textStyle="bold" />
@@ -257,7 +257,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Total de invitados:"
+                        android:text="@string/total_de_invitados"
                         android:textColor="@color/text_secondary"
                         android:textSize="14sp" />
 
@@ -265,7 +265,7 @@
                         android:id="@+id/tvResumenInvitados"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="10 personas"
+                        android:text="@string/_10_personas"
                         android:textColor="@color/textColor"
                         android:textSize="14sp"
                         android:textStyle="bold" />
@@ -281,7 +281,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Total de bebidas:"
+                        android:text="@string/total_de_bebidas"
                         android:textColor="@color/text_secondary"
                         android:textSize="14sp" />
 
@@ -289,7 +289,7 @@
                         android:id="@+id/tvResumenBebidas"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="0 cócteles"
+                        android:text="@string/_0_c_cteles"
                         android:textColor="@color/textColor"
                         android:textSize="14sp"
                         android:textStyle="bold" />
@@ -305,7 +305,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Promedio por persona:"
+                        android:text="@string/promedio_por_persona"
                         android:textColor="@color/text_secondary"
                         android:textSize="14sp" />
 
@@ -313,7 +313,7 @@
                         android:id="@+id/tvResumenPromedio"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="0.0 bebidas"
+                        android:text="@string/_0_0_bebidas"
                         android:textColor="@color/textColor"
                         android:textSize="14sp"
                         android:textStyle="bold" />
@@ -330,7 +330,7 @@
             android:layout_marginBottom="24dp"
             android:backgroundTint="@color/colorPrimary"
             android:fontFamily="sans-serif-medium"
-            android:text="🛒  Ver lista de compras"
+            android:text="@string/ver_lista_de_compras_i"
             android:textColor="@android:color/black"
             android:textSize="16sp"
             app:cornerRadius="16dp"
